@@ -1,15 +1,16 @@
 <script lang="ts">
     // your script goes here
-        import userBanner from "./_images/whiteBeard.jpg"
+        import profilepic from "./_profilePic/law.png"
+    import profilepic2 from "./_profilePic/ren.jpeg"
+    import profilepic3 from "./_profilePic/e.jpg"
+    import profilepic4 from "./_profilePic/s2.png"
+      import userBanner from "./_images/whiteBeard.jpg"
         import Messaging from "./_icons/message.svelte"
         import Audio from "./_icons/microphone.svelte"
         import Video from "./_icons/video.svelte"
         import Announcement from "./_icons/announcement.svelte"
         import Hash from "./_icons/hash.svelte"
         import Rule from "./_icons/rule.svelte"
-        import InvitePeople from "./_icons/invitePeople.svelte"
-        import AeroUp from "./_icons/aeroUp.svelte"
-        import AeroDown from "./_icons/aeroDown.svelte"
 
 
         let subFieldName:string="| Python |"
@@ -25,36 +26,130 @@
 
         let showRoomList =false 
         let listOfField2=[
-          {"name":"Dave","notification":true,"icon":Hash,"dropdownIcon":true,
+          {"name":"Dave","notification":true,"icon":Hash,"dropdownIcon":"aero",
             "content":[
-              {"name":"rules","notification":true,"icon":Rule,"notificationNumber":3},
-              {"name":"social-media","notification":false,"icon":Announcement,"notificationNumber":0},
-              {"name":"annauncement","notification":true,"icon":Announcement,"notificationNumber":10},
+              {"name":"rules","notification":true,"icon":Audio,}
             ]
           },
-        {"name":"Technology","notification":false,"icon":Hash,"dropdownIcon":true,
-            "content":[
-              {"name":"tech-news","notification":false,"icon":Announcement,"notificationNumber":0},
-              {"name":"pc-news","notification":false,"icon":Hash,"notificationNumber":0},
-              {"name":"annauncement","notification":true,"icon":Announcement,"notificationNumber":10},
-            ]
+          {"name":"Announcement","notification":true,"icon":Announcement,"dropdownIcon":"aero",
+            "content":{
+              "name":"General","notification":true,"icon":Audio,
+              "con":"General","notification":true,"icon":Audio,
+              "name":"General","notification":true,"icon":Audio,
+            }
           },
-          {"name":"Voice Chat","notification":false,"icon":Hash,"dropdownIcon":true,
-            "content":[
-              {"name":"tech-news","notification":false,"icon":Announcement,"notificationNumber":0},
-              {"name":"pc-news","notification":false,"icon":Hash,"notificationNumber":0},
-              {"name":"annauncement","notification":true,"icon":Announcement,"notificationNumber":10},
-            ]
-          },
-          {"name":"Tech-chat","notification":true,"icon":Hash,"dropdownIcon":true,
-            "content":[
-              {"name":"tech-news","notification":false,"icon":Announcement,"notificationNumber":0},
-              {"name":"pc-news","notification":false,"icon":Hash,"notificationNumber":0},
-              {"name":"annauncement","notification":true,"icon":Announcement,"notificationNumber":10},
-            ]
+          {"name":"Video","notification":false,"icon":Video,"dropdownIcon":"aero",
+            "content":{
+              "name":"General","notification":false,"icon":Audio,
+            }
           },
         ]
         
+
+    let show=false
+
+    let UserList =[
+        {
+            "name": "ssar",
+            "profilePic": profilepic,
+            "active":true,
+            "profieString":"Sk"
+            
+        },
+         {
+            "name": "ssar",
+            "profilePic": profilepic2,
+            "active":true,
+            "profieString":"Sk"
+        },
+         {
+            "name": "ssar",
+            "profilePic": profilepic3,
+            "active":true,
+            "profieString":"Sk"
+        },
+         {
+            "name": "ssar",
+            "profilePic": profilepic4,
+            "active":true,
+            "profieString":"Sk"
+        },
+        {
+            "name": "ssar",
+            "profilePic": profilepic,
+            "active":true,
+            "profieString":"Sk"
+        },
+         {
+            "name": "ssar",
+            "profilePic": profilepic2,
+            "active":true,
+            "profieString":"Sk"
+        },
+         {
+            "name": "ssar",
+            "profilePic": profilepic3,
+            "active":true,
+            "profieString":"Sk"
+        },
+         {
+            "name": "ssar",
+            "profilePic": profilepic4,
+            "active":true,
+            "profieString":"Sk"
+        },
+        {
+            "name": "ssar",
+            "profilePic": profilepic,
+            "active":true,
+            "profieString":"Sk"
+        },
+         {
+            "name": "ssar",
+            "profilePic": profilepic2,
+            "active":true,
+            "profieString":"Sk"
+        },
+         {
+            "name": "ssar",
+            "profilePic": profilepic3,
+            "active":true,
+            "profieString":"Sk"
+        },
+         {
+            "name": "ssar",
+            "profilePic": profilepic4,
+            "active":true,
+            "profieString":"Sk"
+        },
+        {
+            "name": "ssar",
+            "profilePic": profilepic,
+            "active":true,
+            "profieString":"Sk"
+        },
+         {
+            "name": "ssar",
+            "profilePic": profilepic2,
+            "active":true,
+            "profieString":"Sk"
+        },
+         {
+            "name": "ssar",
+            "profilePic": profilepic3,
+            "active":true,
+            "profieString":"Sk"
+        },
+         {
+            "name": "ssar",
+            "profilePic": profilepic4,
+            "active":true,
+            "profieString":"Sk"
+        },
+        
+
+    ]
+
 
 </script>
 
@@ -64,8 +159,50 @@
 
 <!-- markup (zero or more items) goes here -->
 
+<div class=" flex flex-col  flex-none w-20 bg-[#202225] overflow-y-auto no-scrollbar  ">
 
-<div class=" w-52 bg-[#2f3136] flex flex-col overflow-y-auto no-scrollbar  ">
+        <!-- <div class="avatar online">
+            <div class=" w-12 rounded-full">
+                <img src="https://api.lorem.space/image/face?hash=28212">
+            </div>
+        </div> -->
+         <div class="avatar online py-1 px-2">
+            <div class="  w-16 hover:rounded-xl  rounded-3xl active:rounded-md hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer {false ? "ring  ring-offset-base-100  ring-blue-500" : "" }">
+                <!-- <img src="https://api.lorem.space/image/face?hash=40361"> -->
+                <!-- <img src="{}" alt="" class=""> -->
+                <svg class="h-16 w-16  fill-indigo-700" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512" height="512"> <g> <path d="M85.333,0h64c47.128,0,85.333,38.205,85.333,85.333v64c0,47.128-38.205,85.333-85.333,85.333h-64   C38.205,234.667,0,196.462,0,149.333v-64C0,38.205,38.205,0,85.333,0z"/> <path d="M362.667,0h64C473.795,0,512,38.205,512,85.333v64c0,47.128-38.205,85.333-85.333,85.333h-64   c-47.128,0-85.333-38.205-85.333-85.333v-64C277.333,38.205,315.538,0,362.667,0z"/> <path d="M85.333,277.333h64c47.128,0,85.333,38.205,85.333,85.333v64c0,47.128-38.205,85.333-85.333,85.333h-64   C38.205,512,0,473.795,0,426.667v-64C0,315.538,38.205,277.333,85.333,277.333z"/> <path d="M362.667,277.333h64c47.128,0,85.333,38.205,85.333,85.333v64C512,473.795,473.795,512,426.667,512h-64   c-47.128,0-85.333-38.205-85.333-85.333v-64C277.333,315.538,315.538,277.333,362.667,277.333z"/> </g> </svg>
+            </div>
+        </div>
+        {#each UserList as u}
+             <!-- content here -->
+        <div class="avatar  py-1 px-2 static ">
+            <div  class=" w-16 h-16  hover:rounded-xl  rounded-3xl active:rounded-md hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer {false ? "ring  ring-offset-base-100  ring-blue-500" : "" }">
+                <!-- <img src="https://api.lorem.space/image/face?hash=40361"> -->
+                <img src="{u.profilePic }" alt="" class="">
+            
+            </div>
+            <!-- <div class=" h-16 w-16  bg-red-600 absolute">tooltip</div> -->
+            <!-- <span class="   absolute w-auto p-2 m-2 min-w-max left-14 rounded-md shadow-md text-white bg-gray-900 text-xs font-bold transition-all duration-100 scale-0 origin-left ">tooltip</span> -->
+            
+            
+            
+        </div>
+        {/each}
+        
+        <!-- <div class="avatar offline">
+            <div class=" w-16  active:mask active:mask-squircle rounded-md ring  ring-offset-base-100 ring-offset-2 ring-blue-600">
+                <img src="https://api.lorem.space/image/face?hash=40361">
+            </div>
+        </div> -->
+        
+    </div>
+
+<!-- server -->
+
+
+
+
+<div class=" w-52 bg-[#2f3136] flex flex-col overflow-y-auto no-scrollbar   ">
         <!-- banner image -->
         <div class=" w-full aspect-video  bg-cover  " style="background-image: url({userBanner});">
             <!-- <img src="{userBanner}" alt="" class=" bg-cover "> -->
@@ -96,10 +233,10 @@
               <button class="absolute right-0 flex items-center p-1 " tabindex="-1" on:click={()=> showRoomList=!showRoomList}>
                {#if showRoomList}
                   <!-- aero up -->
-                  <AeroUp/>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
                {:else}
                   <!-- aero down -->
-                  <AeroDown/>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                {/if}
                 <!-- <svg class="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24">                   <path                     stroke="currentColor"                     stroke-linecap="round"                     stroke-linejoin="round"                     stroke-width="1.5"                     d="M15.25 10.75L12 14.25L8.75 10.75"                   ></path>                 </svg> -->
               </button>
@@ -110,11 +247,7 @@
                         <li class="flex flex-row">
                         <svg class="fill-white w-2 h-2 mt-3 -left-4 relative " viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M512 256c0 141.4-114.6 256-256 256s-256-114.6-256-256s114.6-256 256-256S512 114.6 512 256z"/></svg>
 
-                        <div href="#" class=" inline-block w-full px-2 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white" >Courses</div >
-                        <!-- invite people -->
-                          <!-- <button class=" opacity-0 hover:opacity-100 ">
-                            <InvitePeople />
-                          </button> -->
+                        <a href="#" class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white" >Courses</a >
                         </li>
                         <li>
                         <a href="#" class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-1 focus:ring-gray-500 focus:text-white" >Categories</a >

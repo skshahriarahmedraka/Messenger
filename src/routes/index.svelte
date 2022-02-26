@@ -10,6 +10,7 @@
     import Peoples from "./_Peoples/index.svelte"
     import Messages from "./_Messages/index.svelte"
     import {showPeopleList} from "$lib/store"
+    import Dock2 from "./_Dock2/index.svelte"
    
     
       
@@ -33,11 +34,11 @@
 <div class="flex flex-row h-screen">
     <!-- left avater bar -->
     <Dock/>
-    <!--  -->
 
     <!-- hash bar -->
-    <!-- 132px -->
     <Servers/>
+
+    <!-- <Dock2/> -->
     
     <!-- everything -->
     <div class=" w-full bg-stone-600 flex flex-col">
