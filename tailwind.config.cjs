@@ -14,6 +14,8 @@ const config = {
 	plugins: [
 		require("daisyui"),
 	    require('tailwindcss-question-mark'),
+		require('tailwind-scrollbar'),
+		require('@tailwindcss/line-clamp'),
 	],
 };
 
