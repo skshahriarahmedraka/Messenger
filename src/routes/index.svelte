@@ -37,7 +37,7 @@
 </style>
 
 
-<div class="flex flex-row h-screen ">
+<div class="flex flex-row h-screen transition-all duration-500 ease-linear ">
     <!-- left avater bar -->
     {#if ChatOrDockValue}
          <!-- content here -->

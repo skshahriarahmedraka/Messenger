@@ -76,7 +76,7 @@
 <!-- markup (zero or more items) goes here -->
 
 
-<div class=" w-52 bg-[#2f3136] flex flex-col overflow-y-auto no-scrollbar  ">
+<div class=" w-52 bg-[#2f3136] flex flex-col overflow-y-auto no-scrollbar transition-all duration-500 ease-linear ">
         <!-- banner image -->
       <div class=" w-full aspect-video  bg-cover  " style="background-image: url({userBanner});">
             <!-- <img src="{userBanner}" alt="" class=" bg-cover "> -->
