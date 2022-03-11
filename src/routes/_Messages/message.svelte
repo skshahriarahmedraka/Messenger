@@ -25,7 +25,7 @@
                  </div>
 
              </div>
-             <div class="">
+             <div class=" whitespace-pre">
                  {message}
              </div>
          </div>

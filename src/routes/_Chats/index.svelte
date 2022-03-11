@@ -2,6 +2,7 @@
     import {ChatOrDock} from "$lib/store"
     import Moji from "./profilePic/ot2.jpg"
     import Moji2 from "./profilePic/moji2.jpg"
+    import {FriendList} from "$lib/store2"
     // your script goes here
     let ChatOrDockHelper
     ChatOrDock.subscribe(val=>{
@@ -26,7 +27,7 @@
 
 <!-- markup (zero or more items) goes here -->
 
-<div class=" min-w-[380px] h-screen  bg-[#2f3136] flex flex-col transition-all duration-500 ease-linear  ">
+<div class=" w-[485px] h-full  bg-[#2f3136] flex flex-col transition-all duration-500 ease-linear  ">
     <!-- scrollbar-thin  scrollbar-thumb-gray-500 scrollbar-track-gray-400 -->
     <div class="flex flex-row ">
         <!-- company logo -->
@@ -39,9 +40,10 @@
         <!-- search -->
         {#if searchIconEvent}
              
-             <div class=" flex-grow my-2 ml-1 mr-2 flex flex-row transition-all duration-300 ease-linear cursor-pointer text-lg text-gray-400">
-                 <input placeholder="Search"  autocomplete="off" autofocus on:blur="{()=>{ inputValue==="" ? searchIconEvent=!searchIconEvent : searchIconEvent=searchIconEvent }}"  value="{inputValue}" type="text" class=" bg-slate-600 rounded-xl h-10 mt-2 w-full">
-                <svg on:click={()=>searchIconEvent=!searchIconEvent} class="w-8 h-8 my-3 mr-0 rounded-xl hover:text-white text-slate-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+             <div class="  flex-grow my-2 ml-1 mr-2 flex flex-row transition-all duration-300 ease-linear cursor-pointer text-lg text-gray-400">
+                
+                <input placeholder="Search"  autocomplete="off" autofocus on:blur="{()=>{ inputValue==="" ? searchIconEvent=!searchIconEvent : searchIconEvent=searchIconEvent }}"  bind:value="{inputValue}" type="text" class="    w-full  self-center h-12  p-2 text-lg font-medium text-[#98999e] outline-0 focus:border-sky-600  bg-[#303338] border-2 mx-1 my-0  border-[#24262b]  active:border-gray-800 rounded-2xl">
+                <svg on:click={()=>{searchIconEvent=!searchIconEvent ; inputValue="" } } class="w-8 h-8 my-3 mr-0 rounded-xl hover:text-white text-slate-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
              </div>
         {:else}
              
@@ -52,7 +54,7 @@
             <div class=" flex flex-row ">
 
                  <svg class="w-8 h-8 m-4 hover:text-white text-slate-400 transition-all duration-200 ease-linear cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                <span class=" absolute mt-2  ml-7 h-5  px-1  border-2 border-[#202225] rounded-xl text-xs font-semibold  bg-red-500 text-white  ">
+                <span class="  absolute mt-2  ml-7 h-5  px-1  border-2 border-[#202225] rounded-xl text-xs font-semibold  bg-red-500 text-white  ">
                         99+
                 </span>
             </div>
@@ -63,35 +65,46 @@
         {/if}
 
     </div>
-    <div class=" h-full w-full overflow-y-auto scrol  overflow-x-hidden ">
+    <div class=" h-full w-full overflow-y-auto scrol overflow-x-hidden ">
 
         <!-- user chat list -->
-        {#each Array.from(Array(100+1).keys()).slice(1) as i }
-         <div class=" min-w-full min-h-[72px] m-1 hover:bg-[#202225] flex flex-row hover:rounded-xl overflow-hidden ">
+        {#each FriendList as i }
+         <div class=" w-full h-[72px] m-1 hover:bg-[#202225] flex flex-row hover:rounded-xl  ">
             <!-- user image -->
-            <img src="{Moji}" alt="" class=" w-14 h-14 m-2 rounded-2xl">
-            <div class="flex flex-col min-w-full min-h-full ">
+            <img src="{i.ProfileImage}" alt="" class=" w-14 h-14 m-2 aspect-square  rounded-3xl hover:rounded-xl active:rounded-md object-cover hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600">
+            <div class="flex flex-col w-full h-full mr-2">
                 <div class="   h-8  mt-2 ml-0 flex flex-row">
                     <!-- User name -->
-                    <p class=" w-56 font-bold text-lg text-ellipsis truncate   ">
-                        skshahriarahmedrakarakarakaraka
+                    <p class=" w-56  font-bold text-lg text-ellipsis truncate   ">
+                        {i.UserName}
                     </p>
+                    <div class=" flex-grow"></div>
                     <!-- mute icon -->
-                    <svg class="w-5 h-5 m-1 flex-none " fill="currentColor" viewBox="0 0 20 20" ><path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    {#if i.SilentNotification}
+                         <svg class="w-5 h-5 m-1 flex-none " fill="currentColor" viewBox="0 0 20 20" ><path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    {/if}
                     <!-- last message time -->
-                    <p class=" font-thin text-xs mt-3 mb-1 mx-0 flex-none ">
-                        9:32 PM
+                    <p class="   font-thin text-xs mt-3 mb-1 mx-0 flex-none  ">
+                        <!-- 34 aug21  -->
+                        {i.LastMessageTime}
                     </p>
                 </div>
                 <div class=" h-8 w-72 flex flex-row ">
                     <!-- last message -->
-                    <p class="truncate w-64 h-full ">
-                        a great idea, so the Russians can't interfere with Ukraine's communication
+                    <p class="truncate w-72  h-full   ">
+                        <!-- a great idea, so the Russians can't interfere with Ukraine's communication -->
+                        {i.LastMessage}
                     </p>
                     <!-- number of notification -->
-                     <span class=" h-5  px-1  border-2 border-[#202225] rounded-xl text-xs font-semibold  bg-red-500 text-white  ">
-                        99+
-                    </span>
+                   {#if i.SilentNotification && i.NumberOfNotification!=0 }
+                       <span class="   h-5  px-1  border-2 border-[#202225] rounded-xl text-xs font-semibold bg-slate-500 text-white  ">
+                        {i.NumberOfNotification}
+                        </span>
+                   {:else if i.NumberOfNotification != 0 }
+                        <span class="   h-5  px-1  border-2 border-[#202225] rounded-xl text-xs font-semibold bg-red-500 text-white  ">
+                            {i.NumberOfNotification}
+                        </span>
+                    {/if}
                 </div>
             </div>
          </div>

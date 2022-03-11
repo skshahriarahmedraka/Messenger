@@ -1,10 +1,11 @@
 <script lang="ts">
     // your script goes here
-        import profilepic from "./_icons/postgresql.svg"
-    import profilepic2 from "./_icons/redis-icon.svg"
-    import profilepic3 from "./_icons/slack.svg"
-    import profilepic4 from "./_icons/tensorflow.svg"
+    //     import profilepic from "./_icons/postgresql.svg"
+    // import profilepic2 from "./_icons/redis-icon.svg"
+    // import profilepic3 from "./_icons/slack.svg"
+    // import profilepic4 from "./_icons/tensorflow.svg"
     import {ChatOrDock} from "$lib/store"
+    import {ServerList} from "$lib/store2"
 
 
     let show=false
@@ -22,107 +23,107 @@
         }
     }
 
-    let UserList =[
-        {
-            "name": "ssar",
-            "profilePic": profilepic,
-            "active":true,
-            "profieString":"Sk"
+    // let UserList =[
+    //     {
+    //         "name": "ssar",
+    //         "profilePic": profilepic,
+    //         "active":true,
+    //         "profieString":"Sk"
             
-        },
-         {
-            "name": "ssar",
-            "profilePic": profilepic2,
-            "active":true,
-            "profieString":"Sk"
-        },
-         {
-            "name": "ssar",
-            "profilePic": profilepic3,
-            "active":true,
-            "profieString":"Sk"
-        },
-         {
-            "name": "ssar",
-            "profilePic": profilepic4,
-            "active":true,
-            "profieString":"Sk"
-        },
-        {
-            "name": "ssar",
-            "profilePic": profilepic,
-            "active":true,
-            "profieString":"Sk"
-        },
-         {
-            "name": "ssar",
-            "profilePic": profilepic2,
-            "active":true,
-            "profieString":"Sk"
-        },
-         {
-            "name": "ssar",
-            "profilePic": profilepic3,
-            "active":true,
-            "profieString":"Sk"
-        },
-         {
-            "name": "ssar",
-            "profilePic": profilepic4,
-            "active":true,
-            "profieString":"Sk"
-        },
-        {
-            "name": "ssar",
-            "profilePic": profilepic,
-            "active":true,
-            "profieString":"Sk"
-        },
-         {
-            "name": "ssar",
-            "profilePic": profilepic2,
-            "active":true,
-            "profieString":"Sk"
-        },
-         {
-            "name": "ssar",
-            "profilePic": profilepic3,
-            "active":true,
-            "profieString":"Sk"
-        },
-         {
-            "name": "ssar",
-            "profilePic": profilepic4,
-            "active":true,
-            "profieString":"Sk"
-        },
-        {
-            "name": "ssar",
-            "profilePic": profilepic,
-            "active":true,
-            "profieString":"Sk"
-        },
-         {
-            "name": "ssar",
-            "profilePic": profilepic2,
-            "active":true,
-            "profieString":"Sk"
-        },
-         {
-            "name": "ssar",
-            "profilePic": profilepic3,
-            "active":true,
-            "profieString":"Sk"
-        },
-         {
-            "name": "ssar",
-            "profilePic": profilepic4,
-            "active":true,
-            "profieString":"Sk"
-        },
+    //     },
+    //      {
+    //         "name": "ssar",
+    //         "profilePic": profilepic2,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //      {
+    //         "name": "ssar",
+    //         "profilePic": profilepic3,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //      {
+    //         "name": "ssar",
+    //         "profilePic": profilepic4,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //     {
+    //         "name": "ssar",
+    //         "profilePic": profilepic,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //      {
+    //         "name": "ssar",
+    //         "profilePic": profilepic2,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //      {
+    //         "name": "ssar",
+    //         "profilePic": profilepic3,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //      {
+    //         "name": "ssar",
+    //         "profilePic": profilepic4,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //     {
+    //         "name": "ssar",
+    //         "profilePic": profilepic,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //      {
+    //         "name": "ssar",
+    //         "profilePic": profilepic2,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //      {
+    //         "name": "ssar",
+    //         "profilePic": profilepic3,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //      {
+    //         "name": "ssar",
+    //         "profilePic": profilepic4,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //     {
+    //         "name": "ssar",
+    //         "profilePic": profilepic,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //      {
+    //         "name": "ssar",
+    //         "profilePic": profilepic2,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //      {
+    //         "name": "ssar",
+    //         "profilePic": profilepic3,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
+    //      {
+    //         "name": "ssar",
+    //         "profilePic": profilepic4,
+    //         "active":true,
+    //         "profieString":"Sk"
+    //     },
         
 
-    ]
+    // ]
 
 
 </script>
@@ -141,14 +142,17 @@
             </div>
         </div>
         <!-- user list -->
-        {#each UserList as u}
+        {#each ServerList as u}
         <button class="my-1 mx-2 w-14 h-14 relative  ">
-                <svg class="fill-white w-2 h-2 my-5 -left-3 place-content-center absolute " viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M512 256c0 141.4-114.6 256-256 256s-256-114.6-256-256s114.6-256 256-256S512 114.6 512 256z"/></svg>
-
-                <img src="{u.profilePic }" alt="" class=" rounded-3xl hover:rounded-xl active:rounded-md object-cover w-full h-full hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600">
+                {#if u.NewMessage}
+                    <svg class="fill-white w-2 h-2 my-5 -left-3 place-content-center absolute " viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M512 256c0 141.4-114.6 256-256 256s-256-114.6-256-256s114.6-256 256-256S512 114.6 512 256z"/></svg>
+                {/if}
+                <img src="{u.ServerImage}" alt="" class=" rounded-3xl hover:rounded-xl active:rounded-md object-cover h-14 w-14 hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600">
+                {#if u.Notification }
                 <span class=" absolute px-1  border-2 border-[#202225] rounded-full text-xs font-semibold  bg-red-500 text-white -bottom-2 -right-2 ">
-                    99+
+                    {u.NumberOfNotification}
                 </span>
+                {/if}
 
             </button>
             

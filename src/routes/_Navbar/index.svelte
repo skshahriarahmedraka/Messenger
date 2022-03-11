@@ -39,8 +39,10 @@ import Taw from "./_profileImg/t.jpg"
      {#if searchIconEvent}
           
           <div class=" flex-grow my-2 ml-1 mr-2 flex flex-row transition-all duration-300 ease-linear cursor-pointer">
-                      <input placeholder="Search" autocomplete="off" autofocus on:blur="{()=>{ inputValue==="" ? searchIconEvent=!searchIconEvent : searchIconEvent=searchIconEvent }}"  value="{inputValue}" type="text" class=" bg-slate-500 rounded-xl h-8 my-1 mx-2 w-full text-lg text-slate-200">
-                     <svg on:click={()=>searchIconEvent=!searchIconEvent} class="w-8 h-8 mt-1 place-content-center rounded-xl hover:fill-white fill-slate-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <!-- <input type="text" class=" self-center h-12 w-[415px] p-2 text-lg font-medium text-[#98999e] outline-0 focus:border-sky-600  bg-[#303338] border-2 mx-4 my-2 border-[#24262b]  active:border-gray-800 rounded-2xl "> -->
+
+                    <input placeholder="Search" autocomplete="off" autofocus on:blur="{()=>{ inputValue==="" ? searchIconEvent=!searchIconEvent : searchIconEvent=searchIconEvent }}"  bind:value="{inputValue}"  type="text" class="     w-full    self-center h-12  p-2 text-lg font-medium text-[#98999e] outline-0 focus:border-sky-600  bg-[#303338] border-2 ml-4 mr-2 my-2 border-[#24262b]  active:border-gray-800 rounded-2xl ">
+                     <svg on:click={()=>{searchIconEvent=!searchIconEvent ; inputValue="" }} class="w-8 h-8 mt-1 place-content-center rounded-xl hover:fill-white fill-slate-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
          </div>
     {:else}
         <div class=" flex-grow"></div>
@@ -88,7 +90,7 @@ import Taw from "./_profileImg/t.jpg"
             </div>             
          {/if}
      </div>
-     <div class=" my-1 mx-2">
+     <div class=" h-12 w-12 my-1 mx-2">
           <img src="{ Taw}" alt="" class=" rounded-2xl hover:rounded-xl active:rounded-md object-cover w-full h-full hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600">
          
      </div>
