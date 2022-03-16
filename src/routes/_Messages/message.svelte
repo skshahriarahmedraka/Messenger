@@ -30,4 +30,7 @@
              </div>
          </div>
      </div>
+<svelte:head>
+  <title>"sk"</title>
+</svelte:head>
 

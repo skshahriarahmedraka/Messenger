@@ -34,20 +34,14 @@
     /* your styles go here */
 </style>
 
-<!-- markup (zero or more items) goes here -->
 
-<div class=" w-1/6  bg-[#2f3136] transition-all duration-200 ease-linear flex flex-col overflow-y-scroll scrol">
-     <!-- icon 80*80 -->
-     <!-- icon name div 380*100 -->
-     <!-- comonent 44 width -->
-    
+<div class=" w-1/6  bg-[#2f3136] transition-all duration-200 ease-linear flex flex-col overflow-y-scroll scrol"> 
      <div class=" w-full h-24  flex flex-row ">
                 <img src="{UserImg}" alt="" class=" w-20 h-20 object-cover rounded-3xl my-2 mx-2">
-                
                 <div class=" flex flex-col ">
                     <p class=" text-gray-300 text-lg my-2 mx-1 leading-5 line-clamp-2">
                         Sk Shahriar Ahmed Raka
-                </p>
+                    </p>
                 <p class=" text-sm text-gray-400 my-2 mx-1 truncate">
                     last seen recently
                 </p>
@@ -201,5 +195,5 @@
                 Block User
             </div>
         </div>
-        </div>
+    </div>
 </div>

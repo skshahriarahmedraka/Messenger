@@ -1,8 +1,7 @@
 <script lang="ts">
     
-    import {showPeopleList} from "$lib/store"
-import AddPeople from "../_Dock2/_icons/addPeople.svelte"
-import Taw from "./_profileImg/t.jpg"
+    import {showPeopleList, MyPro} from "$lib/store2"
+    import Taw from "./_profileImg/t.jpg"
 
     let showPeopleList1 
     showPeopleList.subscribe(val=>{
@@ -27,7 +26,6 @@ import Taw from "./_profileImg/t.jpg"
     /* your styles go here */
 </style>
 
-<!-- markup (zero or more items) goes here -->
 
  <div class=" bg-[#36393f] h-14 w-full flex flex-row border-b-2 border-solid border-[#32353a]">
      <div class="flex flex-row hover:fill-white fill-slate-400 hover:text-white text-slate-400 transition-all duration-200 ease-linear cursor-pointer">
@@ -39,8 +37,6 @@ import Taw from "./_profileImg/t.jpg"
      {#if searchIconEvent}
           
           <div class=" flex-grow my-2 ml-1 mr-2 flex flex-row transition-all duration-300 ease-linear cursor-pointer">
-                    <!-- <input type="text" class=" self-center h-12 w-[415px] p-2 text-lg font-medium text-[#98999e] outline-0 focus:border-sky-600  bg-[#303338] border-2 mx-4 my-2 border-[#24262b]  active:border-gray-800 rounded-2xl "> -->
-
                     <input placeholder="Search" autocomplete="off" autofocus on:blur="{()=>{ inputValue==="" ? searchIconEvent=!searchIconEvent : searchIconEvent=searchIconEvent }}"  bind:value="{inputValue}"  type="text" class="     w-full    self-center h-12  p-2 text-lg font-medium text-[#98999e] outline-0 focus:border-sky-600  bg-[#303338] border-2 ml-4 mr-2 my-2 border-[#24262b]  active:border-gray-800 rounded-2xl ">
                      <svg on:click={()=>{searchIconEvent=!searchIconEvent ; inputValue="" }} class="w-8 h-8 mt-1 place-content-center rounded-xl hover:fill-white fill-slate-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
          </div>
@@ -57,14 +53,13 @@ import Taw from "./_profileImg/t.jpg"
     <svg class="w-8 h-8 my-3 ml-2 hover:text-white text-slate-400 transition-all duration-200 ease-linear cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
     <!-- hash -->
      <svg class="w-8 h-8 my-3 mx-2 hover:text-white text-slate-400  transition-all duration-200 ease-linear cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
-     <!-- <svg class=" w-8 h-8 m-2 stroke-current" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z" clip-rule="evenodd"></path></svg> -->
      <!-- notification -->
     <div class=" flex flex-row ">
 
-                <svg class="w-7 h-7 my-4 mr-4 hover:text-white text-slate-400 transition-all duration-200 ease-linear cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                <div class=" absolute mt-3 ml-2 h-4  px-1  border-1 border-[#202225] rounded-xl text-xs font-semibold  bg-red-500 text-white  ">
-                        99+
-                </div>
+        <svg class="w-7 h-7 my-4 mr-4 hover:text-white text-slate-400 transition-all duration-200 ease-linear cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+        <div class=" absolute mt-3 ml-2 h-4  px-1  border-1 border-[#202225] rounded-xl text-xs font-semibold  bg-red-500 text-white  ">
+                99+
+        </div>
     </div>
 
      <!-- show people pannel -->
@@ -91,7 +86,7 @@ import Taw from "./_profileImg/t.jpg"
          {/if}
      </div>
      <div class=" h-12 w-12 my-1 mx-2">
-          <img src="{ Taw}" alt="" class=" rounded-2xl hover:rounded-xl active:rounded-md object-cover w-full h-full hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600">
+          <img src="{ $MyPro["ProfileImage"]}" alt="" class=" rounded-2xl hover:rounded-xl active:rounded-md object-cover w-full h-full hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600">
          
      </div>
      <div class="my-2 mr-0 ml-0">

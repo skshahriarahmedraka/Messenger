@@ -9,7 +9,7 @@
     import NavBar from "./_Navbar/index.svelte"
     import Peoples from "./_Peoples/index.svelte"
     import Messages from "./_Messages/index.svelte"
-    import {showPeopleList,ChatOrDock} from "$lib/store"
+    import {showPeopleList,ChatOrDock} from "$lib/store2"
     import Dock2 from "./_Dock2/index.svelte"
     import Chat from "./_Chats/index.svelte"
    
@@ -26,8 +26,6 @@
         ChatOrDockValue=val 
     })
 
-
-   
 
 
 

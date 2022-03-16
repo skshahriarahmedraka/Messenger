@@ -44,7 +44,9 @@ import Tea from "./serverpic/tea2.jpg"
 import Tensorflow from "./serverpic/tensorflow.svg"
 import Linux from "./serverpic/linux.svg"
 import Ubuntu from "./serverpic/ubuntu.svg"
-
+// user profile pic
+import Pro from "./profilepic/pro.jpeg"
+// chat active
 
 
 
@@ -57,6 +59,9 @@ export const MessageList = writable([])
 
 
 
+
+
+
 export let FriendList = [
     {   "ProfileURL":"majibarrahman",
         "ProfileImage": Moji,
@@ -65,6 +70,9 @@ export let FriendList = [
         "LastMessageTime":"23 Aug 21",
         "SilentNotification": true,
         "NumberOfNotification": 43,
+        "ActiveStatus": true,
+        "LastActiveTime": "10:28 AM"
+        
     },
     {   "ProfileURL":"rafihasan",
         "ProfileImage": Rafi ,
@@ -72,7 +80,10 @@ export let FriendList = [
         "LastMessage": "whats is going on bro",
         "LastMessageTime":"9:30 AM",
         "SilentNotification": false,
-        "NumberOfNotification": 3 ,
+        "NumberOfNotification": 3,
+        "ActiveStatus": true,
+        "LastActiveTime": "6 Jul 17"
+        
     },
     {   "ProfileURL":"ekbalhasan",
         "ProfileImage": Ekbal,
@@ -80,7 +91,10 @@ export let FriendList = [
         "LastMessage": "I was going home that day",
         "LastMessageTime":"9 jun 11",
         "SilentNotification": true,
-        "NumberOfNotification":4 ,
+        "NumberOfNotification": 4,
+        "ActiveStatus": false,
+        "LastActiveTime": "29 Jun 18"
+        
     },
     {   "ProfileURL":"mdronok",
         "ProfileImage": Ronok,
@@ -88,7 +102,10 @@ export let FriendList = [
         "LastMessage": "ethical hacking is my passion",
         "LastMessageTime":"10:34 PM",
         "SilentNotification": false,
-        "NumberOfNotification": 1 ,
+        "NumberOfNotification": 1,
+        "ActiveStatus": false,
+        "LastActiveTime": "10:28 AM"
+        
     },
     {   "ProfileURL":"samiulshakil",
         "ProfileImage": Shakil,
@@ -97,6 +114,9 @@ export let FriendList = [
         "LastMessageTime":"12 mar 19",
         "SilentNotification": true,
         "NumberOfNotification": 7,
+        "ActiveStatus": true,
+        "LastActiveTime": "7 Aug 19"
+        
     },
     {   "ProfileURL":"hemelakash",
         "ProfileImage": Hemel,
@@ -105,7 +125,9 @@ export let FriendList = [
         "LastMessageTime":"12 min",
         "SilentNotification": true,
         "NumberOfNotification": 6,
-    },
+    "ActiveStatus": false,
+        "LastActiveTime": "10:28 AM"
+        },
     {   "ProfileURL":"hazem",
         "ProfileImage": Azim,
         "UserName": "Md Azim Mahfuz",
@@ -113,7 +135,9 @@ export let FriendList = [
         "LastMessageTime":"23 sec",
         "SilentNotification": true,
         "NumberOfNotification":7 ,
-    },
+    "ActiveStatus": true,
+        "LastActiveTime": "1:06 AM"
+        },
 
     {   "ProfileURL":"rafel",
         "ProfileImage": Rafel,
@@ -122,7 +146,9 @@ export let FriendList = [
         "LastMessageTime":"4:23 AM",
         "SilentNotification": false,
         "NumberOfNotification": 0,
-    },
+    "ActiveStatus": false,
+        "LastActiveTime": "10:28 AM"
+        },
     {   "ProfileURL":"rakibulislam",
         "ProfileImage": Rakib,
         "UserName": "md Rakibul islam",
@@ -130,7 +156,9 @@ export let FriendList = [
         "LastMessageTime":"23 dec 21",
         "SilentNotification": true,
         "NumberOfNotification": 2 ,
-    },
+    "ActiveStatus": true,
+        "LastActiveTime": "00:28 AM"
+        },
     {   "ProfileURL":"istique",
         "ProfileImage": Istique ,
         "UserName": "istique mahmud pritom",
@@ -138,7 +166,9 @@ export let FriendList = [
         "LastMessageTime":"1 jun 21",
         "SilentNotification": false,
         "NumberOfNotification": 0,
-    },
+    "ActiveStatus": true,
+        "LastActiveTime": "11:28 AM"
+        },
     {   "ProfileURL":"mdrakib",
         "ProfileImage": Rakib2,
         "UserName": "Md Rakib Hasan",
@@ -146,7 +176,9 @@ export let FriendList = [
         "LastMessageTime":"9 mar",
         "SilentNotification": true,
         "NumberOfNotification": 2,
-    },
+    "ActiveStatus": true,
+        "LastActiveTime": "00:00 AM"
+        },
     {   "ProfileURL":"toki",
         "ProfileImage": Toki,
         "UserName": "md toki",
@@ -154,7 +186,9 @@ export let FriendList = [
         "LastMessageTime":"21 jun",
         "SilentNotification": false,
         "NumberOfNotification": 0,
-    },
+    "ActiveStatus": false,
+        "LastActiveTime": "9 Feb 30"
+        },
     {   "ProfileURL":"yurichi",
         "ProfileImage": Yurichi,
         "UserName": "Yurichi",
@@ -162,7 +196,9 @@ export let FriendList = [
         "LastMessageTime":"12 jan 16",
         "SilentNotification": false,
         "NumberOfNotification": 9,
-    },
+    "ActiveStatus": false,
+        "LastActiveTime": "23 Dec 21"
+        },
     {   "ProfileURL":"rengokhu",
         "ProfileImage": Rengokhu,
         "UserName": "kyjiro Rengokhu",
@@ -170,7 +206,9 @@ export let FriendList = [
         "LastMessageTime":"19 feb 19",
         "SilentNotification": false,
         "NumberOfNotification": 5,
-    },
+    "ActiveStatus": true,
+        "LastActiveTime": "10:28 PM"
+        },
     {   "ProfileURL":"vegeta",
         "ProfileImage": Vegeta,
         "UserName": "Prince Vegeta",
@@ -178,7 +216,9 @@ export let FriendList = [
         "LastMessageTime":"9 sep 20",
         "SilentNotification": false,
         "NumberOfNotification": 0 ,
-    },
+    "ActiveStatus": false,
+        "LastActiveTime": "10:28 AM"
+        },
 
      {   "ProfileURL":"saad",
         "ProfileImage": Saad ,
@@ -187,7 +227,9 @@ export let FriendList = [
         "LastMessageTime":"yestarday",
         "SilentNotification": false,
         "NumberOfNotification": 5,
-    },
+    "ActiveStatus": true,
+        "LastActiveTime": "3:00 AM"
+        },
       {   "ProfileURL":"hankok",
         "ProfileImage": Hankok,
         "UserName": "Boa Hankok",
@@ -195,7 +237,9 @@ export let FriendList = [
         "LastMessageTime":"12 jan 00",
         "SilentNotification": false,
         "NumberOfNotification": 99,
-    },
+    "ActiveStatus": false,
+        "LastActiveTime": "12:28 AM"
+        },
        {   "ProfileURL":"nejuko",
         "ProfileImage": Nejuko,
         "UserName": "Nejuko",
@@ -203,7 +247,9 @@ export let FriendList = [
         "LastMessageTime":"2 jan 34",
         "SilentNotification": true,
         "NumberOfNotification": 9,
-    },
+    "ActiveStatus": true,
+        "LastActiveTime": "Active"
+        },
        {   "ProfileURL":"shanks",
         "ProfileImage": Shanks,
         "UserName": "D. Shanka",
@@ -211,7 +257,9 @@ export let FriendList = [
         "LastMessageTime":"1:00 AM",
         "SilentNotification": false,
         "NumberOfNotification": 45,
-    },
+    "ActiveStatus": false,
+        "LastActiveTime": "10:00 AM"
+        },
        {   "ProfileURL":"admiral",
         "ProfileImage": Admiral ,
         "UserName": "Nevy Admiral",
@@ -219,7 +267,9 @@ export let FriendList = [
         "LastMessageTime":"6:39 AM",
         "SilentNotification": false,
         "NumberOfNotification": 0,
-    },
+    "ActiveStatus": false,
+        "LastActiveTime": "9:28 AM"
+        },
          {   "ProfileURL":"law",
         "ProfileImage": Law,
         "UserName": "Trafalger D. Water Law",
@@ -227,18 +277,9 @@ export let FriendList = [
         "LastMessageTime":"yesterday",
         "SilentNotification": false,
         "NumberOfNotification": 34,
-    },
-    //        {   "ProfileURL":"",
-    //     "ProfileImage": ,
-    //     "UserName": "",
-    //     "LastMessage": "",
-    //     "LastMessageTime":"",
-    //     "SilentNotification": true,
-    //     "NumberOfNotification": ,
-    // },
-           
-    
-]
+    "ActiveStatus": true,
+        "LastActiveTime": "Active"
+        }]
 
 export let ServerList = [
     {   
@@ -248,7 +289,7 @@ export let ServerList = [
         "NumberOfNewMessage": 3,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Postgres,
+        "ServerImage": Postgres
         
     },
     {   
@@ -258,7 +299,7 @@ export let ServerList = [
         "NumberOfNewMessage": 0,
         "Notification": true,
         "NumberOfNotification": 3,
-        "ServerImage": Mongo,
+        "ServerImage": Mongo
         
     },
     {   
@@ -268,7 +309,7 @@ export let ServerList = [
         "NumberOfNewMessage": 4,
         "Notification": true,
         "NumberOfNotification": 6,
-        "ServerImage": Docker,
+        "ServerImage": Docker
         
     },
     {   
@@ -278,7 +319,7 @@ export let ServerList = [
         "NumberOfNewMessage": 0,
         "Notification": true,
         "NumberOfNotification": 99,
-        "ServerImage": Kubernetes,
+        "ServerImage": Kubernetes
         
     },
     {   
@@ -288,7 +329,7 @@ export let ServerList = [
         "NumberOfNewMessage": 7,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Redis,
+        "ServerImage": Redis
         
     },
     {   
@@ -298,7 +339,7 @@ export let ServerList = [
         "NumberOfNewMessage": 0,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Tensorflow,
+        "ServerImage": Tensorflow
         
     },
     {   
@@ -308,7 +349,7 @@ export let ServerList = [
         "NumberOfNewMessage": 2,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Mancity,
+        "ServerImage": Mancity
         
     },
     {   
@@ -318,7 +359,7 @@ export let ServerList = [
         "NumberOfNewMessage": 4,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Cpp,
+        "ServerImage": Cpp
         
     },
     {   
@@ -328,7 +369,7 @@ export let ServerList = [
         "NumberOfNewMessage": 7,
         "Notification": true,
         "NumberOfNotification": 2,
-        "ServerImage": Ubuntu,
+        "ServerImage": Ubuntu
         
     },
     {   
@@ -338,7 +379,7 @@ export let ServerList = [
         "NumberOfNewMessage": 0,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Real,
+        "ServerImage": Real
         
     },
     {   
@@ -348,7 +389,7 @@ export let ServerList = [
         "NumberOfNewMessage": 6,
         "Notification": true,
         "NumberOfNotification": 4,
-        "ServerImage": Bd,
+        "ServerImage": Bd
         
     },
     {   
@@ -358,7 +399,7 @@ export let ServerList = [
         "NumberOfNewMessage": 0,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": C,
+        "ServerImage": C
         
     },
     {   
@@ -368,7 +409,7 @@ export let ServerList = [
         "NumberOfNewMessage": 0,
         "Notification": true,
         "NumberOfNotification": 45,
-        "ServerImage": Coffee,
+        "ServerImage": Coffee
         
     },
     {   
@@ -378,7 +419,7 @@ export let ServerList = [
         "NumberOfNewMessage": 0,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Chelsea,
+        "ServerImage": Chelsea
         
     },
     {   
@@ -388,7 +429,7 @@ export let ServerList = [
         "NumberOfNewMessage": 9,
         "Notification": true,
         "NumberOfNotification": 65,
-        "ServerImage": Go,
+        "ServerImage": Go
         
     },
     {   
@@ -398,7 +439,7 @@ export let ServerList = [
         "NumberOfNewMessage": 2,
         "Notification": true,
         "NumberOfNotification": 5,
-        "ServerImage": Mazda,
+        "ServerImage": Mazda
         
     },
     {   
@@ -408,7 +449,7 @@ export let ServerList = [
         "NumberOfNewMessage": 0,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Pinterest,
+        "ServerImage": Pinterest
         
     },
     {   
@@ -418,7 +459,7 @@ export let ServerList = [
         "NumberOfNewMessage": 3,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Sve,
+        "ServerImage": Sve
         
     },
     {   
@@ -428,7 +469,7 @@ export let ServerList = [
         "NumberOfNewMessage": 345,
         "Notification": true,
         "NumberOfNotification": 999,
-        "ServerImage": Tea,
+        "ServerImage": Tea
         
     },
     {   
@@ -438,20 +479,71 @@ export let ServerList = [
         "NumberOfNewMessage": 3,
         "Notification": true,
         "NumberOfNotification": 90,
-        "ServerImage": Linux,
+        "ServerImage": Linux
         
-    },
-    // {   
-    //     "ServerURL":"",
-    //     "Name": "",
-    //     "NewMessage": false,
-    //     "NumberOfNewMessage": 0,
-    //     "Notification": false,
-    //     "NumberOfNotification": 0,
-    //     "ServerImage": Py,
-        
-    // },
-
+    }
 ]
 
+export let MyPro = writable({
+    "Name": "Portgas D. Ace",
+    "ProfileUrl": "ace",
+    "ProfileImage": "http://127.0.0.1:9000/photos/p.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=admin%2F20220315%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220315T083515Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22p.png%22&X-Amz-Signature=3b52ccf26069d09b2d15cc5b9219aaa6108e2779569430161fff002609914059",
+    
+})
+
+export let UseFriendList = {
+    5265758567567: {
+        8846236503729: [
+            [0, "ace", "hello brother , what's you doing"],
+            [1, "law", "i am  fine , whats about you"],
+            [2, "law", "i am  fine , whats about you"],
+            [3, "ace", "hello brother , what's you doing"],
+            [4, "law", "i am  fine , whats about you"],
+            [5, "law", "i am  fine , whats about you"],
+            [6, "ace", "hello brother , what's you doing"],
+            [7, "law", "i am  fine , whats about you"],
+            [8, "law", "i am  fine , whats about you"],
+            [9, "ace", "hello brother , what's you doing"],
+            [10, "law", "i am  fine , whats about you"],
+            [11, "law", "i am  fine , whats about you"],
+            [12, "ace", "hello brother , what's you doing"],
+            [13, "law", "i am  fine , whats about you"],
+            [14, "law", "i am  fine , whats about you"],
+        ],
+        8846235603729: [
+            [0, "ace", "hello brother , what's you doing"],
+            [1, "law", "i am  fine , whats about you"],
+            [2, "law", "i am  fine , whats about you"],
+            [3, "ace", "hello brother , what's you doing"],
+            [4, "law", "i am  fine , whats about you"],
+            [5, "law", "i am  fine , whats about you"],
+            [6, "ace", "hello brother , what's you doing"],
+            [7, "law", "i am  fine , whats about you"],
+            [8, "law", "i am  fine , whats about you"],
+            [9, "ace", "hello brother , what's you doing"],
+            [10, "law", "i am  fine , whats about you"],
+            [11, "law", "i am  fine , whats about you"],
+            [12, "ace", "hello brother , what's you doing"],
+            [13, "law", "i am  fine , whats about you"],
+            [14, "law", "i am  fine , whats about you"],
+        ],
+        8846866503729: [
+            [0, "ace", "hello brother , what's you doing"],
+            [1, "law", "i am  fine , whats about you"],
+            [2, "law", "i am  fine , whats about you"],
+            [3, "ace", "hello brother , what's you doing"],
+            [4, "law", "i am  fine , whats about you"],
+            [5, "law", "i am  fine , whats about you"],
+            [6, "ace", "hello brother , what's you doing"],
+            [7, "law", "i am  fine , whats about you"],
+            [8, "law", "i am  fine , whats about you"],
+            [9, "ace", "hello brother , what's you doing"],
+            [10, "law", "i am  fine , whats about you"],
+            [11, "law", "i am  fine , whats about you"],
+            [12, "ace", "hello brother , what's you doing"],
+            [13, "law", "i am  fine , whats about you"],
+            [14, "law", "i am  fine , whats about you"],
+        ],
+    }
+}
 
