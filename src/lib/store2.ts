@@ -487,8 +487,7 @@ export let ServerList = [
 export let MyPro = writable({
     "Name": "Portgas D. Ace",
     "ProfileUrl": "ace",
-    "ProfileImage": "http://127.0.0.1:9000/photos/p.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=admin%2F20220315%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220315T083515Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22p.png%22&X-Amz-Signature=3b52ccf26069d09b2d15cc5b9219aaa6108e2779569430161fff002609914059",
-    
+    "ProfileImage": Pro
 })
 
 export let UseFriendList = {

@@ -34,9 +34,9 @@
           {"name":"Announcement","notification":true,"icon":Announcement,"dropdownIcon":"aero",
             "content":{
               "name":"General","notification":true,"icon":Audio,
-              "con":"General","notification":true,"icon":Audio,
-              "name":"General","notification":true,"icon":Audio,
-            }
+              "con":"General","notificatibon":true,"icjon":Audio,
+              "namhe":"General","notifnication":true,"ikjcon":Audio,
+            },
           },
           {"name":"Video","notification":false,"icon":Video,"dropdownIcon":"aero",
             "content":{

@@ -1,4 +1,5 @@
 <script lang="ts"> 
+    import {goto } from "$app/navigation"
     import {ChatOrDock} from "$lib/store2"
     import {ServerList} from "$lib/store2"
     let ChatOrDockHelper  
@@ -6,6 +7,11 @@
         ChatOrDockHelper=val 
     }) 
     function ChatOrDockFunc(){
+        goto("/", {
+			replaceState: true,
+			noscroll: true,
+			keepfocus: true
+		});
         if (ChatOrDockHelper != 0){
 
             ChatOrDock.update(n=> n=0)
@@ -14,12 +20,20 @@
         }
     }
     let ActiveServer:string=""
+    function OnClickServer(e){
+        ActiveServer=e.ServerURL
+        goto(e.ServerURL,{
+           replaceState: true,
+			noscroll: true,
+			keepfocus: true 
+        })
+    }
 </script>
 
 <style>
 </style>
 
-
+<!-- dock folder 48x48 and small icons 16x16 -->
 <div class=" flex flex-col  flex-none w-[72px] bg-[#202225] overflow-y-auto no-scrollbar transition-all duration-300 ease-linear ">
 
     <!-- company icon button -->
@@ -30,7 +44,7 @@
     </div>
     <!-- user list -->
     {#each ServerList as u}
-    <button on:click="{()=>{ ActiveServer=u.ServerURL }}" class="my-1 mx-2 w-14 h-14 relative  ">
+    <button on:click="{()=>{ ActiveServer=u.ServerURL ; OnClickServer(u) }}" class="my-1 mx-2 w-14 h-14 relative  ">
             {#if  ActiveServer===u.ServerURL}
                 <div class=" relative">
                     <!-- <svg  class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 95.1v320c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64v-320c0-35.35 28.65-63.1 64-63.1h320C419.3 31.1 448 60.65 448 95.1z"/></svg> -->
