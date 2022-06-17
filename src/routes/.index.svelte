@@ -1,8 +1,5 @@
 
-
-
 <script lang="ts">
-	import '../app.css';
     
     // import peopleIcon from "./_icons/users.svg"
     import Dock from "$lib/_Dock/index.svelte"
@@ -47,10 +44,10 @@
 		 
          <!-- hash bar -->
          <Servers/>
-	{:else}
+		 {:else}
 		 <Chat/>
          <!-- else content here -->
-	{/if}
+		 {/if}
 		 
 
 		 <!-- <Dock2/> -->
@@ -66,7 +63,7 @@
             <Messages/>
             <!-- people -->
             {#if showPeopleListValue!=0 }
-				<Peoples/>
+			<Peoples/>
             {/if}
             
         </div>
@@ -79,5 +76,3 @@
 
 
 
-
-<slot></slot>
