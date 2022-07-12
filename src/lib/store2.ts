@@ -289,7 +289,7 @@ let x2 = [
         "NumberOfNewMessage": 3,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Postgres
+        "ServerImage": Ekbal
         
     },
     {   
@@ -299,7 +299,7 @@ let x2 = [
         "NumberOfNewMessage": 0,
         "Notification": true,
         "NumberOfNotification": 3,
-        "ServerImage": Mongo
+        "ServerImage": Moji
         
     },
     {   
@@ -309,7 +309,7 @@ let x2 = [
         "NumberOfNewMessage": 4,
         "Notification": true,
         "NumberOfNotification": 6,
-        "ServerImage": Docker
+        "ServerImage": Rafi
         
     },
     {   
@@ -319,7 +319,7 @@ let x2 = [
         "NumberOfNewMessage": 0,
         "Notification": true,
         "NumberOfNotification": 99,
-        "ServerImage": Kubernetes
+        "ServerImage": Ronok
         
     },
     {   
@@ -329,7 +329,7 @@ let x2 = [
         "NumberOfNewMessage": 7,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Redis
+        "ServerImage": Shakil
         
     },
     {   
@@ -339,7 +339,7 @@ let x2 = [
         "NumberOfNewMessage": 0,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Tensorflow
+        "ServerImage": Hemel
         
     },
     {   
@@ -349,7 +349,7 @@ let x2 = [
         "NumberOfNewMessage": 2,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Mancity
+        "ServerImage": Rakib
         
     },
     {   
@@ -359,7 +359,7 @@ let x2 = [
         "NumberOfNewMessage": 4,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Cpp
+        "ServerImage": Rafel
         
     },
     {   
@@ -369,7 +369,7 @@ let x2 = [
         "NumberOfNewMessage": 7,
         "Notification": true,
         "NumberOfNotification": 2,
-        "ServerImage": Ubuntu
+        "ServerImage": Yurichi
         
     },
     {   
@@ -379,7 +379,7 @@ let x2 = [
         "NumberOfNewMessage": 0,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Real
+        "ServerImage": Rakib2
         
     },
     {   
@@ -389,7 +389,7 @@ let x2 = [
         "NumberOfNewMessage": 6,
         "Notification": true,
         "NumberOfNotification": 4,
-        "ServerImage": Bd
+        "ServerImage": Rengokhu
         
     },
     {   
@@ -399,7 +399,7 @@ let x2 = [
         "NumberOfNewMessage": 0,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": C
+        "ServerImage": Saad
         
     },
     {   
@@ -409,7 +409,7 @@ let x2 = [
         "NumberOfNewMessage": 0,
         "Notification": true,
         "NumberOfNotification": 45,
-        "ServerImage": Coffee
+        "ServerImage": Shanks
         
     },
     {   
@@ -419,7 +419,7 @@ let x2 = [
         "NumberOfNewMessage": 0,
         "Notification": false,
         "NumberOfNotification": 0,
-        "ServerImage": Chelsea
+        "ServerImage": Law
         
     },
     {   

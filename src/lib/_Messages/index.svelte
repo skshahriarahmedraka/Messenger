@@ -31,7 +31,7 @@
 </style>
 
 
-<div class=" {showPeopleListValue!=0 ? "w-5/6": "w-full"} h-full  transition-all duration-200 ease-linear bg-[#36393f] flex flex-col">
+<div class=" {showPeopleListValue!=0 ? "w-5/6": "w-full"} h-full overflow-hidden  transition-all duration-200 ease-linear bg-[#36393f] flex flex-col">
     <!-- all messaging -->
     <div class=" flex-grow bg-[#36393f] z-10 flex flex-col-reverse overflow-y-scroll scrol3 ">
         {#each $MessageList as i}

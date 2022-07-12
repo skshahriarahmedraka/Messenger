@@ -2,6 +2,7 @@
     import {goto } from "$app/navigation"
     import {ChatOrDock} from "$lib/store2"
     import {ServerList} from "$lib/store2"
+    import { fade, blur, fly, slide, scale } from "svelte/transition";
     let ChatOrDockHelper:number 
     ChatOrDock.subscribe(val=>{
         ChatOrDockHelper=val 
@@ -20,6 +21,7 @@
         }
     }
     let ActiveServer:string=""
+    let HoverServer:string=""
     function OnClickServer(e: { ServerURL: any; Name?: string; NewMessage?: boolean; NumberOfNewMessage?: number; Notification?: boolean; NumberOfNotification?: number; ServerImage?: string; }){
         ActiveServer=e.ServerURL
         goto(e.ServerURL,{
@@ -34,7 +36,7 @@
 </style>
 
 <!-- dock folder 48x48 and small icons 16x16 -->
-<div class=" flex flex-col  flex-none w-[72px] bg-[#202225] overflow-y-auto no-scrollbar transition-all duration-300 ease-linear ">
+<div class=" flex flex-col   min-w-[72px] max-w-[72px] bg-[#202225]  overflow-y-scroll no-scrollbar transition-all duration-300 ease-linear ">
 
     <!-- company icon button -->
     <div class="avatar  py-1 px-2 " on:click="{ChatOrDockFunc}">
@@ -44,25 +46,22 @@
     </div>
     <!-- user list -->
     {#each $ServerList as u}
-    <button on:click="{()=>{ ActiveServer=u["ServerURL"] ; OnClickServer(u) }}" class="my-1 mx-2 w-14 h-14 relative  ">
-            {#if  ActiveServer===u["ServerURL"]}
-                <div class=" relative">
-                    <!-- <svg  class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 95.1v320c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64v-320c0-35.35 28.65-63.1 64-63.1h320C419.3 31.1 448 60.65 448 95.1z"/></svg> -->
-                    <svg class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M384 32H64C28.65 32 0 60.66 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.66 419.3 32 384 32zM319.1 280h-192C114.8 280 103.1 269.2 103.1 256c0-13.2 10.8-24 24-24h192c13.2 0 23.1 10.8 23.1 24C343.1 269.2 333.2 280 319.1 280z"/></svg>
-                </div>
-            {:else if u["NewMessage"] }
-                <svg class="fill-white w-2 h-2 my-5 -left-3 place-content-center absolute " viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M512 256c0 141.4-114.6 256-256 256s-256-114.6-256-256s114.6-256 256-256S512 114.6 512 256z"/></svg>
-                <!-- <svg class="fill-white w-2 h-2 my-7 -left-1  absolute " viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M512 256c0 141.4-114.6 256-256 256s-256-114.6-256-256s114.6-256 256-256S512 114.6 512 256z"/></svg> -->
+    <button  on:click="{()=>{ ActiveServer=u["ServerURL"]  ; OnClickServer(u) }}" class=" group w-full py-[5px]  flex  flex-row items-center justify-center  hover:rounded-lg transition-all duration-150 ease-linear">
             
-            {/if}
-            <img src="{u["ServerImage"]}" alt="" class=" rounded-3xl hover:rounded-xl active:rounded-md object-cover h-14 w-14 hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600">
+        <div class=" relative flex justify-center items-center">
+            <!-- <svg  class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 95.1v320c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64v-320c0-35.35 28.65-63.1 64-63.1h320C419.3 31.1 448 60.65 448 95.1z"/></svg> -->
+            <div in:scale="{{  duration: 200 }}" out:scale class="bg-white -left-[58px]  absolute transition-all duration-200 ease-linear    {ActiveServer===u["ServerURL"] ? "rounded-md h-[50px] w-[50px]" : "rounded-xl h-[10px] w-[50px] group-hover:rounded-md group-hover:h-[30px] group-hover:w-[50px] " }"></div>
+            <!-- <svg in:scale="{{  duration: 200 }}" out:scale class="fill-white   -left-[55px] -top-[25px]   absolute  h-[50px] w-[50px] " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M384 32H64C28.65 32 0 60.66 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.66 419.3 32 384 32zM319.1 280h-192C114.8 280 103.1 269.2 103.1 256c0-13.2 10.8-24 24-24h192c13.2 0 23.1 10.8 23.1 24C343.1 269.2 333.2 280 319.1 280z"/></svg> -->
+            
+            <img src="{u["ServerImage"]}" alt="" class="  rounded-[1.25rem] hover:rounded-xl active:rounded-md object-cover h-[48px] w-[48px]  transition-all duration-100  ease-linear cursor-pointer  ">
             {#if u["Notification"] }
                 <span class=" absolute px-1  border-2 border-[#202225] rounded-full text-xs font-semibold  bg-red-500 text-white -bottom-2 -right-2 ">
                     {u["NumberOfNotification"]}
                 </span>
             {/if}
+        </div>
 
-        </button>
+    </button>
         
     {/each}
     

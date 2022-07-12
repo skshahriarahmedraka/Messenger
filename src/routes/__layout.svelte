@@ -1,5 +1,7 @@
 
-
+<script lang="ts" context="module">
+    
+</script>
 
 <script lang="ts">
 	import '../app.css';
@@ -38,39 +40,12 @@
 </style>
 
 
-<div class="flex flex-row h-screen transition-all duration-500 ease-linear ">
+<div class="flex flex-row h-screen w-full transition-all duration-500 ease-linear ">
     <!-- left avater bar -->
     
-    {#if ChatOrDockValue}
-         <!-- content here -->
-         <Dock/>
-		 
-         <!-- hash bar -->
-         <Servers/>
-	{:else}
-		 <Chat/>
-         <!-- else content here -->
-	{/if}
-		 
-
-		 <!-- <Dock2/> -->
-		 
-		 <!-- everything -->
-    <div class=" w-full  bg-stone-600 flex flex-col flex-nowrap ">    
-        <!-- nav bar -->
-        <NavBar/>
-       
-        <!-- message and people -->
-        <div class="  w-full h-full  bg-[#2f3136] flex flex-row overflow-hidden">
-			<!-- messaging 830px -->
-            <Messages/>
-            <!-- people -->
-            {#if showPeopleListValue!=0 }
-				<Peoples/>
-            {/if}
-            
-        </div>
-    </div>
+    <Dock/>
+    
+    <slot></slot>
     
 </div>
 
@@ -80,4 +55,3 @@
 
 
 
-<slot></slot>
