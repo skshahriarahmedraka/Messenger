@@ -1,6 +1,6 @@
 <script lang="ts">
     import Ek2 from "./_profilePic/e2.jpg"
-    export let message:string
+    export let message:any 
 
 </script>
 
@@ -26,7 +26,7 @@
 
              </div>
              <div class=" whitespace-pre">
-                 {message}
+                 {message[2]}
              </div>
          </div>
      </div>

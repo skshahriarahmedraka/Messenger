@@ -13,7 +13,9 @@ import { goto } from "$app/navigation";
     // $: console.log("$page.params ",$page.params)
     import {ChatOrDock} from "$lib/store2"
 
-    import {FriendList ,MyPro} from "$lib/store2"
+    // import {FriendList ,MyPro} from "$lib/store2"
+    export let FriendList:any
+    export let MyPro:any
 
 
 
@@ -88,7 +90,7 @@ import { goto } from "$app/navigation";
                 </span>
             </div>
             <div class=" my-1 mx-2 h-12 w-12 transition-all duration-300 ease-linear cursor-pointer">
-               <img src="{ $MyPro["ProfileImage"]}" alt="" class=" rounded-2xl hover:rounded-xl active:rounded-md object-cover w-full h-full hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600">              
+               <img src="{ MyPro["ProfileImage"]}" alt="" class=" rounded-2xl hover:rounded-xl active:rounded-md object-cover w-full h-full hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600">              
             </div>
         {/if}
 
@@ -96,8 +98,8 @@ import { goto } from "$app/navigation";
     <div class=" h-full w-full overflow-y-auto scrol overflow-x-hidden  text-gray-300  ">
 
         <!-- user chat list -->
-        {#each $FriendList as i }
-         <div on:click={ ()=>{OnClickFriend(i)  }} class=" hover:text-white   w-full h-[72px] m-1  { ActiveChat=== i["ProfileURL"] ? 'bg-slate-600 rounded-xl' : 'hover:bg-[#202225]' } flex flex-row hover:rounded-xl  ">
+        {#each FriendList as i }
+         <button on:click={ ()=>{OnClickFriend(i)  }} class="  hover:text-white   w-full h-[72px] m-1  { ActiveChat=== i["ProfileURL"] ? 'bg-slate-600 rounded-xl' : 'hover:bg-[#202225]' } flex flex-row hover:rounded-xl  ">
             <!-- active indecator -->
                
             <!-- user image -->
@@ -136,7 +138,7 @@ import { goto } from "$app/navigation";
                     {/if}
                 </div>
             </div>
-         </div>
+         </button>
     {:else}
     <!-- empty list -->
     {/each}

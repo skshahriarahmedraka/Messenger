@@ -1,8 +1,13 @@
 <script lang="ts"> 
     import {goto } from "$app/navigation"
     import {ChatOrDock} from "$lib/store2"
-    import {ServerList} from "$lib/store2"
+import Accord from "$lib/_Dock/_icons/accord.svelte";
+    import AccordLogo from "$lib/_Dock/_icons/accord.svelte"
+    // import {ServerList} from "$lib/store2"
+    
     import { fade, blur, fly, slide, scale } from "svelte/transition";
+
+    export let ServerList:any
     let ChatOrDockHelper:number 
     ChatOrDock.subscribe(val=>{
         ChatOrDockHelper=val 
@@ -24,28 +29,33 @@
     let HoverServer:string=""
     function OnClickServer(e: { ServerURL: any; Name?: string; NewMessage?: boolean; NumberOfNewMessage?: number; Notification?: boolean; NumberOfNotification?: number; ServerImage?: string; }){
         ActiveServer=e.ServerURL
-        goto(e.ServerURL,{
+        
+        goto("/s/"+e.ServerURL,{
            replaceState: true,
 			noscroll: true,
 			keepfocus: true 
         })
     }
+
+
+    
 </script>
 
 <style>
 </style>
 
 <!-- dock folder 48x48 and small icons 16x16 -->
-<div class=" flex flex-col   min-w-[72px] max-w-[72px] bg-[#202225]  overflow-y-scroll no-scrollbar transition-all duration-300 ease-linear ">
+<div class=" flex flex-col   min-w-[72px] max-w-[72px] bg-[#202225] items-center  overflow-y-scroll no-scrollbar transition-all duration-300 ease-linear ">
 
     <!-- company icon button -->
-    <div class="avatar  py-1 px-2 " on:click="{ChatOrDockFunc}">
-        <div class=" w-14 h-14 hover:rounded-xl   rounded-3xl active:rounded-md hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer {false ? "ring  ring-offset-base-100  ring-blue-500" : "" }">
+    <div class="avatar   my-1  flex justify-center  h-[48px] w-[48px]   object-cover    cursor-pointer  " on:click="{ChatOrDockFunc}">
+        <AccordLogo class="h-10  w-10  hover:scale-125 transition-all duration-100  ease-linear " />
+        <!-- <div class=" w-14 h-14 hover:rounded-xl   rounded-3xl active:rounded-md hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer {false ? "ring  ring-offset-base-100  ring-blue-500" : "" }">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="#FFC107" d="M10.376.985a1.426 1.426 0 0 0-2.711.881l3.685 11.339a1.426 1.426 0 0 0 1.734.884c.756-.218 1.218-1.021.976-1.764L10.376.985z"/><path fill="#4CAF50" d="M4.666 2.841a1.425 1.425 0 1 0-2.711.881L5.64 15.06a1.426 1.426 0 0 0 1.734.884c.756-.218 1.218-1.021.976-1.764L4.666 2.841z"/><path fill="#EC407A" d="M15.015 10.376a1.425 1.425 0 1 0-.881-2.711L2.795 11.351a1.426 1.426 0 0 0-.884 1.734c.218.756 1.021 1.218 1.764.976l11.34-3.685z"/><path fill="#472A49" d="M5.158 13.579l2.71-.881-.881-2.71-2.71.881.881 2.71z"/><path fill="#CC2027" d="M10.869 11.723l2.71-.881-.881-2.711-2.71.881.881 2.711z"/><path fill="#2196F3" d="M13.159 4.666a1.425 1.425 0 1 0-.881-2.711L.94 5.64a1.424 1.424 0 0 0-.884 1.734c.218.756 1.021 1.217 1.764.976l11.339-3.684z"/><path fill="#1A937D" d="M3.302 7.868l2.711-.881-.881-2.71-2.71.881.88 2.71z"/><path fill="#65863A" d="M9.013 6.013l2.711-.881-.881-2.711-2.711.881.881 2.711z"/></svg>
-        </div>
+        </div> -->
     </div>
     <!-- user list -->
-    {#each $ServerList as u}
+    {#each ServerList as u}
     <button  on:click="{()=>{ ActiveServer=u["ServerURL"]  ; OnClickServer(u) }}" class=" group w-full py-[5px]  flex  flex-row items-center justify-center  hover:rounded-lg transition-all duration-150 ease-linear">
             
         <div class=" relative flex justify-center items-center">

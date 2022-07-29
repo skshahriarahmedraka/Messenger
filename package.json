@@ -40,6 +40,10 @@
 	"type": "module",
 	"dependencies": {
 		"@tailwindcss/line-clamp": "^0.4.0",
-		"tailwindcss-question-mark": "^0.1.1"
+		"cookie": "^0.5.0",
+		"dotenv": "^16.0.1",
+		"jsonwebtoken": "^8.5.1",
+		"tailwindcss-question-mark": "^0.1.1",
+		"ws": "^8.8.1"
 	}
 }

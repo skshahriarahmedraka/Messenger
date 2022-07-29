@@ -1,43 +1,60 @@
-<script lang="ts" context="module">
-    export async function load ({stuff}){
+<script context="module">
+     export async function load ({}){
+       let  FriendData={
+    "Name": "Portgas D. Ace",
+    "ProfileUrl": "ace",
+    "ProfileImage": "https://res.cloudinary.com/dqo0ssnti/image/upload/v1642489744/samples/1007550_t0uscy.jpg"
+}
+
+    let FriendMsg= [
+            [0, "ace", "hello brother , what's you doing"],
+            [1, "law", "i am  fine , whats about you"],
+            [2, "law", "i am  fine , whats about you"],
+            [3, "ace", "hello brother , what's you doing"],
+            [4, "law", "i am  fine , whats about you"],
+            [5, "law", "i am  fine , whats about you"],
+            [6, "ace", "hello brother , what's you doing"],
+            [7, "law", "i am  fine , whats about you"],
+            [8, "law", "i am  fine , whats about you"],
+            [9, "ace", "hello brother , what's you doing"],
+            [10, "law", "i am  fine , whats about you"],
+            [11, "law", "i am  fine , whats about you"],
+            [12, "ace", "hello brother , what's you doing"],
+            [13, "law", "i am  fine , whats about you"],
+            [14, "law", "i am  fine , whats about you"],
+        ]
+
+        let FrinedStat={
+            
+        }
 
         return {
             props:{
-                MyPro:stuff.MyPro
+                FriendData:FriendData,
+                FriendMsg:FriendMsg
             }
         }
-    }
+     }
 </script>
+
 <script lang="ts">
-    import '../app.css';
-
-
-    //  import Dock from "$lib/_Dock/index.svelte"
-    // import Servers from "$lib/_Servers/index.svelte"
-    import NavBar from "$lib/_Navbar/index.svelte"
-    // import Peoples from "$lib/_Peoples/index.svelte"
-    // import Messages from "$lib/_Messages/index.svelte"
-    // import {showPeopleList,ChatOrDock} from "$lib/store2"
-    
+    	import Dock from '$lib/_Dock/index.svelte';
+	import Servers from '$lib/_Servers/index.svelte';
+	import NavBar from '$lib/_Navbar/index.svelte';
+	import Peoples from '$lib/_Peoples/index.svelte';
+	import Messages from '$lib/_Messages/index.svelte';
     import Chat from "$lib/_Chats/index.svelte"
-
-    export let MyPro:any
-
-	
+    import WebSocket, { WebSocketServer } from 'ws'
     
-	
-    // let showPeopleListValue: number
-    // let ChatOrDockValue: number
 
-    // showPeopleList.subscribe(val=>{
-    //     showPeopleListValue=val 
-    // }) 
-
-    // ChatOrDock.subscribe(val=>{
-    //     ChatOrDockValue=val 
-    // })
-
-
+	import { showPeopleList } from '$lib/store2';
+    let showPeopleListValue: number;
+	// let ChatOrDockValue: number;
+    export let FriendData:any 
+    export let FriendMsg:any 
+	showPeopleList.subscribe((val) => {
+		showPeopleListValue = val;
+	});
     let x = [
     {   "ProfileURL":"majibarrahman",
         "ProfileImage": "https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png",
@@ -262,6 +279,69 @@
     "ProfileUrl": "ace",
     "ProfileImage": "https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060640/samples/jpeg_1_qlbtcn.jpg"
 }
+
+let PeopleData={
+        "image":FriendData["ProfileImage"],
+        "username":"Sk Shahriar Ahmed Raka",
+        "lastseen":"9 jun22",
+        "mobile":"+8801838810189",
+        "bio":"Lazy is such an ugly word, I prefer to selectively participate. I already want to take a nap tomorrow. ",
+        "url":"shahriarraka",
+        "notification":true ,
+        "contents":[
+            [213,"images"],
+            [41,"videos"],
+            [5,"files"],
+            [6,"shared links"],
+            [41,"audios"],
+            [64,"gifs"],
+            [23,"recomendedserver"],
+            [67 ,"customizeChat"],
+            [ 67,"ChangeTheme"],
+
+            [4 ,"Changeimoji"],
+            [675,"EditNickname"],
+            [63 ,"shareThisContact"],
+            [54 ,"DelteContact"],
+            [436 ,"DeleteHistory"],
+            [75 ,"DeleteChat"],
+            [865 ,"BlockUser"]
+        ],
+        "recomendationlist":[
+            []
+        ],
+        "cutomize":{
+            "color":"blue",
+            "emoji":"smile",
+            "nickname":"ssar",
+        },
+        
+
+    }
+    // export let server;
+
+    // let socket = new WebSocket(server)
+    // console.log("🚀 ~ file: index.svelte ~ line 320 ~ socket", socket)
+    let server:string="ws://localhost:8888/ws/raka/ssar" 
+    let socket =new WebSocket(server)
+
+    socket.onopen=()=>{
+        socket.send(JSON.stringify({name:"raka",message:"whats your name??"}))
+
+    }
+    socket.onmessage=(event)=>{
+        let data =JSON.parse(event.data)
+        console.log("🚀 ~ file: index.svelte ~ line 332 ~ data", data)
+        
+    }
+    let demoSend:string=""
+    const sendMessage =()=>{
+        if (true  ){
+            socket.send(JSON.stringify({name:"sendmessage",message:"i am send message"}))
+        }
+
+    }
+    
 </script>
 
 <style>
@@ -269,25 +349,19 @@
 </style>
 
 
-<!-- markup (zero or more items) goes here -->
+<Chat FriendList={x} MyPro={x3} />
 
-<!-- {#if ChatOrDockValue} -->
-         <!-- content here -->
-		 
-         <!-- hash bar -->
-         <!-- <Servers/> -->
-	<!-- {:else} -->
-		 <Chat FriendList={x} MyPro={MyPro} />
-         <!-- else content here -->
-	<!-- {/if} -->
-		 
+<div class=" w-full h-screen overflow-hidden bg-stone-600 flex flex-col flex-nowrap ">
+    <!-- nav bar -->
+    <NavBar  MyPro={FriendData} />
 
-		 <!-- <Dock2/> -->
-		 
-         <div class=" w-full h-screen overflow-hidden bg-stone-600 flex flex-col flex-nowrap ">
-            <!-- nav bar -->
-            <NavBar  MyPro={MyPro} />
-        
-            <!-- message and people -->
-            
-        </div>
+    <!-- message and people -->
+    <div class="  w-full h-full  bg-[#2f3136] flex flex-row overflow-hidden">
+        <!-- messaging 830px -->
+        <Messages FriendMsg={FriendMsg} />
+        <!-- people -->
+        {#if showPeopleListValue != 0}
+            <Peoples PeopleData={PeopleData}/>
+        {/if}
+    </div>
+</div>

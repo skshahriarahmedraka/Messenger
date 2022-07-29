@@ -1,4 +1,8 @@
 <!-- ====== Error 404 Section Start -->
+<svelte:head>
+	<title> Accord </title>
+</svelte:head>
+
 <section class="bg-primary py-[120px] relative z-10">
    <div class="container">
       <div class="flex -mx-4">

@@ -2,7 +2,7 @@
     // your script goes here
         import userBanner from "./_images/whiteBeard.jpg"
         // import Moji2 from "./_images/moji2.jpg"
-        import { MyPro} from "$lib/store2"
+        // import { MyPro} from "$lib/store2"
         import Messaging from "./_icons/message.svelte"
         import Audio from "./_icons/microphone.svelte"
         import Video from "./_icons/video.svelte"
@@ -13,7 +13,7 @@
         import AeroUp from "./_icons/aeroUp.svelte"
         import AeroDown from "./_icons/aeroDown.svelte"
 
-
+        export let MyPro:any
         let subFieldName:string="| Python |"
         let listOfField=[
             {type:"announcement",name:"General"},
@@ -200,7 +200,7 @@
 </div>
 <div class="w-full h-14 bg-[#292b2f] flex flex-row ">
      <div class=" my-1 ml-2 h-12 w-12 transition-all duration-300 ease-linear cursor-pointer">
-               <img src="{ $MyPro["ProfileImage"]}" alt="" class=" rounded-2xl hover:rounded-xl active:rounded-md object-cover w-full h-full hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600">
+               <img src="{ MyPro["ProfileImage"]}" alt="" class=" rounded-2xl hover:rounded-xl active:rounded-md object-cover w-full h-full hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600">
       </div>
       <!-- <div class="flex flex-col">
         <div class=" text-sm"> 

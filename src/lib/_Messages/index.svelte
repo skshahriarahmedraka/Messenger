@@ -2,27 +2,28 @@
   
     import {showPeopleList , MessageList} from "$lib/store2"
     import Message from "./message.svelte"
+    export let FriendMsg:any
     let showPeopleListValue: number 
     showPeopleList.subscribe(val=>{
         showPeopleListValue=val 
     }) 
     let writeFocus:boolean=false
     let messengerValue:string=""
-    function SendMessage(){
-        messengerValue.trimStart()
-        messengerValue.trimEnd()
-        if (messengerValue != ""){
+    function SendMessage(){}
+    //     messengerValue.trimStart()
+    //     messengerValue.trimEnd()
+    //     if (messengerValue != ""){
 
-            $MessageList=[messengerValue,...$MessageList]
-            console.log($MessageList)
-            messengerValue=""
-        }
-    }
-    function keyHandler(e: { key: string; }){
-        if (e.key ==="Enter"){
-            SendMessage()
-        }
-    }
+    //         $MessageList=[messengerValue,...$MessageList]
+    //         console.log($MessageList)
+    //         messengerValue=""
+    //     }
+    // }
+    function keyHandler(e: { key: string; }){}
+    //     if (e.key ==="Enter"){
+    //         SendMessage()
+    //     }
+    // }
 
 </script>
 
@@ -34,7 +35,7 @@
 <div class=" {showPeopleListValue!=0 ? "w-5/6": "w-full"} h-full overflow-hidden  transition-all duration-200 ease-linear bg-[#36393f] flex flex-col">
     <!-- all messaging -->
     <div class=" flex-grow bg-[#36393f] z-10 flex flex-col-reverse overflow-y-scroll scrol3 ">
-        {#each $MessageList as i}
+        {#each FriendMsg as i}
                 <Message message={i}/>
         {/each}
     </div>
