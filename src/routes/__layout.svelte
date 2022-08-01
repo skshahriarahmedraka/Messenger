@@ -245,9 +245,9 @@
 ]
 </script>
 
-<svelte:head>
+<!-- <svelte:head>
 	<title> Accord </title>
-</svelte:head>
+</svelte:head> -->
 
 <div class="flex flex-row h-screen w-full transition-all duration-500 ease-linear ">
 	<!-- left avater bar -->

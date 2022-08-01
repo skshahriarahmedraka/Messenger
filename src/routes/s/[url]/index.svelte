@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
     export async function load ({stuff }){
         let ServerPro={
-    "Name": "Portgas D. Ace",
+    "Name": "Competitive Programming for Pro",
     "ProfileUrl": "ace",
     "ProfileImage": "https://res.cloudinary.com/dqo0ssnti/image/upload/v1642489744/samples/1007550_t0uscy.jpg"
 }
@@ -97,7 +97,9 @@ let  ServerMsg= [
     /* your styles go here */
 </style>
 
-
+<!-- <svelte:head>
+	<title> Accord server </title>
+</svelte:head> -->
 
 <Servers MyPro={MyPro}/>
 

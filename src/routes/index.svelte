@@ -268,6 +268,9 @@
     /* your styles go here */
 </style>
 
+<!-- <svelte:head>
+	<title> Accord </title>
+</svelte:head> -->
 
 <!-- markup (zero or more items) goes here -->
 
@@ -284,10 +287,15 @@
 
 		 <!-- <Dock2/> -->
 		 
-         <div class=" w-full h-screen overflow-hidden bg-stone-600 flex flex-col flex-nowrap ">
+         <div class=" w-full h-screen overflow-hidden bg-stone-600  flex flex-col flex-nowrap ">
             <!-- nav bar -->
             <NavBar  MyPro={MyPro} />
         
             <!-- message and people -->
-            
-        </div>
+            <div class=" text-3xl text-white h-full w-full ?">
+                sk shahriar ahmed raka
+                
+            </div>
+
+</div>
+      

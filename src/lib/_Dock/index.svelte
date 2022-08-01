@@ -13,21 +13,25 @@ import Accord from "$lib/_Dock/_icons/accord.svelte";
         ChatOrDockHelper=val 
     }) 
     function ChatOrDockFunc(){
-        goto("/", {
-			replaceState: true,
-			noscroll: true,
-			keepfocus: true
-		});
         if (ChatOrDockHelper != 0){
 
             ChatOrDock.update(n=> n=0)
         }else{
             ChatOrDock.update(n=> n=1)
         }
+        goto("/", {
+			replaceState: true,
+			noscroll: true,
+			keepfocus: true
+		});
     }
     let ActiveServer:string=""
     let HoverServer:string=""
+    let title:string|undefined="Accord"
+
     function OnClickServer(e: { ServerURL: any; Name?: string; NewMessage?: boolean; NumberOfNewMessage?: number; Notification?: boolean; NumberOfNotification?: number; ServerImage?: string; }){
+        title=e.Name
+        
         ActiveServer=e.ServerURL
         
         goto("/s/"+e.ServerURL,{
@@ -40,6 +44,10 @@ import Accord from "$lib/_Dock/_icons/accord.svelte";
 
     
 </script>
+
+<svelte:head>
+	<title> {title} </title>
+</svelte:head>
 
 <style>
 </style>

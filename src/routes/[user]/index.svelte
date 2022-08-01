@@ -37,6 +37,7 @@
      }
 </script>
 
+
 <script lang="ts">
     	import Dock from '$lib/_Dock/index.svelte';
 	import Servers from '$lib/_Servers/index.svelte';
@@ -322,32 +323,36 @@ let PeopleData={
 
     // let socket = new WebSocket(server)
     // console.log("🚀 ~ file: index.svelte ~ line 320 ~ socket", socket)
-    let server:string="ws://localhost:8888/ws/raka/ssar" 
-    let socket =new WebSocket(server)
+  
+  
+    // let server:string="ws://localhost:8888/ws/raka/ssar" 
+    // let socket =new WebSocket(server)
 
-    socket.onopen=()=>{
-        socket.send(JSON.stringify({name:"raka",message:"whats your name??"}))
+    // socket.onopen=()=>{
+    //     socket.send(JSON.stringify({name:"raka",message:"whats your name??"}))
 
-    }
-    socket.onmessage=(event)=>{
-        let data =JSON.parse(event.data)
-        console.log("🚀 ~ file: index.svelte ~ line 332 ~ data", data)
+    // }
+    // socket.onmessage=(event)=>{
+    //     let data =JSON.parse(event.data)
+    //     console.log("🚀 ~ file: index.svelte ~ line 332 ~ data", data)
         
-    }
-    let demoSend:string=""
-    const sendMessage =()=>{
-        if (true  ){
-            socket.send(JSON.stringify({name:"sendmessage",message:"i am send message"}))
-        }
+    // }
+    // let demoSend:string=""
+    // const sendMessage =()=>{
+    //     if (true  ){
+    //         socket.send(JSON.stringify({name:"sendmessage",message:"i am send message"}))
+    //     }
 
-    }
+    // }
     
 </script>
 
+<!-- <svelte:head>
+	<title> Accord Friend </title>
+</svelte:head> -->
 <style>
     /* your styles go here */
 </style>
-
 
 <Chat FriendList={x} MyPro={x3} />
 

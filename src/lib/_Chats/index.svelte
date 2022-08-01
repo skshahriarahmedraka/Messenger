@@ -43,8 +43,11 @@ import { goto } from "$app/navigation";
     let inputValue:string=""
 
     let ActiveChat:string=""
+    
+    let title:string|undefined="Accord"
 
     function OnClickFriend(e: { ProfileURL: any; ProfileImage?: string; UserName?: string; LastMessage?: string; LastMessageTime?: string; SilentNotification?: boolean; NumberOfNotification?: number; ActiveStatus?: boolean; LastActiveTime?: string; }){
+        title=e.UserName
         ActiveChat=e.ProfileURL
         goto(e.ProfileURL, {
 			replaceState: true,
@@ -54,9 +57,10 @@ import { goto } from "$app/navigation";
 
     }
 
-
 </script>
-
+<svelte:head>
+	<title> {title} </title>
+</svelte:head>
 <style>
     /* your styles go here */
 </style>
