@@ -61,7 +61,7 @@
 	export let datedrop
 </script>
 
-<div class="flex bg-[#374151] absolute  text-[#fcfcfc] font-semibold shadow-lg rounded-xl">
+<div class="flex bg-[#374151] absolute  {$$props.class} text-[#fcfcfc] font-semibold shadow-lg rounded-xl">
 	<div class="flex flex-col">
 		<div class="flex divide-x">
 			<div class="flex flex-col px-6 pt-5 pb-6 border-b border-gray-100">

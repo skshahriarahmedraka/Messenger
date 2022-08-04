@@ -1,6 +1,8 @@
 <script lang="ts" context="module">
-    export async function load ({stuff}){
-
+    export async function load ({stuff,session}:any){
+    console.log("🚀 ~ file: index.svelte ~ line 3 ~ load ~ session.user", session.user)
+        
+    
         return {
             props:{
                 MyPro:stuff.MyPro
@@ -10,8 +12,16 @@
 </script>
 <script lang="ts">
     import '../app.css';
-
-
+    
+    // import { onMount, beforeUpdate, afterUpdate } from 'svelte';
+	// let counter = 0;
+	// 	beforeUpdate(() => {
+	// 	console.log('the component is going to be updated');	
+	// 	});
+	// 	afterUpdate(() => {
+	// 	console.log('the component has been updated');	
+	// 	});
+    
     //  import Dock from "$lib/_Dock/index.svelte"
     // import Servers from "$lib/_Servers/index.svelte"
     import NavBar from "$lib/_Navbar/index.svelte"
@@ -287,12 +297,12 @@
 
 		 <!-- <Dock2/> -->
 		 
-         <div class=" w-full h-screen overflow-hidden bg-stone-600  flex flex-col flex-nowrap ">
+         <div class=" w-full h-screen overflow-hidden bg-[#36393f]  flex flex-col flex-nowrap ">
             <!-- nav bar -->
             <NavBar  MyPro={MyPro} />
         
             <!-- message and people -->
-            <div class=" text-3xl text-white h-full w-full ?">
+            <div class=" text-3xl text-white h-full w-full ">
                 sk shahriar ahmed raka
                 
             </div>

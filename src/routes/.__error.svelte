@@ -1,6 +1,6 @@
 <!-- ====== Error 404 Section Start -->
 <svelte:head>
-	<title> Accord </title>
+	<title> Accord Error </title>
 </svelte:head>
 
 <section class="bg-primary py-[120px] relative z-10">

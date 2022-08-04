@@ -13,7 +13,7 @@ const config = {
 		require('@tailwindcss/typography'),
 		require('@tailwindcss/aspect-ratio'),
 		require('@tailwindcss/forms'),
-		
+		require('prettier-plugin-tailwindcss'),
 	]
 };
 

@@ -25,3 +25,7 @@ INSERT INTO userdata (Email, Password, Userid, Username, Mobile, birthdate, Acco
 SELECT * from userdata;
 
 
+DELETE  FROM accord_users where email != 'raka@gmail.com';
+
+SELECT * FROM accord_users;
+
