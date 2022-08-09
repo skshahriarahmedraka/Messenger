@@ -52,13 +52,13 @@ import { writable } from "svelte/store";
 
 
 
- const count = writable(0)
+//  const count = writable(0)
  const showPeopleList = writable(0)
  const ChatOrDock = writable(0)
- const MessageList = writable([])
+//  const MessageList = writable([])
 
-const FriendList= writable([])
-const ServerList=writable([])
+// const FriendList= writable([])
+// const ServerList=writable([])
 
 //  let x = [
 //     {   "ProfileURL":"majibarrahman",
@@ -494,61 +494,62 @@ const ServerList=writable([])
 
 //  const MyPro = writable(x3)
 
- const UseFriendList = {
-    5265758567567: {
-        8846236503729: [
-            [0, "ace", "hello brother , what's you doing"],
-            [1, "law", "i am  fine , whats about you"],
-            [2, "law", "i am  fine , whats about you"],
-            [3, "ace", "hello brother , what's you doing"],
-            [4, "law", "i am  fine , whats about you"],
-            [5, "law", "i am  fine , whats about you"],
-            [6, "ace", "hello brother , what's you doing"],
-            [7, "law", "i am  fine , whats about you"],
-            [8, "law", "i am  fine , whats about you"],
-            [9, "ace", "hello brother , what's you doing"],
-            [10, "law", "i am  fine , whats about you"],
-            [11, "law", "i am  fine , whats about you"],
-            [12, "ace", "hello brother , what's you doing"],
-            [13, "law", "i am  fine , whats about you"],
-            [14, "law", "i am  fine , whats about you"],
-        ],
-        8846235603729: [
-            [0, "ace", "hello brother , what's you doing"],
-            [1, "law", "i am  fine , whats about you"],
-            [2, "law", "i am  fine , whats about you"],
-            [3, "ace", "hello brother , what's you doing"],
-            [4, "law", "i am  fine , whats about you"],
-            [5, "law", "i am  fine , whats about you"],
-            [6, "ace", "hello brother , what's you doing"],
-            [7, "law", "i am  fine , whats about you"],
-            [8, "law", "i am  fine , whats about you"],
-            [9, "ace", "hello brother , what's you doing"],
-            [10, "law", "i am  fine , whats about you"],
-            [11, "law", "i am  fine , whats about you"],
-            [12, "ace", "hello brother , what's you doing"],
-            [13, "law", "i am  fine , whats about you"],
-            [14, "law", "i am  fine , whats about you"],
-        ],
-        8846866503729: [
-            [0, "ace", "hello brother , what's you doing"],
-            [1, "law", "i am  fine , whats about you"],
-            [2, "law", "i am  fine , whats about you"],
-            [3, "ace", "hello brother , what's you doing"],
-            [4, "law", "i am  fine , whats about you"],
-            [5, "law", "i am  fine , whats about you"],
-            [6, "ace", "hello brother , what's you doing"],
-            [7, "law", "i am  fine , whats about you"],
-            [8, "law", "i am  fine , whats about you"],
-            [9, "ace", "hello brother , what's you doing"],
-            [10, "law", "i am  fine , whats about you"],
-            [11, "law", "i am  fine , whats about you"],
-            [12, "ace", "hello brother , what's you doing"],
-            [13, "law", "i am  fine , whats about you"],
-            [14, "law", "i am  fine , whats about you"],
-        ],
-    }
-}
+//  const UseFriendList = {
+//     5265758567567: {
+//         8846236503729: [
+//             [0, "ace", "hello brother , what's you doing"],
+//             [1, "law", "i am  fine , whats about you"],
+//             [2, "law", "i am  fine , whats about you"],
+//             [3, "ace", "hello brother , what's you doing"],
+//             [4, "law", "i am  fine , whats about you"],
+//             [5, "law", "i am  fine , whats about you"],
+//             [6, "ace", "hello brother , what's you doing"],
+//             [7, "law", "i am  fine , whats about you"],
+//             [8, "law", "i am  fine , whats about you"],
+//             [9, "ace", "hello brother , what's you doing"],
+//             [10, "law", "i am  fine , whats about you"],
+//             [11, "law", "i am  fine , whats about you"],
+//             [12, "ace", "hello brother , what's you doing"],
+//             [13, "law", "i am  fine , whats about you"],
+//             [14, "law", "i am  fine , whats about you"],
+//         ],
+//         8846235603729: [
+//             [0, "ace", "hello brother , what's you doing"],
+//             [1, "law", "i am  fine , whats about you"],
+//             [2, "law", "i am  fine , whats about you"],
+//             [3, "ace", "hello brother , what's you doing"],
+//             [4, "law", "i am  fine , whats about you"],
+//             [5, "law", "i am  fine , whats about you"],
+//             [6, "ace", "hello brother , what's you doing"],
+//             [7, "law", "i am  fine , whats about you"],
+//             [8, "law", "i am  fine , whats about you"],
+//             [9, "ace", "hello brother , what's you doing"],
+//             [10, "law", "i am  fine , whats about you"],
+//             [11, "law", "i am  fine , whats about you"],
+//             [12, "ace", "hello brother , what's you doing"],
+//             [13, "law", "i am  fine , whats about you"],
+//             [14, "law", "i am  fine , whats about you"],
+//         ],
+//         8846866503729: [
+//             [0, "ace", "hello brother , what's you doing"],
+//             [1, "law", "i am  fine , whats about you"],
+//             [2, "law", "i am  fine , whats about you"],
+//             [3, "ace", "hello brother , what's you doing"],
+//             [4, "law", "i am  fine , whats about you"],
+//             [5, "law", "i am  fine , whats about you"],
+//             [6, "ace", "hello brother , what's you doing"],
+//             [7, "law", "i am  fine , whats about you"],
+//             [8, "law", "i am  fine , whats about you"],
+//             [9, "ace", "hello brother , what's you doing"],
+//             [10, "law", "i am  fine , whats about you"],
+//             [11, "law", "i am  fine , whats about you"],
+//             [12, "ace", "hello brother , what's you doing"],
+//             [13, "law", "i am  fine , whats about you"],
+//             [14, "law", "i am  fine , whats about you"],
+//         ],
+//     }
+// }
 
 
-export {UseFriendList, ServerList,FriendList,count,showPeopleList,ChatOrDock,MessageList}
+// export {UseFriendList, ServerList,FriendList,count,showPeopleList,ChatOrDock,MessageList}
+export {ChatOrDock,showPeopleList}

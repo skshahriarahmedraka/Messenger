@@ -16,11 +16,13 @@
 	import Search from '$lib/_Navbar/_profileImg/search.svelte';
 	import Cross from '$lib/_Navbar/_profileImg/Cross.svelte';
     import UserDashPannel from "$lib/UserDashPanel/index.svelte"
+    import { fade, blur, fly, slide, scale } from "svelte/transition";
+
 
 	// import {FriendList ,MyPro} from "$lib/store2"
 	export let FriendList: any;
 	export let MyPro: any;
-    let SearchStyle:string
+
 	let ChatOrDockHelper: number;
 	ChatOrDock.subscribe((val) => {
 		ChatOrDockHelper = val;
@@ -64,6 +66,7 @@
 			keepfocus: true
 		});
 	}
+    let showUsername=true 
 </script>
 
 <svelte:head>
@@ -80,22 +83,36 @@
 				on:click={() => {
 					OnClickFriend(i);
 				}}
-				class="  hover:text-white   w-full h-14 m-1  {ActiveChat === i['ProfileURL']
+				class="  hover:text-white   w-full h-16 m-1    {ActiveChat === i['ProfileURL']
 					? 'bg-slate-600 rounded-xl'
 					: 'hover:bg-[#202225]'} flex flex-row hover:rounded-xl  "
 			>
 				<!-- active indecator -->
 
 				<!-- user image -->
-				<img
+				<!-- <img
 					src={i['ProfileImage']}
 					alt=""
-					class=" w-12  h-12 m-2 aspect-square  rounded-3xl hover:rounded-xl active:rounded-md object-cover hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600"
-				/>
-				<div class="flex flex-col w-full h-full mr-2 ">
-					<div class="   h-8  mt-2 ml-0 flex flex-row">
+					class=" w-14 h-14 m-2   rounded-3xl hover:rounded-xl active:rounded-md object-cover hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  "
+				/> -->
+                <!-- USER IMAGE -->
+                <button   class=" group w-16   flex  flex-row  my-2 ml-1 hover:rounded-lg transition-all duration-150 ease-linear">
+            
+                    <div class=" relative flex ">
+                        <!-- <svg  class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 95.1v320c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64v-320c0-35.35 28.65-63.1 64-63.1h320C419.3 31.1 448 60.65 448 95.1z"/></svg> -->
+                        <!-- <div in:scale="{{  duration: 200 }}" out:scale class="bg-white -left-[58px]  absolute transition-all duration-200 ease-linear    {ActiveServer===u["ServerURL"] ? "rounded-md h-[50px] w-[50px]" : "rounded-xl h-[10px] w-[50px] group-hover:rounded-md group-hover:h-[30px] group-hover:w-[50px] " }"></div> -->
+                        <!-- <svg in:scale="{{  duration: 200 }}" out:scale class="fill-white   -left-[55px] -top-[25px]   absolute  h-[50px] w-[50px] " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M384 32H64C28.65 32 0 60.66 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.66 419.3 32 384 32zM319.1 280h-192C114.8 280 103.1 269.2 103.1 256c0-13.2 10.8-24 24-24h192c13.2 0 23.1 10.8 23.1 24C343.1 269.2 333.2 280 319.1 280z"/></svg> -->
+                        
+                        <img src="{i.ProfileImage}" alt="" class="  rounded-[1.25rem] hover:rounded-xl active:rounded-md object-cover h-[48px] w-[48px]  transition-all duration-100  ease-linear cursor-pointer  ">
+                        
+                    </div>
+            
+                </button>
+                <!-- NAME , LAST MESSAGE -->
+				<div class="flex flex-col w-full h-full  mx-2 justify-center  ">
+					<div class="     mt-2 ml-0 flex flex-row text-left">
 						<!-- User name -->
-						<p class=" w-56  font-bold text-lg text-ellipsis truncate   ">
+						<p class=" w-56  font-bold text-base    ">
 							{i['UserName']}
 						</p>
 						<div class=" flex-grow" />
@@ -115,9 +132,9 @@
 							{i['LastMessageTime']}
 						</p>
 					</div>
-					<div class=" h-8 w-72 flex flex-row ">
+					<div class="  w-72 flex flex-row mb-2">
 						<!-- last message -->
-						<p class="truncate w-72  h-full   ">
+						<p class=" line-clamp-1 w-72  h-full  text-left text-sm ">
 							{i['LastMessage']}
 						</p>
 						<!-- number of notification -->
@@ -142,7 +159,7 @@
 		{/each}
 	</div>
     <div class="">
-        <UserDashPannel MyPro={MyPro} bind:SearchStyle={SearchStyle} />
+        <UserDashPannel MyPro={MyPro}  {showUsername}/>
     </div>
 	
 </div>

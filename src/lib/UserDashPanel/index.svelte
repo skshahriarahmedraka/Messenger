@@ -22,13 +22,14 @@
 	export let MyPro: any;
 	let searchIconEvent: boolean = false;
 	let inputValue: string = '';
+    export let showUsername:boolean
 	let userOptions = { video: false, microphone: false, notificationSound: false, sound: false };
-	export let SearchStyle: string = 'sm'; // sm,md,lg
+	let SearchStyle: string="lg" // sm,md,lg
 </script>
 
-<!-- markup (zero or more items) goes here -->
 <div class="w-full h-14 bg-[#292b2f] flex flex-row items-center ">
 	{#if SearchStyle === 'sm'}
+    <!-- WRITE SEARCH -->
 		<div
 			class="  flex-grow justify-center items-center flex flex-row transition-all duration-300 ease-linear cursor-pointer text-lg text-gray-400"
 		>
@@ -53,7 +54,6 @@
 					class="w-8 h-8 mr-2 place-content-center  rounded-xl hover:fill-white fill-slate-400"
 				/>
 
-				<!-- <Search /> -->
 			</div>
 		</div>
 	{:else if SearchStyle === 'md'}
@@ -68,20 +68,34 @@
 			/>
 		</div>
 	{:else if SearchStyle === 'lg'}
-		<!-- else content here -->
-		<div class="   mx-2 h-10 w-10 ">
-			<img
-				src={MyPro['ProfileImage']}
-				alt=""
-				class=" rounded-2xl  object-cover w-full h-full   hover:rounded-xl active:rounded-md  transition-all duration-100  ease-linear cursor-pointer"
-			/>
-		</div>
-		<!-- <div class="flex flex-col">
-        <div class=" text-sm"> 
-            h18dl3dnef
-    </div>
-</div> -->
-		<div class=" flex-grow" />
+		<!-- USER PROFILE -->
+        {#if showUsername}
+             <div class="   mx-2 h-10 min-w-[2.5rem] ">
+                <img
+                    src={MyPro.ProfileImage}
+                    alt=""
+                    class=" rounded-2xl  object-cover w-full h-full   hover:rounded-xl active:rounded-md  transition-all duration-100  ease-linear cursor-pointer"
+                />
+
+            </div>
+            <div class="flex flex-col  ">
+                <p class=" overflow-hidden line-clamp-1 text-base text-slate-300 ">{MyPro.Name}</p>
+                <p on:click={()=>{navigator.clipboard.writeText( "http://localhost:3000/"+MyPro.ProfileUrl)}} class=" cursor-pointer line-clamp-1 text-sm text-gray-500 hover:text-gray-400">@{MyPro.ProfileUrl}</p>
+
+            </div>
+            <div class=" flex-grow" />
+
+        {:else}
+             <div class="   mx-2 h-10 w-10 ">
+                 <img
+                     src={MyPro['ProfileImage']}
+                     alt=""
+                     class=" rounded-2xl  object-cover w-full h-full   hover:rounded-xl active:rounded-md  transition-all duration-100  ease-linear cursor-pointer"
+                 />
+             </div>
+             
+             <div class=" flex-grow" />
+        {/if}
 		<!-- video -->
 		<div
 			class=" hover:bg-gray-700 rounded-lg"
@@ -99,7 +113,7 @@
 		<div
 			class="hover:bg-gray-700 rounded-lg "
 			on:click={() => {
-				userOptions['microphone'] = !userOptions['microphone'];
+				userOptions['microphone'] = !userOptions['microphone']
 			}}
 		>
 			{#if !userOptions['microphone']}

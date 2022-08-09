@@ -1,14 +1,16 @@
 <script lang="ts" context="module">
-	export async function load({ session }: any) {
+	export async function load({ session, fetch }: any) {
 		if (!session.user.authenticated) {
 			return {
 				status: 302,
 				redirect: '/login'
 			};
 		}
+
+		// FETCH USER PROFILE
 		let x3 = {
-			Name: 'Portgas D. Ace',
-			ProfileUrl: 'ace',
+			Name: "Sk Shahriar Ahmed Raka",
+			Userid: 'skraka',
 			ProfileImage:
 				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060640/samples/jpeg_1_qlbtcn.jpg'
 		};

@@ -1,8 +1,11 @@
 <script lang="ts">
   
-    import {showPeopleList , MessageList} from "$lib/store2"
+    import {showPeopleList} from "$lib/store2"
+    import { fade, blur, fly, slide, scale } from "svelte/transition";
+
     import Message from "./message.svelte"
     export let FriendMsg:any
+    export let MyPro:any
     let showPeopleListValue: number 
     showPeopleList.subscribe(val=>{
         showPeopleListValue=val 
@@ -34,9 +37,9 @@
 
 <div class=" {showPeopleListValue!=0 ? "w-5/6": "w-full"} h-full overflow-hidden  transition-all duration-200 ease-linear bg-[#36393f] flex flex-col">
     <!-- all messaging -->
-    <div class=" flex-grow bg-[#36393f] z-10 flex flex-col-reverse overflow-y-scroll scrol3 ">
-        {#each FriendMsg as i}
-                <Message message={i}/>
+    <div class=" flex-grow bg-[#36393f]  z-10 flex flex-col-reverse overflow-y-scroll scrol3 ">
+        {#each [...FriendMsg[1]].reverse() as item, index (item.id) }
+                <Message message={item} {MyPro}/>
         {/each}
     </div>
     <!-- write message -->
@@ -57,12 +60,12 @@
         <button class=" hover:bg-gray-800 hover:rounded-xl ">
             <svg class="w-7 h-7 m-2  fill-gray-400" xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M22,13a9.01,9.01,0,0,1-9,9H11a9.011,9.011,0,0,1-9-9H0A11.013,11.013,0,0,0,11,24h2A11.013,11.013,0,0,0,24,13Z"/><path d="M9,13H5.071a7,7,0,0,0,13.858,0H15V11h4V8H15V6h3.929A7,7,0,0,0,5.071,6H9V8H5v3H9Z"/></svg>
         </button>
-            <input  autocomplete="off" bind:value="{messengerValue}" on:keypress="{keyHandler}" type="text" name="string" placeholder="Type Message" class="  min-w-fit grow   self-center h-12 w-[415px] p-2 text-lg font-medium text-[#afb0b4] outline-none focus:border-sky-500  bg-[#303338] border-2 ml-2 my-2 border-[#24262b]  active:border-gray-800 rounded-2xl  " on:focus="{()=>{writeFocus=true}}" on:blur="{()=>{writeFocus = false}}">
+            <input  autocomplete="off" bind:value="{messengerValue}" on:keypress="{keyHandler}" type="text" name="string" placeholder="Type Message" class="  min-w-fit grow   self-center h-10 max-w-full p-2 text-lg font-medium text-[#afb0b4] outline-none focus:border-sky-500  bg-[#303338] border-2 ml-2 my-2 border-[#24262b]  active:border-gray-800 rounded-2xl  " on:focus="{()=>{writeFocus=true}}" on:blur="{()=>{writeFocus = false}}">
             <button  class="w-10 h-10 ml-2  hover:bg-gray-800 hover:rounded-xl ">
                 <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd"></path></svg>
             </button>
             {#if writeFocus || messengerValue.length>0  } 
-            <button on:click="{SendMessage}" type="submit" class=" w-10  h-10   "> 
+            <button in:scale out:scale  on:click="{SendMessage}" type="submit" class=" w-10  h-10   "> 
                 <svg class=" fill-cyan-600" style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="info"/><g id="icons"><path d="M21.5,11.1l-17.9-9C2.7,1.7,1.7,2.5,2.1,3.4l2.5,6.7L16,12L4.6,13.9l-2.5,6.7c-0.3,0.9,0.6,1.7,1.5,1.2l17.9-9   C22.2,12.5,22.2,11.5,21.5,11.1z" id="send"/></g></svg>
             </button>
             {/if}

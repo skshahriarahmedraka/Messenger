@@ -30,7 +30,7 @@
 		{ type: 'message', name: 'Competitive Programming' }
 	];
 	let demoField: boolean = false;
-  let SearchStyle:string
+  // let SearchStyle:string="sm"
 
 	let showRoomList = false;
 	let listOfField2 = [
@@ -169,6 +169,7 @@
 	];
 
 	let userOptions = { video: false, microphone: false, notificationSound: false, sound: false };
+  let showUsername:boolean=false
 </script>
 
 <!-- markup (zero or more items) goes here -->
@@ -313,7 +314,7 @@
       </div> -->
 	</div>
 	<div class="">
-    <UserDashPannel MyPro={MyPro} bind:SearchStyle={SearchStyle} />
+    <UserDashPannel MyPro={MyPro}  {showUsername} />
   </div>
 </div>
 

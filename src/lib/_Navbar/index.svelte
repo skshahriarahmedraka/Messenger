@@ -30,7 +30,7 @@ import Attherate from './_profileImg/attherate.svelte';
 	export let MyPro: any;
 </script>
 
-<div class="  bg-[#36393f] h-12 w-full flex flex-row border-b-2 border-solid border-[#32353a] ">
+<div class="  bg-[#36393f] h-12 w-full flex flex-row items-center border-b-2 border-solid border-[#2e3136] ">
 	<div
 		class="flex flex-row items-center mx-2 space-x-1 hover:fill-white fill-slate-400 hover:text-white text-slate-400 transition-all duration-200 ease-linear cursor-pointer"
 	>
@@ -53,7 +53,7 @@ import Attherate from './_profileImg/attherate.svelte';
 				}}
 				bind:value={inputValue}
 				type="text"
-				class="     w-full    self-center h-12  p-2 text-lg font-medium text-[#98999e] outline-none focus:border-sky-500  bg-[#303338] border-2 ml-4 mr-2 my-2 border-[#24262b]  active:border-gray-800 rounded-2xl "
+				class="     w-full    self-center h-10  p-2 text-lg font-medium text-[#98999e] outline-none focus:border-sky-500  bg-[#303338] border-2 ml-4 mr-2 my-2 border-[#24262b]  active:border-gray-800 rounded-2xl "
 			/>
             <button on:click={() => {
                 searchIconEvent = !searchIconEvent;
@@ -71,11 +71,11 @@ import Attherate from './_profileImg/attherate.svelte';
 		</div>
 	{/if}
 	<!-- audio call -->
-	<AudioCall class="w-7 h-7 mt-4 ml-2 hover:text-white text-slate-400 transition-all duration-200 ease-linear cursor-pointer"/>
+	<AudioCall class="w-6 h-6  ml-2 hover:text-white text-slate-400 transition-all duration-200 ease-linear cursor-pointer"/>
 	<!-- video call -->
-	<VideoCall class="w-8 h-8 my-3 ml-2 hover:text-white text-slate-400 transition-all duration-200 ease-linear cursor-pointer"/>
+	<VideoCall class="w-7 h-7  ml-2 hover:text-white text-slate-400 transition-all duration-200 ease-linear cursor-pointer"/>
 	<!-- hash -->
-	<Hash class="w-8 h-8 my-3 mx-2 hover:text-white text-slate-400  transition-all duration-200 ease-linear cursor-pointer" />
+	<Hash class="w-7 h-7 my-3 mx-2 hover:text-white text-slate-400  transition-all duration-200 ease-linear cursor-pointer" />
 	<!-- notification -->
 	<div class=" flex flex-row ">
 		<Notification class="w-7 h-7 my-4 mr-4 hover:text-white text-slate-400 transition-all duration-200 ease-linear cursor-pointer" />
@@ -86,10 +86,9 @@ import Attherate from './_profileImg/attherate.svelte';
 		</div>
 	</div>
 	<!-- show people pannel -->
-	<div class=" w-8 h-8 my-4 mx-0" on:click={showPeopleListFunc}>
+	<div class=" w-6 h-6" on:click={showPeopleListFunc}>
 		<People class="w-6 h-6  hover:text-white text-slate-400 transition-all duration-200 ease-linear cursor-pointer" />
 	</div>
-	<div class=" w-1" />
 	<div class="flex flex-col ">
 		<div class="mr-2 mt-1  w-60 text-right font-medium  truncate text-gray-300 ">
 			Sk Shahriar Ahmed Raka

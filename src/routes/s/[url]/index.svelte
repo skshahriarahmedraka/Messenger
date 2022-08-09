@@ -1,28 +1,38 @@
 <script lang="ts" context="module">
-    export async function load ({stuff }){
+    export async function load ({stuff}:any){
         let ServerPro={
     "Name": "Competitive Programming for Pro",
     "ProfileUrl": "ace",
     "ProfileImage": "https://res.cloudinary.com/dqo0ssnti/image/upload/v1642489744/samples/1007550_t0uscy.jpg"
 }
-let  ServerMsg= [
-            [0, "ace", "hello brother , what's you doing"],
-            [1, "law", "i am  fine , whats about you"],
-            [2, "law", "i am  fine , whats about you"],
-            [3, "ace", "hello brother , what's you doing"],
-            [4, "law", "i am  fine , whats about you"],
-            [5, "law", "i am  fine , whats about you"],
-            [6, "ace", "hello brother , what's you doing"],
-            [7, "law", "i am  fine , whats about you"],
-            [8, "law", "i am  fine , whats about you"],
-            [9, "ace", "hello brother , what's you doing"],
-            [10, "law", "i am  fine , whats about you"],
-            [11, "law", "i am  fine , whats about you"],
-            [12, "ace", "hello brother , what's you doing"],
-            [13, "law", "i am  fine , whats about you"],
-            [14, "law", "i am  fine , whats about you"],
-        ]
-
+let  ServerMsg = [
+			{id:0, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:1, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:2, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:3, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:4, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:5, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:6, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:7, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:8, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:9, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:10, time:"20 jun22", writer: 'Sk Shahriar Ahmed Raka', message: "hello brother , what's you doing" },
+			// {id:10.1, time:"20 jun22", writer: 'Sk Shahriar Ahmed Raka', message: "hello brother , what's you doing" },
+			{id:11, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:12, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:13, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doingSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed RakaSk Shahriar Ahmed Raka" },
+			{id:14, time:"20 jun22", writer: 'Sk Shahriar Ahmed Raka', message: "hello brother , what's you doing" },
+			{id:15, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:16, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:17, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:18, time:"20 jun22", writer: 'Sk Shahriar Ahmed Raka', message: "hello brother , what's you doing" },
+			{id:19, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:20, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:21, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			{id:22, time:"20 jun22", writer: 'Sk Shahriar Ahmed Raka', message: "hello brother , what's you doinghello brother , what's you doinghello brother , what's you doinghello brother , what's you doinghello brother , what's you doinghello brother , what's you doinghello brother , what's you doinghello brother , what's you doinghello brother , what's you doinghello brother , what's you doinghello brother , what's you doing" },
+			{id:23, time:"20 jun22", writer: 'ace', message: "hello brother , what's you doing" },
+			
+		]
         
 
         
@@ -110,7 +120,7 @@ let  ServerMsg= [
     <!-- message and people -->
     <div class="  w-full h-full  bg-[#2f3136] flex flex-row overflow-hidden">
         <!-- messaging 830px -->
-        <Messages FriendMsg={ServerMsg} />
+        <Messages FriendMsg={ServerMsg} MyPro={MyPro} />
         <!-- people -->
         {#if showPeopleListValue != 0}
             <Peoples PeopleData={PeopleData}/>

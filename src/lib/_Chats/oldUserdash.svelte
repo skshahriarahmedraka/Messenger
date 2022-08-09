@@ -1,3 +1,26 @@
+<script lang="ts">
+	import { goto } from '$app/navigation';
+
+	// import { url } from "$app/stores";
+
+	// import {page} from "$app/stores"
+	// $: console.log("$page.params ",$page.params)
+	// import { ChatOrDock } from '$lib/store2';
+	import Notification from '$lib/icons/notification.svelte';
+	import Search from '$lib/_Navbar/_profileImg/search.svelte';
+	import Cross from '$lib/_Navbar/_profileImg/Cross.svelte';
+    // import UserDashPannel from "$lib/UserDashPanel/index.svelte"
+
+	// import {FriendList ,MyPro} from "$lib/store2"
+	// export let FriendList: any\
+	export let MyPro: any;
+
+	let searchIconEvent: boolean = false;
+	let inputValue: string = '';
+
+	
+</script>
+
 <div class="flex flex-row justify-center items-center   ">
     <!-- company logo -->
     <!-- <div class="avatar  py-1 px-2 " on:click={ChatOrDockFunc}>
@@ -8,7 +31,7 @@
     <!-- search -->
     {#if searchIconEvent}
         <div
-            class="  flex-grow my-2 ml-1 mr-2 flex flex-row transition-all duration-300 ease-linear cursor-pointer text-lg text-gray-400"
+            class="   flex-grow my-2 ml-1 mr-2 flex flex-row transition-all duration-300 ease-linear cursor-pointer text-lg text-gray-400"
         >
             <input
                 placeholder="Search"
