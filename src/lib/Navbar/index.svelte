@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { showPeopleList } from '$lib/store2';
-import Hash from './_profileImg/hash.svelte';
-import AudioCall from './_profileImg/audioCall.svelte';
-import Circle from './_profileImg/circle.svelte';
-import Options from './_profileImg/options.svelte';
-	import Taw from './_profileImg/t.jpg';
-import VideoCall from './_profileImg/videoCall.svelte';
-import Notification from './_profileImg/Notification.svelte';
-import People from './_profileImg/people.svelte';
-import Search from './_profileImg/search.svelte';
-import Cross from './_profileImg/Cross.svelte';
-import Attherate from './_profileImg/attherate.svelte';
+import Hash from './profileImg/hash.svelte';
+import AudioCall from './profileImg/audioCall.svelte';
+import Circle from './profileImg/circle.svelte';
+import Options from './profileImg/options.svelte';
+	import Taw from './profileImg/t.jpg';
+import VideoCall from './profileImg/videoCall.svelte';
+import Notification from './profileImg/Notification.svelte';
+import People from './profileImg/people.svelte';
+import Search from './profileImg/search.svelte';
+import Cross from './profileImg/Cross.svelte';
+import Attherate from './profileImg/attherate.svelte';
 
 	let showPeopleList1: number;
 	showPeopleList.subscribe((val) => {

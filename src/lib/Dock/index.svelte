@@ -1,8 +1,8 @@
 <script lang="ts"> 
     import {goto } from "$app/navigation"
     import {ChatOrDock} from "$lib/store2"
-import Accord from "$lib/_Dock/_icons/accord.svelte";
-    import AccordLogo from "$lib/_Dock/_icons/accord.svelte"
+import Accord from "$lib/Dock/icons/accord.svelte";
+    import AccordLogo from "$lib/Dock/icons/accord.svelte"
     // import {ServerList} from "$lib/store2"
     
     import { fade, blur, fly, slide, scale } from "svelte/transition";

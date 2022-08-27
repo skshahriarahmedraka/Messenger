@@ -7,8 +7,8 @@
 	// $: console.log("$page.params ",$page.params)
 	// import { ChatOrDock } from '$lib/store2';
 	import Notification from '$lib/icons/notification.svelte';
-	import Search from '$lib/_Navbar/_profileImg/search.svelte';
-	import Cross from '$lib/_Navbar/_profileImg/Cross.svelte';
+	import Search from '$lib/Navbar/profileImg/search.svelte';
+	import Cross from '$lib/Navbar/profileImg/Cross.svelte';
     // import UserDashPannel from "$lib/UserDashPanel/index.svelte"
 
 	// import {FriendList ,MyPro} from "$lib/store2"

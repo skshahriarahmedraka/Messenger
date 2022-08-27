@@ -1,7 +1,7 @@
 <script lang="ts">
     
     import {showPeopleList} from "$lib/store2"
-    import Taw from "./_profileImg/t.jpg"
+    import Taw from "./profileImg/t.jpg"
 
     let showPeopleList1:number  
     showPeopleList.subscribe(val=>{

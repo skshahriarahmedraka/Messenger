@@ -1,22 +1,22 @@
 <script lang="ts">
 	// your script goes here
-	import userBanner from '../images/whiteBeard.jpg';
+	import userBanner from './images/whiteBeard.jpg';
 	// import Moji2 from "./_images/moji2.jpg"
 	// import { MyPro} from "$lib/store2"
-	// import Messaging from './icons/message.svelte';
-	// import Microphone from './icons/microphone.svelte';
-	// import Video from './icons/video.svelte';
-	import Announcement from '../icons/announcement.svelte';
-	import Hash from '../icons/hash.svelte';
-	import Rule from '../icons/rule.svelte';
-	// import InvitePeople from './icons/invitePeople.svelte';
-	// import AeroUp from './icons/aeroUp.svelte';
-	// import AeroDown from './icons/aeroDown.svelte';
-	// import AudioCall from '$lib/_Navbar/_profileImg/audioCall.svelte';
-	// import RedOff from './icons/redOff.svelte';
-	// import Speaker from './icons/Speaker.svelte';
-	// import Notification from './icons/notification.svelte';
-	// import Settings from './icons/settings.svelte';
+	import Messaging from './icons/message.svelte';
+	import Microphone from './icons/microphone.svelte';
+	import Video from './icons/video.svelte';
+	import Announcement from './icons/announcement.svelte';
+	import Hash from './icons/hash.svelte' 
+	import Rule from './icons/rule.svelte'
+	import InvitePeople from './icons/invitePeople.svelte';
+	import AeroUp from './icons/aeroUp.svelte';
+	import AeroDown from './icons/aeroDown.svelte';
+	import AudioCall from '$lib/Navbar/profileImg/audioCall.svelte';
+	import RedOff from './icons/redOff.svelte';
+	import Speaker from './icons/Speaker.svelte';
+	import Notification from './icons/notification.svelte';
+	import Settings from './icons/settings.svelte';
 
   import UserDashPannel from "$lib/UserDashPanel/index.svelte"
 

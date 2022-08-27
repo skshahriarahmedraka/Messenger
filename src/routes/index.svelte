@@ -24,12 +24,13 @@
     
     //  import Dock from "$lib/_Dock/index.svelte"
     // import Servers from "$lib/_Servers/index.svelte"
-    import NavBar from "$lib/_Navbar/index.svelte"
+    import NavBar from "$lib/Navbar/index.svelte"
     // import Peoples from "$lib/_Peoples/index.svelte"
     // import Messages from "$lib/_Messages/index.svelte"
     // import {showPeopleList,ChatOrDock} from "$lib/store2"
+    import Home from "$lib/home/index.svelte"
     
-    import Chat from "$lib/_Chats/index.svelte"
+    import Chat from "$lib/Chats/index.svelte"
 
     export let MyPro:any
 
@@ -302,8 +303,8 @@
             <NavBar  MyPro={MyPro} />
         
             <!-- message and people -->
-            <div class=" text-3xl text-white h-full w-full ">
-                sk shahriar ahmed raka
+            <div class=" text-3xl text-white h-full w-full overflow-y-scroll">
+                <Home />
                 
             </div>
 

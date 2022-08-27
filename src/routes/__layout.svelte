@@ -26,17 +26,17 @@
 
 <script lang="ts">
 	import '../app.css';
-	// import peopleIcon from "./_icons/users.svg"
-	import Dock from '$lib/_Dock/index.svelte';
-	import Servers from '$lib/_Servers/index.svelte';
-	import NavBar from '$lib/_Navbar/index.svelte';
-	import Peoples from '$lib/_Peoples/index.svelte';
-	import Messages from '$lib/_Messages/index.svelte';
+	// import peopleIcon from "./icons/users.svg"
+	import Dock from '$lib/Dock/index.svelte';
+	import Servers from '$lib/Servers/index.svelte';
+	import NavBar from '$lib/Navbar/index.svelte';
+	import Peoples from '$lib/Peoples/index.svelte';
+	import Messages from '$lib/Messages/index.svelte';
 	import { showPeopleList, ChatOrDock } from '$lib/store2';
 	import Loading from '$lib/Loading/solarAccord.svelte';
 	import { afterUpdate } from 'svelte';
 
-	import Chat from '$lib/_Chats/index.svelte';
+	import Chat from '$lib/Chats/index.svelte';
 	// export let MyPro:any
 
 	let showPeopleListValue: number;
