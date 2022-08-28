@@ -41,6 +41,13 @@ import Accord from "$lib/Dock/icons/accord.svelte";
         })
     }
 
+    let showMenu:boolean= false 
+    async function onRightClick(e) {
+        if (showMenu){
+            showMenu=false
+            await new Promise(res=>setTimeout(res,100))
+        }
+    }
 
     
 </script>
@@ -64,7 +71,7 @@ import Accord from "$lib/Dock/icons/accord.svelte";
     </div>
     <!-- user list -->
     {#each ServerList as u}
-    <button  on:click="{()=>{ ActiveServer=u["ServerURL"]  ; OnClickServer(u) }}" class=" group w-full py-[5px]  flex  flex-row items-center justify-center  hover:rounded-lg transition-all duration-150 ease-linear">
+    <button on:contextmenu|preventDefault={onRightClick}  on:click="{()=>{ ActiveServer=u["ServerURL"]  ; OnClickServer(u) }}" class="  group w-full py-[5px]  flex  flex-row items-center justify-center  hover:rounded-lg transition-all duration-150 ease-linear">
             
         <div class=" relative flex justify-center items-center">
             <!-- <svg  class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 95.1v320c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64v-320c0-35.35 28.65-63.1 64-63.1h320C419.3 31.1 448 60.65 448 95.1z"/></svg> -->

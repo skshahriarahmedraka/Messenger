@@ -176,7 +176,7 @@
 
 <div class="w-60 h-screen flex flex-col ">
 	<div
-		class=" w-60 bg-[#2f3136] flex flex-col overflow-y-auto no-scrollbar transition-all duration-500 ease-linear "
+		class=" w-60 bg-[#2f3136] flex flex-col overflow-y-auto no-scrollbar transition-all duration-500 ease-linear  "
 	>
 		<!-- banner image -->
 		<div class=" w-full  " style="">
