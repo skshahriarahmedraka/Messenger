@@ -26,9 +26,19 @@
 	let userOptions = { video: false, microphone: false, notificationSound: false, sound: false };
 	let SearchStyle: string = 'lg'; // sm,md,lg
 	let showUserid: boolean = true;
+	let showUserOptions=true 
 </script>
 
-<div class="flex h-14 w-full flex-row items-center bg-[#292b2f] ">
+{#if showUserOptions}
+	 <div class="absolute h-40 w-40 bg-slate-500 -mt-56 ml-40 flex flex-row flex-wrap " on:blur={()=>{ showUserOptions =false}}>
+		 <button on:click={()=>{}} class=" ">Profile</button>
+		 <button on:click={()=>{}} class=" ">Profile</button>
+		 <button on:click={()=>{}} class=" ">Profile</button>
+		 <button on:click={()=>{}} class=" ">Profile</button>
+		 <button on:click={()=>{}} class=" ">Profile</button>
+	 </div>
+{/if}
+<div class="flex h-14 w-full flex-row items-center bg-[#292b2f]  ">
 	{#if SearchStyle === 'sm'}
 		<!-- WRITE SEARCH -->
 		<div
@@ -71,7 +81,7 @@
 		<!-- USER PROFILE -->
 		{#if showUsername}
 			<div class="   mx-2 h-10 min-w-[2.5rem] ">
-				<img
+				<img on:click={()=>{showUserOptions=!showUserOptions}}
 					src={MyPro.ProfileImage}
 					alt=""
 					class=" h-full  w-full cursor-pointer rounded-2xl   object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"

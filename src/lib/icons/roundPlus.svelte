@@ -1,5 +1,5 @@
 <svg
-	class="h-10 w-10 self-center  stroke-[#3ba55d]"
+	class=" {$$props.class}h-10 w-10 self-center  stroke-[#3ba55d]"
 	fill="none"
 	stroke="currentColor"
 	viewBox="0 0 24 24"

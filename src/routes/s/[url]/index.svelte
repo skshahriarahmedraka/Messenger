@@ -66,7 +66,6 @@ let  ServerMsg = [
 					time: '20 jun22',
 					writer: 'ace',
 					writerName: 'Portgas D. Ace',
-
 					message: "hello brother , what's you doing",
 					react: { ace: 1, skraka: 2 },
 					numberOfReact: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
