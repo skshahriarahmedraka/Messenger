@@ -1,0 +1,68 @@
+
+# version: "3.8"
+# services:
+#   mongo:
+#     container_name: mongodb  
+#     image: mongo:latest
+#     ports:
+#       - "27017:27017"
+
+version: "3.8"
+
+# mkdir ~/Documents/database/accord_mongodb ~/Documents/database/accord_postgresql
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: accord_mongodb
+    # user: "1000:1000"
+    # volumes:
+      # - /home/raka/Documents/database/accord_mongodb/:/data/db
+      # - './docker database/mongodb/:/data/db'
+      # - caddy_data:/data/db:ro
+    # env_file:
+    #   - ./mongodb.env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+      MONGO_INITDB_DATABASE : messagedb
+    ports:
+      - '27017:27017'
+    networks:
+      - backnetwork
+    # - '27017-27019:27017-27019'
+  postgresql:
+    image: postgres
+    container_name: accord_postgresql
+    # restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=userdb
+    ports:
+      - '5432:5432'
+    volumes: 
+      - /home/raka/Documents/database/accord_postgresql/:/var/lib/postgresql/data
+    networks:
+      - backnetwork
+networks:
+  backnetwork:
+    driver: bridge 
+
+
+
+
+
+
+
+
+
+
+# Use root/example as user/password credentials
+
+# volumes:
+#   caddy_data:
+#     name: caddy_data
+#     driver_opts:
+#       o: bind
+#       device: /mnt/golang/vscode Projects/Accord/p13GorillaMuxAccord/docker database/mongodb/
+#       type: none
