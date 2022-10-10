@@ -153,7 +153,7 @@
 
 					{/each}
 					{#each Array.from(Array(NumOfDayinMonth(setDate[3],setDate[1])+1).keys()).slice(1) as i}
-						<!-- content here -->
+						
 						<span on:click="{()=>{setDate[0]=i}}"
 							class="flex items-center justify-center hover:border-2 border-blue-600 w-10 h-10 text-white hover:cursor-pointer transition-all ease-in duration-100 { setDate[0]===i ? " bg-blue-600" : "" } rounded-l-lg"
 						>

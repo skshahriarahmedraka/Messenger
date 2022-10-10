@@ -8,9 +8,17 @@ import (
 
 
 type Claims struct {
-	Username string `json:"username"`
-	Userid string `json:"userid"`
+	UserName string `json:"UserName"`
+	UserID string `json:"UserID"`
 	Email string `json:"email"`
-	Accouttype string `json:"accounttype"`
+	UUID string `json:"UUID"`
+	jwt.StandardClaims	
+}
+
+type RefreshClaims struct {
+	UserName string `json:"UserName"`
+	UserID string `json:"UserID"`
+	Email string `json:"email"`
+	UUID string `json:"UUID"`
 	jwt.StandardClaims	
 }

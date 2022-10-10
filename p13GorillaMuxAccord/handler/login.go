@@ -49,10 +49,10 @@ func (H *DatabaseCollections) Login(w http.ResponseWriter, r *http.Request) {
 		//CREATE COOKIE
 		expirationTime := time.Now().Add(time.Hour * 1000)
 		myClaim := &model.Claims{
-			Username:   user.Username,
+			UserName:   user.UserName,
 			Email:      user.Email,
-			Userid:     user.Userid,
-			Accouttype: user.Accounttype,
+			UserID:     user.UserID,
+			UUID : user.UUID,
 			StandardClaims: jwt.StandardClaims{
 				ExpiresAt: expirationTime.Unix(),
 			},
@@ -62,7 +62,7 @@ func (H *DatabaseCollections) Login(w http.ResponseWriter, r *http.Request) {
 		token := jwt.NewWithClaims(jwt.SigningMethodHS256, myClaim)
 
         fmt.Println("🚀 ~ file: login.go ~ line 51 ~ func ~ token : ", token)
-		tokenString, err := token.SignedString( []byte(os.Getenv("JWTSECRET")))
+		tokenString, err := token.SignedString( []byte(os.Getenv("JWT_SECRET")))
         
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)

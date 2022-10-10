@@ -4,32 +4,40 @@ import dotenv from "dotenv"
 
 dotenv.config()
 
-export async function handle({event,resolve}) {
-    const respose = resolve(event)
+import type { Handle } from '@sveltejs/kit'
+
+export const handle: Handle = async ({ event, resolve }) => {
+    // get cookies from browser
+    const MyCookie = cookie.parse(event.cookies.get('Auth1')|| "")
+    // event.locals.user.Authenticated=false 
+
+    const JWT_Auth_KEY:string= process.env.JWT_SECRET as string
+    console.log("🚀 ~ file: hooks.server.ts ~ line 14 ~ consthandle:Handle= ~ JWT_Auth_KEY", JWT_Auth_KEY)
+  
+    jwt.verify(MyCookie["Auth1"],JWT_Auth_KEY,(err)=>{
+        // console.log("🚀 ~ file: hooks.ts ~ line 21 ~ jwt.verify ~ err : ", err)
+            if (err){
+                event.locals.user={
+                    Authenticated: false 
+                } 
+                // return {user:{authenticated:false}}
+                
+            }else{
+                event.locals.user={
+                    Authenticated: true 
+                } 
+            }
     
-    return respose
-}
-
-
-// export function getSession(event ){
-//     const MyCookie=cookie.parse(event.request.headers.get("cookie") || "")
-//     // console.log("🚀 ~ file: hooks.ts ~ line 21 ~ jwt.verify ~ MyCookie[\"Auth1\"] : ", MyCookie["Auth1"])
-//     if (!MyCookie["Auth1"]){
-//         return {user:{authenticated:false}}
-//     }
-//     const value:string =process.env.VITE_AUTHKEY as string
-//     jwt.verify(MyCookie["Auth1"],value,(err)=>{
-//     // console.log("🚀 ~ file: hooks.ts ~ line 21 ~ jwt.verify ~ err : ", err)
-//         if (err){
-
-//             return {user:{authenticated:false}}
-            
-//         }
-
-//     })
-//     return {
-//         user: {
-//             authenticated:true 
-//         }
-//     }
-// }
+        })
+        
+    // if `user` exists set `events.local`
+   
+    console.log("🚀 ~ file: hooks.server.ts ~ line 29 ~ consthandle:Handle= ~ event.locals.user", event.locals.user.Authenticated)
+    // event.locals.user = {
+    //     Authenticated:false
+    // }
+  
+    // load page as normal
+    return await resolve(event)
+  }
+  

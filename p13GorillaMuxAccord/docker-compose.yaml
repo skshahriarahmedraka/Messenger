@@ -27,8 +27,10 @@ services:
       MONGO_INITDB_DATABASE : messagedb
     ports:
       - '27017:27017'
+    volumes:
+      - /docker/accordmongodb:/data/db
     networks:
-      - backnetwork
+      - accordnetwork
     # - '27017-27019:27017-27019'
   postgresql:
     image: postgres
@@ -41,11 +43,27 @@ services:
     ports:
       - '5432:5432'
     volumes: 
-      - /home/raka/Documents/database/accord_postgresql/:/var/lib/postgresql/data
+      - /docker/accordpostgresql:/var/lib/postgresql/data
     networks:
-      - backnetwork
+      - accordnetwork
+    
+  minio:
+    image: quay.io/minio/minio:latest
+    container_name: accord_minio
+    command: server /data --console-address ":9001"
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=miniosecret
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    volumes:
+      - /docker/accordminio:/data
+    
+    networks:
+      - accordnetwork
 networks:
-  backnetwork:
+  accordnetwork:
     driver: bridge 
 
 

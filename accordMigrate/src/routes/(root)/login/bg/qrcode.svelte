@@ -1,5 +1,5 @@
 
-<svg class="h-[180px] w-[180px]  rounded-xl mt-12 mx-16" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg class="h-[180px] w-[180px] {$$props.class} rounded-xl mt-12 mx-16" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 width="1155px" height="1155px" viewBox="0 0 1155 1155" enable-background="new 0 0 1155 1155" xml:space="preserve">
 <rect x="0" y="0" width="1155" height="1155" fill="rgb(255,255,255)" /><g transform="translate(70,70)"><g transform="translate(315,0) scale(0.07,0.07)"><g transform="" style="fill: rgb(17, 49, 81);">
 <path d="M250,0c58.27,0,250,0,250,0s0,170.182,0,250c0,62.305,0,250,0,250s-174.219,0-250,0

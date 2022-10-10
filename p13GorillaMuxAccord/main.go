@@ -6,25 +6,31 @@ import (
 	"net/http"
 	"time"
 
+	"app/config"
+	// "app/logerror"
 	"app/route"
 
 	"github.com/gorilla/mux"
-	"github.com/joho/godotenv"
+	// "github.com/joho/godotenv"
 	"github.com/pytimer/mux-logrus"
-	
 )
 
-func ERROR(e error, s string ){
-	if e!= nil {
-		log.Fatalln(s)
-	}
+// func ERROR(e error, s string ){
+// 	if e!= nil {
+// 		log.Fatalln(s)
+// 	}
+// }
+
+func init(){
+
+	// LOAD ENVIRONMENT VARIABLES
+	config.LoadEnvironmentVar()
+
 }
-
-
 func main() {
 	//LOAD ENVIRONMENT VARIABLES 
-	err:=godotenv.Load()
-    ERROR(err,"🔥❌ ~ file: main.go ~ line 24 ~ funcmain ~ err : ")
+	// err:=godotenv.Load()
+    // logerror.ERROR("🔥❌ ~ file: main.go ~ line 24 ~ funcmain ~ err : ",err)
 	
 
 	// CREATE GORILLA MUX WRITER 

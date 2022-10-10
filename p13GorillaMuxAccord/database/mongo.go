@@ -28,7 +28,7 @@ func MongodbConnection() *mongo.Database {
 		log.Fatal("❌ Failed  to connect to mongodb db", err)
 	}
 	// defer client.Disconnect(ctx)
-	Mydb := client.Database("demo")
+	Mydb := client.Database("accord")
 	fmt.Println("✨🥰 ~ file: mongodb.go ~ line 32 ~ funcMongodbConnection ~ Mydb : ", Mydb)
 
 	// Mycol := Mydb.Collection("stackdb")
