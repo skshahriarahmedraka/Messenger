@@ -40,12 +40,33 @@
 	// ChatOrDock.subscribe(val=>{
 	//     ChatOrDockValue=val
 	// })
+	// friend images
+import Moji from "$lib/profilepic/moji2.jpg"
+import Rafi from "$lib/profilepic/r4.jpg"
+import Ekbal from "$lib/profilepic/e2.jpg"
+import Ronok from "$lib/profilepic/r5.jpg"
+import Shakil from "$lib/profilepic/s2.jpg"
+import Hemel from "$lib/profilepic/h1.jpg"
+import Azim from "$lib/profilepic/a1.jpg"
+import Rafel from "$lib/profilepic/r2.jpg"
+import Rakib from "$lib/profilepic/r.jpg"
+import Istique from "$lib/profilepic/ot2.jpg"
+import Rakib2 from "$lib/profilepic/r3.jpg"
+import Toki from "$lib/profilepic/t.jpg"
+import Yurichi from "$lib/profilepic/y.jpeg"
+import Rengokhu from "$lib/profilepic/rengokhu.png"
+import Vegeta from "$lib/profilepic/s2.png"
+import Saad from "$lib/profilepic/s3.jpg"
+import Hankok from "$lib/profilepic/h2.jpg"
+import Nejuko from "$lib/profilepic/n1.jpg"
+import Shanks from "$lib/profilepic/s4.jpg"
+import Admiral from "$lib/profilepic/s5.jpg"
+import Law from "$lib/profilepic/law.png"
 
 	let x = [
 		{
 			ProfileURL: 'majibarrahman',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Moji ,
 			UserName: 'Md Majibar Rahman',
 			LastMessage: 'hope you are filling well',
 			LastMessageTime: '23 Aug 21',
@@ -56,8 +77,7 @@
 		},
 		{
 			ProfileURL: 'rafihasan',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Rafi ,
 			UserName: 'md rafi hasan zihad',
 			LastMessage: 'whats is going on bro',
 			LastMessageTime: '9:30 AM',
@@ -68,8 +88,7 @@
 		},
 		{
 			ProfileURL: 'ekbalhasan',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Ekbal ,
 			UserName: 'Md ekbal Hasan',
 			LastMessage: 'I was going home that day',
 			LastMessageTime: '9 jun 11',
@@ -80,8 +99,7 @@
 		},
 		{
 			ProfileURL: 'mdronok',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Ronok ,
 			UserName: 'Md ronok shahriar',
 			LastMessage: 'ethical hacking is my passion',
 			LastMessageTime: '10:34 PM',
@@ -92,8 +110,7 @@
 		},
 		{
 			ProfileURL: 'samiulshakil',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Shakil ,
 			UserName: 'md samiul alim shakil',
 			LastMessage: 'I am feeling wanderful . wona go for a tour',
 			LastMessageTime: '12 mar 19',
@@ -104,8 +121,7 @@
 		},
 		{
 			ProfileURL: 'hemelakash',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Hemel,
 			UserName: 'Hemel sarkar akash',
 			LastMessage: 'Got a job in Apple as a CEO',
 			LastMessageTime: '12 min',
@@ -116,8 +132,7 @@
 		},
 		{
 			ProfileURL: 'hazem',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Azim ,
 			UserName: 'Md Azim Mahfuz',
 			LastMessage: 'what a great day . got a job on Uniliver',
 			LastMessageTime: '23 sec',
@@ -129,8 +144,7 @@
 
 		{
 			ProfileURL: 'rafel',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Rakib,
 			UserName: 'Md rafel',
 			LastMessage: 'bought a new bike ,lets to on a ride',
 			LastMessageTime: '4:23 AM',
@@ -141,8 +155,7 @@
 		},
 		{
 			ProfileURL: 'rakibulislam',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Rafel,
 			UserName: 'md Rakibul islam',
 			LastMessage: "whats's you doing , bro , see you later",
 			LastMessageTime: '23 dec 21',
@@ -153,8 +166,7 @@
 		},
 		{
 			ProfileURL: 'istique',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Istique,
 			UserName: 'istique mahmud pritom',
 			LastMessage: 'i am on a train , going to Dhaka',
 			LastMessageTime: '1 jun 21',
@@ -165,8 +177,7 @@
 		},
 		{
 			ProfileURL: 'mdrakib',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Rakib2,
 			UserName: 'Md Rakib Hasan',
 			LastMessage: 'lets do party to night . Real madrid vs PSG . the game will be epic',
 			LastMessageTime: '9 mar',
@@ -177,8 +188,7 @@
 		},
 		{
 			ProfileURL: 'toki',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Yurichi,
 			UserName: 'md toki',
 			LastMessage: 'whats up bro what is happening there',
 			LastMessageTime: '21 jun',
@@ -189,8 +199,7 @@
 		},
 		{
 			ProfileURL: 'yurichi',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Toki,
 			UserName: 'Yurichi',
 			LastMessage: 'are you enjoying my story',
 			LastMessageTime: '12 jan 16',
@@ -201,8 +210,7 @@
 		},
 		{
 			ProfileURL: 'rengokhu',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Rengokhu,
 			UserName: 'kyjiro Rengokhu',
 			LastMessage: 'mugen the train was amayzing',
 			LastMessageTime: '19 feb 19',
@@ -213,8 +221,7 @@
 		},
 		{
 			ProfileURL: 'vegeta',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Vegeta,
 			UserName: 'Prince Vegeta',
 			LastMessage: 'the sayian pride will never parish',
 			LastMessageTime: '9 sep 20',
@@ -226,8 +233,7 @@
 
 		{
 			ProfileURL: 'saad',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Saad,
 			UserName: 'Hasan mahmud',
 			LastMessage: "what's your physical condition , come to my home ",
 			LastMessageTime: 'yestarday',
@@ -238,8 +244,7 @@
 		},
 		{
 			ProfileURL: 'hankok',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Hankok,
 			UserName: 'Boa Hankok',
 			LastMessage: 'where is my luffy',
 			LastMessageTime: '12 jan 00',
@@ -250,8 +255,7 @@
 		},
 		{
 			ProfileURL: 'nejuko',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Nejuko,
 			UserName: 'Nejuko',
 			LastMessage: 'hmm',
 			LastMessageTime: '2 jan 34',
@@ -262,8 +266,7 @@
 		},
 		{
 			ProfileURL: 'shanks',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Shanks,
 			UserName: 'D. Shanka',
 			LastMessage: 'after shreding tears you will be a real man',
 			LastMessageTime: '1:00 AM',
@@ -286,8 +289,7 @@
 		},
 		{
 			ProfileURL: 'law',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060642/samples/law_hc6hfb.png',
+			ProfileImage: Law ,
 			UserName: 'Trafalger D. Water Law',
 			LastMessage: '     i must find the meaning of meaning of D.',
 			LastMessageTime: 'yesterday',
@@ -304,7 +306,10 @@
 		ProfileImage:
 			'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060640/samples/jpeg_1_qlbtcn.jpg'
 	};
+
+
     let x2: any = [
+	
 		{
 			ServerURL: 'postgres',
 			Name: 'Postgres',
@@ -312,8 +317,7 @@
 			NumberOfNewMessage: 3,
 			Notification: false,
 			NumberOfNotification: 0,
-			ServerImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
+			ServerImage: Rafel
 		},
 		{
 			ServerURL: 'mongodb',

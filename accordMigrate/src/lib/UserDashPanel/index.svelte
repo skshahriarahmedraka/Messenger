@@ -28,11 +28,12 @@ import { goto } from '$app/navigation';
 	let SearchStyle: string = 'lg'; // sm,md,lg
 	let showUserid: boolean = true;
 	let showUserOptions = false;
+	import Coin from '$lib/icons/coin2.svelte';
 </script>
 
 {#if showUserOptions}
 	<div
-		class=" mb-5 flex h-80 w-full flex-row flex-wrap   rounded-xl bg-[#18191c] bg-opacity-80 text-gray-300 "
+		class=" mb-5 flex h-fit w-full flex-row flex-wrap   rounded-xl bg-[#18191c] bg-opacity-80 text-gray-300 "
 		on:blur={() => {
 			showUserOptions = false;
 		}}
@@ -45,10 +46,22 @@ import { goto } from '$app/navigation';
 				class="fixed -mt-7 ml-5 h-12 w-12 rounded-xl object-cover"
 			/>
 		</div>
-		<p class=" fixed ml-20 mt-6 self-center text-lg">{MyPro.Name}</p>
+		<p class="  ml-20 mt-6 self-center text-lg">{MyPro.Name}</p>
+		<!-- <div class=" flex flex-col ">
+
+			<div
+			class=" flex mt-12  ml-20   w-full flex-row items-center gap-2 rounded-2xl border-0 border-blue-500 bg-sky-300 bg-opacity-30 pr-2  sm:hidden md:hidden lg:hidden xl:hidden xs:hidden xxl:contents"
+		>
+			<Coin class="storke-[1px] h-8 w-8 stroke-yellow-300" />
+			<p class="text-slate-200 ">{826753}</p>
+		</div>
+		</div> -->
 		<div class="w-full h-16 inline-flex mt-5">
-			<button on:click={() => {goto(`/${MyPro.Userid}/profile`)}} class=" h-16 w-1/2 rounded-lg  hover:bg-gray-900 "
-				>Profile</button
+			<button on:click={() => {goto(`/${MyPro.Userid}/profile`)}} class=" h-16 w-1/2 rounded-lg flex justify-center items-center  hover:bg-gray-900 "
+				>
+				<Coin class="storke-[1px] h-8 w-8 stroke-yellow-300" />
+			<p class="text-slate-200 ">{826753}</p>
+				</button
 			>
 			<button on:click={() => {goto(`/${MyPro.Userid}/settings`)}} class=" h-16  w-1/2 rounded-lg  hover:bg-gray-900 "
 				>Settings</button
@@ -61,7 +74,9 @@ import { goto } from '$app/navigation';
 			<button on:click={() => {goto(`/${MyPro.Userid}/settings/edit`)}} class=" h-16 w-1/2 rounded-lg  hover:bg-gray-900 "
 				>Edit Profile</button
 			>
+
 		</div>
+	
 	</div>
 {/if}
 <div class="flex h-14 w-full flex-row items-center bg-[#292b2f]  ">

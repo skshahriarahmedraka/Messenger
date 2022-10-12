@@ -7,7 +7,7 @@ export async function POST({ cookies , request }) {
 	const data = await request.json();
     console.log("🚀 ~ file: +server.ts ~ line 8 ~ POST ~ data", data)
     let resData:any
-    await fetch('http://localhost:8888/sveltekit/register', {
+    await fetch('http://localhost:8888/sveltekit/login', {
 			// credentials: 'same-origin',
 				credentials: 'include',
 

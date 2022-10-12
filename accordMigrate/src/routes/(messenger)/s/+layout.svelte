@@ -29,6 +29,29 @@
 		loadingState = false;
 	});
 
+	//server images
+import Postgres from "$lib/serverpic/postgres.svg"
+import Bd from "$lib/serverpic/bd.svg"
+import C from "$lib/serverpic/c.svg"
+import Chelsea from "$lib/serverpic/chelsea.svg"
+import Coffee from "$lib/serverpic/coffee.png"
+import Cpp from "$lib/serverpic/cpp.svg"
+import Docker from "$lib/serverpic/docker.png"
+import Go from "$lib/serverpic/go.svg"
+import Kubernetes from "$lib/serverpic/kubernetes.svg"
+import Mancity from "$lib/serverpic/mancity.svg"
+import Mazda from "$lib/serverpic/mazda.png"
+import Mongo from "$lib/serverpic/mongo.svg"
+import Pinterest from "$lib/serverpic/pinterest.svg"
+import Py from "$lib/serverpic/py.svg"
+import Real from "$lib/serverpic/real.svg"
+import Redis from "$lib/serverpic/redis.svg"
+import Sve from "$lib/serverpic/svelte.svg"
+import Tea from "$lib/serverpic/tea2.jpg"
+import Tensorflow from "$lib/serverpic/tensorflow.svg"
+import Linux from "$lib/serverpic/linux.svg"
+import Ubuntu from "$lib/serverpic/ubuntu.svg"
+
 	let x2: any = [
 		{
 			ServerURL: 'postgres',
@@ -37,8 +60,7 @@
 			NumberOfNewMessage: 3,
 			Notification: false,
 			NumberOfNotification: 0,
-			ServerImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
+			ServerImage: Postgres
 		},
 		{
 			ServerURL: 'mongodb',

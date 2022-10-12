@@ -139,14 +139,14 @@
 		);
 	}
 	async function OnSubmit() {
-		console.log('🚀 ~ file: index@root.svelte ~ line 45 ~ OnSubmit ~ OnSubmit');
-		console.log('🚀 ~ file: index@root.svelte ~ line 166 ~ OnSubmit ~ RegData', RegData);
-		console.log('🚀 ~ file: index@root.svelte ~ line 28 ~ ErrorMsg', ErrorMsg);
+		// console.log('🚀 ~ file: index@root.svelte ~ line 45 ~ OnSubmit ~ OnSubmit');
+		// console.log('🚀 ~ file: index@root.svelte ~ line 166 ~ OnSubmit ~ RegData', RegData);
+		// console.log('🚀 ~ file: index@root.svelte ~ line 28 ~ ErrorMsg', ErrorMsg);
 
-		console.log(
-			'🚀 ~ file: index@root.svelte ~ line 141 ~ OnSubmit ~ !ErrorChecking()',
-			ErrorChecking()
-		);
+		// console.log(
+		// 	'🚀 ~ file: index@root.svelte ~ line 141 ~ OnSubmit ~ !ErrorChecking()',
+		// 	ErrorChecking()
+		// );
 		if (ErrorChecking()) {
 			let res = await fetch('/api/register', {
 				// credentials: 'same-origin',
@@ -158,7 +158,7 @@
 			})
 				.then((res) => {
                     return res.json()
-					console.log('🚀 ~ file: index@root.svelte ~ line 150 ~ OnSubmit ~ res', res);
+					// console.log('🚀 ~ file: index@root.svelte ~ line 150 ~ OnSubmit ~ res', res);
 				}).then((d) => {
 				    console.log("🚀 ~ file: +page.svelte ~ line 156 ~ .then ~ REgister response  data", d)
 				    

@@ -8,13 +8,14 @@ import type { Handle } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
     // get cookies from browser
-    const MyCookie = cookie.parse(event.cookies.get('Auth1')|| "")
+    const MyCookie:string = event.cookies.get('Auth1') || ""
+    console.log("🚀 ~ file: hooks.server.ts ~ line 12 ~ consthandle:Handle= ~ MyCookie", MyCookie)
     // event.locals.user.Authenticated=false 
 
     const JWT_Auth_KEY:string= process.env.JWT_SECRET as string
     console.log("🚀 ~ file: hooks.server.ts ~ line 14 ~ consthandle:Handle= ~ JWT_Auth_KEY", JWT_Auth_KEY)
   
-    jwt.verify(MyCookie["Auth1"],JWT_Auth_KEY,(err)=>{
+    jwt.verify(MyCookie,JWT_Auth_KEY,(err)=>{
         // console.log("🚀 ~ file: hooks.ts ~ line 21 ~ jwt.verify ~ err : ", err)
             if (err){
                 event.locals.user={

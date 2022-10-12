@@ -1,8 +1,4 @@
-<script context="module">
-	// export async function load({fetch}){
-	//     const res = await fetch("http.localhost:3000/")
-	// }
-</script>
+
 
 <script lang="ts">
 	import { goto } from '$app/navigation';

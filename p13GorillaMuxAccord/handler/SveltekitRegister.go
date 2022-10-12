@@ -5,6 +5,8 @@ import (
 	"app/model"
 	"context"
 	"fmt"
+	"golang.org/x/crypto/bcrypt"
+	"log"
 	"os"
 	"time"
 
@@ -13,8 +15,8 @@ import (
 	"net/http"
 
 	"github.com/golang-jwt/jwt/v4"
-	"go.mongodb.org/mongo-driver/bson"
 	"github.com/google/uuid"
+	"go.mongodb.org/mongo-driver/bson"
 	// "go.mongodb.org/mongo-driver/bson/primitive"
 	// "go.mongodb.org/mongo-driver/mongo"
 	// "go.mongodb.org/mongo-driver/mongo/options"
@@ -22,8 +24,8 @@ import (
 	// "time"
 )
 
-func (H *DatabaseCollections) Register(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Add("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Credentials", "true")
 	var resError model.ErrorRes
@@ -35,17 +37,14 @@ func (H *DatabaseCollections) Register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Println("🚀 ~ file: login.go ~ line 44 ~ func ~ user : ", user)
-	
 
-	user.Accounttype="normal"
-	user.BannerImg=""
-	user.Coin=0.0
-	user.FrinedListID=[]string{}
-	user.ProfileImg=""
-	myid:= uuid.New()
-	user.UUID=myid.String()
-
-	
+	user.Accounttype = "normal"
+	user.BannerImg = ""
+	user.Coin = 0.0
+	user.FrinedListID = []string{}
+	user.ProfileImg = ""
+	myid := uuid.New()
+	user.UUID = myid.String()
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
 	defer cancel()
@@ -55,13 +54,13 @@ func (H *DatabaseCollections) Register(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		resError.ErrorRes = "mongodb countDocument email connection error"
-		json.NewEncoder(w).Encode(resError)
+		_ = json.NewEncoder(w).Encode(resError)
 		return
 	}
 	if count > 0 {
 		w.WriteHeader(http.StatusBadRequest)
 		resError.ErrorRes = "User already registered"
-		json.NewEncoder(w).Encode(resError)
+		_ = json.NewEncoder(w).Encode(resError)
 		return
 	}
 	//MOBILE
@@ -69,7 +68,7 @@ func (H *DatabaseCollections) Register(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		resError.ErrorRes = "mongodb countDocument mobile connection error"
-		json.NewEncoder(w).Encode(resError)
+		_ = json.NewEncoder(w).Encode(resError)
 		return
 
 	}
@@ -77,11 +76,16 @@ func (H *DatabaseCollections) Register(w http.ResponseWriter, r *http.Request) {
 		// c.JSON(http.StatusBadRequest, gin.H{"error": "mobile already in use"})
 		w.WriteHeader(http.StatusBadRequest)
 		resError.ErrorRes = "mobile number already registered"
-		json.NewEncoder(w).Encode(resError)
+		_ = json.NewEncoder(w).Encode(resError)
 		return
 	}
 
-
+	hash, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
+	user.Password = string(hash)
+	if err != nil {
+		log.Println(err)
+	}
+	//return string(hash)
 
 	res, err := H.Mongo.Collection("usercol").InsertOne(ctx, user)
 	logerror.ERROR("🚀 ~ file: register.go ~ line 102 ~ func ~ err : ", err)
@@ -94,9 +98,9 @@ func (H *DatabaseCollections) Register(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("🚀 ~ file: register.go ~ line 80 ~ func ~ mongoRes : ", mongoRes)
 
 	if err != nil {
-    logerror.ERROR("🚀 ~ file: register.go ~ line 130 ~ func ~ err : ", err)
+		logerror.ERROR("🚀 ~ file: register.go ~ line 130 ~ func ~ err : ", err)
 		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode(`{status: " mongodb Connection error"}`)
+		_ = json.NewEncoder(w).Encode(`{status: " mongodb Connection error"}`)
 		return
 	}
 	// expirationTime := time.Now().Add(time.Hour * 1000)
@@ -135,10 +139,10 @@ func (H *DatabaseCollections) Register(w http.ResponseWriter, r *http.Request) {
 	expirationTime := time.Now().Add(time.Minute * 100)
 
 	claims := &model.Claims{
-				UserName:   user.UserName,
-		Email:      user.Email,
-		UserID:     user.UserID,
-		UUID : user.UUID,
+		UserName: user.UserName,
+		Email:    user.Email,
+		UserID:   user.UserID,
+		UUID:     user.UUID,
 		// Username: credentials.Username,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expirationTime.Unix(),
@@ -151,49 +155,57 @@ func (H *DatabaseCollections) Register(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		_ = json.NewEncoder(w).Encode(`{status: "StatusInternalServerError"}`)
 		return
 	}
-
-	http.SetCookie(w, &http.Cookie{
-		Name:    "Auth1",
-		Value:   tokenString,
-		Expires: expirationTime,
-		HttpOnly:true,
-		
-		// SameSite: SameSiteLaxMode,
-	})
-
-
-	RefreshExpTime := time.Now().Add(time.Minute * 1000)
-	RefreshClaims := model.RefreshClaims{
-		UserName:   user.UserName,
-		Email:      user.Email,
-		UserID:     user.UserID,
-		UUID : user.UUID,
-		// Username: credentials.Username,
-		StandardClaims: jwt.StandardClaims{
-			ExpiresAt: RefreshExpTime.Unix(),
-		},
+	////////////////////////////////
+	var SendJwt struct {
+		JWT string
 	}
-
-
-	refreshtokenStr, err := jwt.NewWithClaims(jwt.SigningMethodHS256, RefreshClaims).SignedString([]byte(os.Getenv("JWT_REFRESH_SECRET")))
-	if err != nil {
-		logerror.ERROR("🚀 ~ file: register.go ~ line 214 ~ func ~ err : ", err)
-		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode(`{status: "StatusInternalServerError"}`)
-		return
-	}
-	http.SetCookie(w, &http.Cookie{
-		Name:    "RefAuth1",
-		Value:   refreshtokenStr,
-		Expires: RefreshExpTime,
-		HttpOnly:true,
-		
-		// SameSite: SameSiteLaxMode,
-	})
-
+	SendJwt.JWT = tokenString
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(`{status: "Register successfull"}`)
+	_ = json.NewEncoder(w).Encode(&SendJwt)
+
+	/////////////////
+
+	// http.SetCookie(w, &http.Cookie{
+	// 	Name:    "Auth1",
+	// 	Value:   tokenString,
+	// 	Expires: expirationTime,
+	// 	HttpOnly:true,
+
+	// 	// SameSite: SameSiteLaxMode,
+	// })
+
+	// RefreshExpTime := time.Now().Add(time.Minute * 1000)
+	// RefreshClaims := model.RefreshClaims{
+	// 	UserName:   user.UserName,
+	// 	Email:      user.Email,
+	// 	UserID:     user.UserID,
+	// 	UUID : user.UUID,
+	// 	// Username: credentials.Username,
+	// 	StandardClaims: jwt.StandardClaims{
+	// 		ExpiresAt: RefreshExpTime.Unix(),
+	// 	},
+	// }
+
+	// refreshtokenStr, err := jwt.NewWithClaims(jwt.SigningMethodHS256, RefreshClaims).SignedString([]byte(os.Getenv("JWT_REFRESH_SECRET")))
+	// if err != nil {
+	// 	logerror.ERROR("🚀 ~ file: register.go ~ line 214 ~ func ~ err : ", err)
+	// 	w.WriteHeader(http.StatusInternalServerError)
+	// 	json.NewEncoder(w).Encode(`{status: "StatusInternalServerError"}`)
+	// 	return
+	// }
+	// http.SetCookie(w, &http.Cookie{
+	// 	Name:    "RefAuth1",
+	// 	Value:   refreshtokenStr,
+	// 	Expires: RefreshExpTime,
+	// 	HttpOnly:true,
+
+	// 	// SameSite: SameSiteLaxMode,
+	// })
+
+	// w.WriteHeader(http.StatusOK)
+	// json.NewEncoder(w).Encode(`{status: "Register successfull"}`)
 
 }

@@ -15,7 +15,9 @@ func Router(r *mux.Router){
 
 	// r.Use(middleware.ReqLog)
 	r.HandleFunc("/login", H.Login).Methods("POST")
+	r.HandleFunc("/sveltekit/login", H.SveltekitLogin).Methods("POST")
 	r.HandleFunc("/register", H.Register).Methods("POST")
+	r.HandleFunc("/sveltekit/register", H.SveltekitRegister).Methods("POST")
 	
 	// r.Use(middleware.AuthMiddleware)
 	r.HandleFunc("/", H.Home).Methods("GET")

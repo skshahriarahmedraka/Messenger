@@ -78,7 +78,7 @@
 
 		console.log('🚀 ~ file: index@root.svelte ~ line 45 ~ OnSubmit ~ OnSubmit');
 		if (!ErrorChecking()) {
-			let res = await fetch('http://localhost:8888/login', {
+			let res = await fetch('/api/login', {
 				// credentials: 'same-origin',
 
 				method: 'POST',
