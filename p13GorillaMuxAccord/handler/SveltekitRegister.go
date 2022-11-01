@@ -5,10 +5,11 @@ import (
 	"app/model"
 	"context"
 	"fmt"
-	"golang.org/x/crypto/bcrypt"
 	"log"
 	"os"
 	"time"
+
+	"golang.org/x/crypto/bcrypt"
 
 	// "context"
 	"encoding/json"
@@ -17,6 +18,7 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/google/uuid"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	// "go.mongodb.org/mongo-driver/bson/primitive"
 	// "go.mongodb.org/mongo-driver/mongo"
 	// "go.mongodb.org/mongo-driver/mongo/options"
@@ -36,22 +38,24 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	fmt.Println("🚀 ~ file: login.go ~ line 44 ~ func ~ user : ", user)
-
-	user.Accounttype = "normal"
+	
+	user.ID = primitive.NewObjectID()
+	user.UUID =uuid.New().String()
+	user.ProfileImg = ""
 	user.BannerImg = ""
 	user.Coin = 0.0
+	user.CoinReq= []model.CoinReq{}
+	user.Accounttype = "normal"
 	user.FrinedListID = []string{}
-	user.ProfileImg = ""
-	myid := uuid.New()
-	user.UUID = myid.String()
+	fmt.Println("🚀 ~ file: login.go ~ line 44 ~ func ~ user : ", user)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
 	defer cancel()
-
+	
 	// SEARCH EMAIL
-	count, err := H.Mongo.Collection("usercol").CountDocuments(ctx, bson.M{"Email": user.Email})
+	count, err := H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).CountDocuments(ctx, bson.M{"Email": user.Email})
 	if err != nil {
+    logerror.ERROR("🚀 ~ file: SveltekitRegister.go ~ line 56 ~ func ~ err : ", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		resError.ErrorRes = "mongodb countDocument email connection error"
 		_ = json.NewEncoder(w).Encode(resError)
@@ -60,12 +64,14 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 	if count > 0 {
 		w.WriteHeader(http.StatusBadRequest)
 		resError.ErrorRes = "User already registered"
+        fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 65 ~ func ~ resError.ErrorRes  : ", resError.ErrorRes )
 		_ = json.NewEncoder(w).Encode(resError)
 		return
 	}
 	//MOBILE
-	count, err = H.Mongo.Collection("usercol").CountDocuments(ctx, bson.M{"Mobile": user.Mobile})
+	count, err = H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).CountDocuments(ctx, bson.M{"Mobile": user.Mobile})
 	if err != nil {
+    logerror.ERROR("🚀 ~ file: SveltekitRegister.go ~ line 72 ~ func ~ err : ", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		resError.ErrorRes = "mongodb countDocument mobile connection error"
 		_ = json.NewEncoder(w).Encode(resError)
@@ -76,6 +82,7 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 		// c.JSON(http.StatusBadRequest, gin.H{"error": "mobile already in use"})
 		w.WriteHeader(http.StatusBadRequest)
 		resError.ErrorRes = "mobile number already registered"
+        fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 83 ~ func ~ resError.ErrorRes : ", resError.ErrorRes)
 		_ = json.NewEncoder(w).Encode(resError)
 		return
 	}
@@ -87,15 +94,15 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 	}
 	//return string(hash)
 
-	res, err := H.Mongo.Collection("usercol").InsertOne(ctx, user)
+	res, err := H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).InsertOne(ctx, user)
 	logerror.ERROR("🚀 ~ file: register.go ~ line 102 ~ func ~ err : ", err)
 
 	if err == nil {
 		fmt.Println("🚀 ~ file: register.go ~ line 116 ~ func ~ res : ", res)
 	}
 
-	mongoRes, err := H.Mongo.Collection("userdb").InsertOne(ctx, user)
-	fmt.Println("🚀 ~ file: register.go ~ line 80 ~ func ~ mongoRes : ", mongoRes)
+	// mongoRes, err := H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).InsertOne(ctx, user)
+	// fmt.Println("🚀 ~ file: register.go ~ line 80 ~ func ~ mongoRes : ", mongoRes)
 
 	if err != nil {
 		logerror.ERROR("🚀 ~ file: register.go ~ line 130 ~ func ~ err : ", err)

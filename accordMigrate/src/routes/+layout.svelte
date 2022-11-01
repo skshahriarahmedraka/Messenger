@@ -11,20 +11,22 @@
 	afterUpdate(() => {
 		loadingState = false;
 	});
+
+const AccordImg = new URL('../lib/icons/accord.svg', import.meta.url).href
+
 </script>
 
 <svelte:head>
-	<title>Accord</title>
+	<link rel="icon" href="{AccordImg}">
 </svelte:head>
 
 
 {#if loadingState}
-	<Loading class=" scale-150" />
+	<Loading class=" " />
 {:else if $page.error}
-	<!-- <Error1/> -->
 	<Error2 />
 {:else}
-	<div class="flex flex-row h-screen w-full transition-all duration-500 ease-linear ">
+	<div class="flex flex-row min-h-screen max-h-screen w-screen transition-all duration-500 ease-linear ">
 		<slot />
 	</div>
 {/if}

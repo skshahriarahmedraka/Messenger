@@ -5,11 +5,12 @@ import (
 
 
 	"go.mongodb.org/mongo-driver/mongo"
-	"gorm.io/gorm"
+	// "gorm.io/gorm"
 )
 
 type DatabaseCollections struct {
-	Mongo *mongo.Database
-	Postgres *gorm.DB 
+	MongoUser *mongo.Database
+	MongoUserMsg *mongo.Database
+	// Postgres *gorm.DB 
 }
 

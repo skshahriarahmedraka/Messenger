@@ -14,10 +14,10 @@
     import UserDashPannel from "$lib/UserDashPanel/index.svelte"
     import { fade, blur, fly, slide, scale } from "svelte/transition";
 
-
+	import {UserProData} from "$lib/store2"
 	// import {FriendList ,MyPro} from "$lib/store2"
 	export let FriendList: any;
-	export let MyPro: any;
+	// export let MyPro: any;
 
 	let ChatOrDockHelper: number;
 	ChatOrDock.subscribe((val) => {
@@ -155,7 +155,7 @@
 		{/each}
 	</div>
     <div class="">
-        <UserDashPannel MyPro={MyPro}  {showUsername}/>
+        <UserDashPannel  {showUsername}/>
     </div>
 	
 </div>

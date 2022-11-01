@@ -1,7 +1,7 @@
 <script lang="ts">
 	// import userBanner from './_images/whiteBeard.jpg';
 	// import Moji2 from "./_images/moji2.jpg"
-	// import { MyPro} from "$lib/store2"
+	// import { $UserProData} from "$lib/store2"
 	// import Messaging from './icons/message.svelte';
 	import Microphone from './icons/microphone.svelte';
 	import Video from './icons/video.svelte';
@@ -19,8 +19,9 @@
 	import Search from './icons/search.svelte';
 
 	import Cross from '$lib/Navbar/profileImg/Cross.svelte';
-import { goto } from '$app/navigation';
-	export let MyPro: any;
+	import { goto } from '$app/navigation';
+	import { UserProData } from '$lib/store2';
+	// export let $UserProData: any;
 	let searchIconEvent: boolean = false;
 	let inputValue: string = '';
 	export let showUsername: boolean;
@@ -29,6 +30,23 @@ import { goto } from '$app/navigation';
 	let showUserid: boolean = true;
 	let showUserOptions = false;
 	import Coin from '$lib/icons/coin2.svelte';
+	import Person from '$lib/icons/person.svelte';
+
+	async function LogoutReq() {
+		await fetch('/api/logout', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+			.then((res) => {
+				return res.json();
+			})
+			.then((d) => {
+				console.log('🚀 ~ file: index.svelte ~ line 43 ~ LogoutReq ~ d', d);
+				goto('/login');
+			});
+	}
 </script>
 
 {#if showUserOptions}
@@ -39,14 +57,18 @@ import { goto } from '$app/navigation';
 		}}
 	>
 		<div class="h-40 w-full">
-			<img src={MyPro.CoverImage} alt="coverImage" class="h-40 w-full rounded-xl object-cover " />
 			<img
-				src={MyPro.ProfileImage}
+				src={$UserProData.BannerImg}
+				alt="coverImage"
+				class="h-40 w-full rounded-xl object-cover "
+			/>
+			<img
+				src={$UserProData.ProfileImg}
 				alt="coverImage"
 				class="fixed -mt-7 ml-5 h-12 w-12 rounded-xl object-cover"
 			/>
 		</div>
-		<p class="  ml-20 mt-6 self-center text-lg">{MyPro.Name}</p>
+		<p class="  ml-20 mt-6 self-center text-lg">{$UserProData.UserName}</p>
 		<!-- <div class=" flex flex-col ">
 
 			<div
@@ -56,30 +78,40 @@ import { goto } from '$app/navigation';
 			<p class="text-slate-200 ">{826753}</p>
 		</div>
 		</div> -->
-		<div class="w-full h-16 inline-flex mt-5">
-			<button on:click={() => {goto(`/${MyPro.Userid}/profile`)}} class=" h-16 w-1/2 rounded-lg flex justify-center items-center  hover:bg-gray-900 "
-				>
+		<div class="mt-5 inline-flex h-16 w-full">
+			<button
+				on:click={() => {
+					goto(`/${$UserProData.UserID}/profile`);
+				}}
+				class=" flex h-16 w-1/2 items-center justify-center rounded-lg  hover:bg-gray-900 "
+			>
 				<Coin class="storke-[1px] h-8 w-8 stroke-yellow-300" />
-			<p class="text-slate-200 ">{826753}</p>
-				</button
-			>
-			<button on:click={() => {goto(`/${MyPro.Userid}/settings`)}} class=" h-16  w-1/2 rounded-lg  hover:bg-gray-900 "
-				>Settings</button
+				<p class="text-slate-200 ">{826753}</p>
+			</button>
+			<button
+				on:click={() => {
+					goto(`/${$UserProData.UserID}/settings`);
+				}}
+				class=" h-16  w-1/2 rounded-lg  hover:bg-gray-900 ">Settings</button
 			>
 		</div>
-		<div class="w-full h-16 inline-flex">
-			<button on:click={() => {goto(`/${MyPro.Userid}/profile/edit`)}} class=" h-16 w-1/2 rounded-lg hover:bg-gray-900 "
-				>Edit Profile</button
+		<div class="inline-flex h-16 w-full">
+			<button
+				on:click={() => {
+					goto(`/${$UserProData.UserID}/profile/edit`);
+				}}
+				class=" h-16 w-1/2 rounded-lg hover:bg-gray-900 ">Edit Profile</button
 			>
-			<button on:click={() => {goto(`/${MyPro.Userid}/settings/edit`)}} class=" h-16 w-1/2 rounded-lg  hover:bg-gray-900 "
-				>Edit Profile</button
+			<button
+				on:click={() => {
+					LogoutReq();
+				}}
+				class=" h-16 w-1/2 rounded-lg  hover:bg-gray-900 ">Logout</button
 			>
-
 		</div>
-	
 	</div>
 {/if}
-<div class="flex h-14 w-full flex-row items-center bg-[#292b2f]  ">
+<div class="flex h-14 w-full flex-row items-center justify-center bg-[#292b2f]  ">
 	{#if SearchStyle === 'sm'}
 		<!-- WRITE SEARCH -->
 		<div
@@ -93,7 +125,7 @@ import { goto } from '$app/navigation';
 				}}
 				bind:value={inputValue}
 				type="text"
-				class="    mx-1  my-0 h-10  w-full self-center rounded-2xl border-2 border-[#24262b] bg-[#303338]  p-2 text-lg font-medium text-[#98999e]  outline-none  focus:border-sky-500 active:border-gray-800"
+				class=" mx-1  my-0 h-10  w-full self-center rounded-2xl border-2 border-[#24262b] bg-[#303338]  p-2 text-lg font-medium text-[#98999e]  outline-none  focus:border-sky-500 active:border-gray-800"
 			/>
 			<div
 				on:click={() => {
@@ -122,32 +154,45 @@ import { goto } from '$app/navigation';
 		<!-- USER PROFILE -->
 		{#if showUsername}
 			<div class="   mx-2 h-10 min-w-[2.5rem] ">
-				<img
-					on:click={() => {
-						showUserOptions = !showUserOptions;
-					}}
-					src={MyPro.ProfileImage}
-					alt=""
-					class=" h-full  w-full cursor-pointer rounded-2xl   object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
-				/>
+				{#if $UserProData.ProfileImg === ''}
+					<Person
+						class="h-10 w-10  cursor-pointer rounded-2xl border-2  border-gray-400 fill-gray-400 p-2    transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
+					/>
+				{:else}
+					<!-- <img
+						src={$UserProData.ProfileImg}
+						alt=""
+						class=" h-full  w-full cursor-pointer rounded-2xl   object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
+					/> -->
+					<img
+						on:click={() => {
+							showUserOptions = !showUserOptions;
+						}}
+						src={$UserProData.ProfileImg}
+						alt=""
+						class=" h-full  w-full cursor-pointer rounded-2xl   object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
+					/>
+				{/if}
 			</div>
 			<div class="flex flex-col  ">
-				<p class=" overflow-hidden text-base text-slate-300 line-clamp-1 ">{MyPro.Name}</p>
+				<p class=" overflow-hidden text-base text-slate-300 line-clamp-1 ">
+					{$UserProData.UserName}
+				</p>
 				{#if showUserid}
 					<!-- content here -->
 					<p
 						on:click={() => {
-							navigator.clipboard.writeText('http://localhost:3000/' + MyPro.Userid);
+							navigator.clipboard.writeText('http://localhost:3000/' + $UserProData.UserID);
 							showUserid = false;
 						}}
 						class=" cursor-pointer text-sm text-gray-500 line-clamp-1 hover:text-gray-400"
 					>
-						@{MyPro.Userid}
+						@{$UserProData.UserID}
 					</p>
 				{:else}
 					<p
 						on:click={() => {
-							navigator.clipboard.writeText('http://localhost:3000/' + MyPro.Userid);
+							navigator.clipboard.writeText('http://localhost:3000/' + $UserProData.UserID);
 						}}
 						class="{setTimeout(() => {
 							showUserid = true;
@@ -160,11 +205,17 @@ import { goto } from '$app/navigation';
 			<div class=" flex-grow" />
 		{:else}
 			<div class="   mx-2 h-10 w-10 ">
-				<img
-					src={MyPro['ProfileImage']}
-					alt=""
-					class=" h-full  w-full cursor-pointer rounded-2xl   object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
-				/>
+				{#if $UserProData.ProfileImg === ''}
+					<Person
+						class="h-10 w-10  cursor-pointer rounded-2xl border-2  border-gray-400 fill-gray-400 p-2    transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
+					/>
+				{:else}
+					<img
+						src={$UserProData.ProfileImg}
+						alt=""
+						class=" h-full  w-full cursor-pointer rounded-2xl   object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
+					/>
+				{/if}
 			</div>
 
 			<div class=" flex-grow" />

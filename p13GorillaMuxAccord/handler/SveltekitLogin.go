@@ -51,7 +51,7 @@ func (H *DatabaseCollections) SveltekitLogin(w http.ResponseWriter, r *http.Requ
 
 	// SEARCH EMAIL
 	// count, err := H.Mongo.Collection("usercol").CountDocuments(ctx, bson.M{"Email": user.Email})
-	err = H.Mongo.Collection("usercol").FindOne(ctx, bson.M{"Email": user.Email}).Decode(&dbUser)
+	err = H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).FindOne(ctx, bson.M{"Email": user.Email}).Decode(&dbUser)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		resError.ErrorRes = "mongodb FindOne email connection error"

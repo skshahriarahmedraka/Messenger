@@ -51,7 +51,7 @@ func (H *DatabaseCollections) Register(w http.ResponseWriter, r *http.Request) {
 	defer cancel()
 
 	// SEARCH EMAIL
-	count, err := H.Mongo.Collection("usercol").CountDocuments(ctx, bson.M{"Email": user.Email})
+	count, err := H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).CountDocuments(ctx, bson.M{"Email": user.Email})
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		resError.ErrorRes = "mongodb countDocument email connection error"
@@ -65,7 +65,7 @@ func (H *DatabaseCollections) Register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	//MOBILE
-	count, err = H.Mongo.Collection("usercol").CountDocuments(ctx, bson.M{"Mobile": user.Mobile})
+	count, err = H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).CountDocuments(ctx, bson.M{"Mobile": user.Mobile})
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		resError.ErrorRes = "mongodb countDocument mobile connection error"
@@ -83,14 +83,14 @@ func (H *DatabaseCollections) Register(w http.ResponseWriter, r *http.Request) {
 
 
 
-	res, err := H.Mongo.Collection("usercol").InsertOne(ctx, user)
+	res, err := H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).InsertOne(ctx, user)
 	logerror.ERROR("🚀 ~ file: register.go ~ line 102 ~ func ~ err : ", err)
 
 	if err == nil {
 		fmt.Println("🚀 ~ file: register.go ~ line 116 ~ func ~ res : ", res)
 	}
 
-	mongoRes, err := H.Mongo.Collection("userdb").InsertOne(ctx, user)
+	mongoRes, err := H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).InsertOne(ctx, user)
 	fmt.Println("🚀 ~ file: register.go ~ line 80 ~ func ~ mongoRes : ", mongoRes)
 
 	if err != nil {

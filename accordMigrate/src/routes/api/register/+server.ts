@@ -1,9 +1,9 @@
 import { json } from "@sveltejs/kit";
 // import * as cookie from 'cookie';
 
+import type { RequestHandler } from './$types';
 
-
-export async function POST({ cookies , request }) {
+export const POST: RequestHandler = async ({ cookies , request }) =>{
 	const data = await request.json();
     console.log("🚀 ~ file: +server.ts ~ line 8 ~ POST ~ data", data)
     let resData:any

@@ -11,31 +11,31 @@
 			img: 'https://res.cloudinary.com/dqo0ssnti/image/upload/v1660151599/samples/about_dmmlnj.jpg'
 		}
 	];
-	import Moji from "$lib/profilepic/moji2.jpg"
-import Rafi from "$lib/profilepic/r4.jpg"
-import Ekbal from "$lib/profilepic/e2.jpg"
-import Ronok from "$lib/profilepic/r5.jpg"
-import Shakil from "$lib/profilepic/s2.jpg"
-import Hemel from "$lib/profilepic/h1.jpg"
-import Azim from "$lib/profilepic/a1.jpg"
-import Rafel from "$lib/profilepic/r2.jpg"
-import Rakib from "$lib/profilepic/r.jpg"
-import Istique from "$lib/profilepic/ot2.jpg"
-import Rakib2 from "$lib/profilepic/r3.jpg"
-import Toki from "$lib/profilepic/t.jpg"
-import Yurichi from "$lib/profilepic/y.jpeg"
-import Rengokhu from "$lib/profilepic/rengokhu.png"
-import Vegeta from "$lib/profilepic/s2.png"
-import Saad from "$lib/profilepic/s3.jpg"
-import Hankok from "$lib/profilepic/h2.jpg"
-import Nejuko from "$lib/profilepic/n1.jpg"
-import Shanks from "$lib/profilepic/s4.jpg"
-import Admiral from "$lib/profilepic/s5.jpg"
-import Law from "$lib/profilepic/law.png"
-let x = [
+	import Moji from '$lib/profilepic/moji2.jpg';
+	import Rafi from '$lib/profilepic/r4.jpg';
+	import Ekbal from '$lib/profilepic/e2.jpg';
+	import Ronok from '$lib/profilepic/r5.jpg';
+	import Shakil from '$lib/profilepic/s2.jpg';
+	import Hemel from '$lib/profilepic/h1.jpg';
+	import Azim from '$lib/profilepic/a1.jpg';
+	import Rafel from '$lib/profilepic/r2.jpg';
+	import Rakib from '$lib/profilepic/r.jpg';
+	import Istique from '$lib/profilepic/ot2.jpg';
+	import Rakib2 from '$lib/profilepic/r3.jpg';
+	import Toki from '$lib/profilepic/t.jpg';
+	import Yurichi from '$lib/profilepic/y.jpeg';
+	import Rengokhu from '$lib/profilepic/rengokhu.png';
+	import Vegeta from '$lib/profilepic/s2.png';
+	import Saad from '$lib/profilepic/s3.jpg';
+	import Hankok from '$lib/profilepic/h2.jpg';
+	import Nejuko from '$lib/profilepic/n1.jpg';
+	import Shanks from '$lib/profilepic/s4.jpg';
+	import Admiral from '$lib/profilepic/s5.jpg';
+	import Law from '$lib/profilepic/law.png';
+	let x = [
 		{
 			ProfileURL: 'majibarrahman',
-			ProfileImage: Moji ,
+			ProfileImage: Moji,
 			UserName: 'Md Majibar Rahman',
 			LastMessage: 'hope you are filling well',
 			LastMessageTime: '23 Aug 21',
@@ -46,7 +46,7 @@ let x = [
 		},
 		{
 			ProfileURL: 'rafihasan',
-			ProfileImage: Rafi ,
+			ProfileImage: Rafi,
 			UserName: 'md rafi hasan zihad',
 			LastMessage: 'whats is going on bro',
 			LastMessageTime: '9:30 AM',
@@ -57,7 +57,7 @@ let x = [
 		},
 		{
 			ProfileURL: 'ekbalhasan',
-			ProfileImage: Ekbal ,
+			ProfileImage: Ekbal,
 			UserName: 'Md ekbal Hasan',
 			LastMessage: 'I was going home that day',
 			LastMessageTime: '9 jun 11',
@@ -68,7 +68,7 @@ let x = [
 		},
 		{
 			ProfileURL: 'mdronok',
-			ProfileImage: Ronok ,
+			ProfileImage: Ronok,
 			UserName: 'Md ronok shahriar',
 			LastMessage: 'ethical hacking is my passion',
 			LastMessageTime: '10:34 PM',
@@ -79,7 +79,7 @@ let x = [
 		},
 		{
 			ProfileURL: 'samiulshakil',
-			ProfileImage: Shakil ,
+			ProfileImage: Shakil,
 			UserName: 'md samiul alim shakil',
 			LastMessage: 'I am feeling wanderful . wona go for a tour',
 			LastMessageTime: '12 mar 19',
@@ -101,7 +101,7 @@ let x = [
 		},
 		{
 			ProfileURL: 'hazem',
-			ProfileImage: Azim ,
+			ProfileImage: Azim,
 			UserName: 'Md Azim Mahfuz',
 			LastMessage: 'what a great day . got a job on Uniliver',
 			LastMessageTime: '23 sec',
@@ -258,7 +258,7 @@ let x = [
 		},
 		{
 			ProfileURL: 'law',
-			ProfileImage: Law ,
+			ProfileImage: Law,
 			UserName: 'Trafalger D. Water Law',
 			LastMessage: '     i must find the meaning of meaning of D.',
 			LastMessageTime: 'yesterday',
@@ -268,29 +268,45 @@ let x = [
 			LastActiveTime: 'Active'
 		}
 	];
+	import Error2 from '$lib/Error/error2.svelte';
+	import { page } from '$app/stores';
+	import Loading from '$lib/Loading/solarAccord.svelte';
+	import { afterUpdate } from 'svelte';
+
+	let loadingState: boolean = true;
+	afterUpdate(() => {
+		loadingState = false;
+	});
 </script>
 
-<div class="m-3 flex flex-row flex-wrap justify-center gap-3 ">
-	{#each x as i}
-	<!-- {#each Array.from(Array(10 + 1).keys()).slice(1) as i} -->
-		<div class=" flex flex-col h-80  w-48    rounded-lg bg-gray-600 bg-opacity-80 ">
-			<!--  -->
-			<img
-				src={i.ProfileImage}
-				alt="UserName"
-				class=" h-[60%]  w-fit rounded-t-lg object-cover"
-			/>
-            <p class="text-base font-sans font-semibold mx-1 line-clamp-2">{i['UserName']}</p>
-            <p class=" text-sm text-gray-300 font-sans mx-1 font-light
-			lamp-2">Work at Google INCWork at Google INCWork at Google INC </p>
-            <div class="flex flex-row text-base gap-2 justify-center     my-2 items-center">
-                <button class="px-2 py-1 rounded-md bg-[#3982e4]">Connect</button>
-                <button class="px-2  py-1 rounded-md border-0 bg-[#3a3b3c] ">Remove</button>
-            </div>
-		</div>
-	{/each}
-</div>
-
-<style>
-	/* your styles go here */
-</style>
+{#if loadingState}
+	<Loading class="   scale-150" />
+{:else if $page.error}
+	<!-- <Error1/> -->
+	<Error2 />
+{:else}
+	<div class="m-3 flex flex-row flex-wrap justify-center gap-3 ">
+		{#each x as i}
+			<!-- {#each Array.from(Array(10 + 1).keys()).slice(1) as i} -->
+			<div class=" flex h-80 w-48  flex-col    rounded-lg bg-gray-600 bg-opacity-80 ">
+				<!--  -->
+				<img
+					src={i.ProfileImage}
+					alt="UserName"
+					class=" h-[60%]  w-fit rounded-t-lg object-cover"
+				/>
+				<p class="mx-1 font-sans text-base font-semibold line-clamp-2">{i['UserName']}</p>
+				<p
+					class=" lamp-2 mx-1 font-sans text-sm font-light
+			text-gray-300"
+				>
+					Work at Google INCWork at Google INCWork at Google INC
+				</p>
+				<div class="my-2 flex flex-row items-center justify-center     gap-2 text-base">
+					<button class="rounded-md bg-[#3982e4] px-2 py-1">Connect</button>
+					<button class="rounded-md  border-0 bg-[#3a3b3c] px-2 py-1 ">Remove</button>
+				</div>
+			</div>
+		{/each}
+	</div>
+{/if}

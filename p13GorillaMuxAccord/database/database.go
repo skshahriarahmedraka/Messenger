@@ -9,9 +9,9 @@ import (
 )
 
 
-func DatabaseInitialization(db1 *mongo.Database) handler.DatabaseCollections {
-    fmt.Println("🚀 ~ file: database.go ~ line 15 ~ funcDatabaseInitialization ~ mongodb Database : ", db1)
-    // fmt.Println("🚀 ~ file: database.go ~ line 15 ~ funcDatabaseInitialization ~ postgresql Database : ", db2)
-	return handler.DatabaseCollections{Mongo:db1}
+func DatabaseInitialization(db1 *mongo.Database,db2 *mongo.Database) handler.DatabaseCollections {
+    fmt.Println("🚀 ~ file: database.go ~ line 12 ~ funcDatabaseInitialization ~ db1 : ", db1)
+    fmt.Println("🚀 ~ file: database.go ~ line 12 ~ funcDatabaseInitialization ~ db2 : ", db2)
+	return handler.DatabaseCollections{MongoUser:db1,MongoUserMsg: db2}
 }
 

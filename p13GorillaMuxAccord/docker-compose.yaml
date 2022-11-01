@@ -14,6 +14,7 @@ services:
   mongodb:
     image: mongo:latest
     container_name: accord_mongodb
+    command: mongod --auth
     # user: "1000:1000"
     # volumes:
       # - /home/raka/Documents/database/accord_mongodb/:/data/db
@@ -24,28 +25,28 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: secret
-      MONGO_INITDB_DATABASE : messagedb
+      MONGO_INITDB_DATABASE : userdb
     ports:
-      - '27017:27017'
+      - '27017-27019:27017-27019'
     volumes:
       - /docker/accordmongodb:/data/db
     networks:
       - accordnetwork
     # - '27017-27019:27017-27019'
-  postgresql:
-    image: postgres
-    container_name: accord_postgresql
-    # restart: always
-    environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=secret
-      - POSTGRES_DB=userdb
-    ports:
-      - '5432:5432'
-    volumes: 
-      - /docker/accordpostgresql:/var/lib/postgresql/data
-    networks:
-      - accordnetwork
+  # postgresql:
+  #   image: postgres
+  #   container_name: accord_postgresql
+  #   # restart: always
+  #   environment:
+  #     - POSTGRES_USER=admin
+  #     - POSTGRES_PASSWORD=secret
+  #     - POSTGRES_DB=userdb
+  #   ports:
+  #     - '5432:5432'
+  #   volumes: 
+  #     - /docker/accordpostgresql:/var/lib/postgresql/data
+  #   networks:
+  #     - accordnetwork
     
   minio:
     image: quay.io/minio/minio:latest

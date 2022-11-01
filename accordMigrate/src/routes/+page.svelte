@@ -1,7 +1,5 @@
-
-
 <script lang="ts">
-	import '../app.css';
+	// import '../app.css';
 
 	// import { onMount, beforeUpdate, afterUpdate } from 'svelte';
 	// let counter = 0;
@@ -11,8 +9,18 @@
 	// 	afterUpdate(() => {
 	// 	console.log('the component has been updated');
 	// 	});
+	import type { PageData } from './$types';
+	import { UserProData } from '$lib/store2';
 
-	 import Dock from "$lib/Dock/index.svelte"
+
+	export let data: PageData;
+
+	let { Userdata } = data;
+	console.log('🚀 ~ file: +layout.svelte ~ line 26 ~ Userdata', Userdata);
+	UserProData.update((d) => (d = Userdata));
+
+
+	import Dock from '$lib/Dock/index.svelte';
 	// import Servers from "$lib/_Servers/index.svelte"
 	import NavBar from '$lib/Navbar/index.svelte';
 	// import Peoples from "$lib/_Peoples/index.svelte"
@@ -22,13 +30,14 @@
 
 	import Chat from '$lib/Chats/index.svelte';
 
-    let MyPro= {
-			Name: "Sk Shahriar Ahmed Raka",
-			Userid: 'skraka',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060640/samples/jpeg_1_qlbtcn.jpg',
-			CoverImage:"https://res.cloudinary.com/dqo0ssnti/image/upload/v1661613541/samples/Untitled_design_zmrybr.png"
-		};
+	let MyPro = {
+		Name: 'Sk Shahriar Ahmed Raka',
+		Userid: 'skraka',
+		ProfileImage:
+			'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060640/samples/jpeg_1_qlbtcn.jpg',
+		CoverImage:
+			'https://res.cloudinary.com/dqo0ssnti/image/upload/v1661613541/samples/Untitled_design_zmrybr.png'
+	};
 
 	// let showPeopleListValue: number
 	// let ChatOrDockValue: number
@@ -41,32 +50,32 @@
 	//     ChatOrDockValue=val
 	// })
 	// friend images
-import Moji from "$lib/profilepic/moji2.jpg"
-import Rafi from "$lib/profilepic/r4.jpg"
-import Ekbal from "$lib/profilepic/e2.jpg"
-import Ronok from "$lib/profilepic/r5.jpg"
-import Shakil from "$lib/profilepic/s2.jpg"
-import Hemel from "$lib/profilepic/h1.jpg"
-import Azim from "$lib/profilepic/a1.jpg"
-import Rafel from "$lib/profilepic/r2.jpg"
-import Rakib from "$lib/profilepic/r.jpg"
-import Istique from "$lib/profilepic/ot2.jpg"
-import Rakib2 from "$lib/profilepic/r3.jpg"
-import Toki from "$lib/profilepic/t.jpg"
-import Yurichi from "$lib/profilepic/y.jpeg"
-import Rengokhu from "$lib/profilepic/rengokhu.png"
-import Vegeta from "$lib/profilepic/s2.png"
-import Saad from "$lib/profilepic/s3.jpg"
-import Hankok from "$lib/profilepic/h2.jpg"
-import Nejuko from "$lib/profilepic/n1.jpg"
-import Shanks from "$lib/profilepic/s4.jpg"
-import Admiral from "$lib/profilepic/s5.jpg"
-import Law from "$lib/profilepic/law.png"
+	import Moji from '$lib/profilepic/moji2.jpg';
+	import Rafi from '$lib/profilepic/r4.jpg';
+	import Ekbal from '$lib/profilepic/e2.jpg';
+	import Ronok from '$lib/profilepic/r5.jpg';
+	import Shakil from '$lib/profilepic/s2.jpg';
+	import Hemel from '$lib/profilepic/h1.jpg';
+	import Azim from '$lib/profilepic/a1.jpg';
+	import Rafel from '$lib/profilepic/r2.jpg';
+	import Rakib from '$lib/profilepic/r.jpg';
+	import Istique from '$lib/profilepic/ot2.jpg';
+	import Rakib2 from '$lib/profilepic/r3.jpg';
+	import Toki from '$lib/profilepic/t.jpg';
+	import Yurichi from '$lib/profilepic/y.jpeg';
+	import Rengokhu from '$lib/profilepic/rengokhu.png';
+	import Vegeta from '$lib/profilepic/s2.png';
+	import Saad from '$lib/profilepic/s3.jpg';
+	import Hankok from '$lib/profilepic/h2.jpg';
+	import Nejuko from '$lib/profilepic/n1.jpg';
+	import Shanks from '$lib/profilepic/s4.jpg';
+	import Admiral from '$lib/profilepic/s5.jpg';
+	import Law from '$lib/profilepic/law.png';
 
 	let x = [
 		{
 			ProfileURL: 'majibarrahman',
-			ProfileImage: Moji ,
+			ProfileImage: Moji,
 			UserName: 'Md Majibar Rahman',
 			LastMessage: 'hope you are filling well',
 			LastMessageTime: '23 Aug 21',
@@ -77,7 +86,7 @@ import Law from "$lib/profilepic/law.png"
 		},
 		{
 			ProfileURL: 'rafihasan',
-			ProfileImage: Rafi ,
+			ProfileImage: Rafi,
 			UserName: 'md rafi hasan zihad',
 			LastMessage: 'whats is going on bro',
 			LastMessageTime: '9:30 AM',
@@ -88,7 +97,7 @@ import Law from "$lib/profilepic/law.png"
 		},
 		{
 			ProfileURL: 'ekbalhasan',
-			ProfileImage: Ekbal ,
+			ProfileImage: Ekbal,
 			UserName: 'Md ekbal Hasan',
 			LastMessage: 'I was going home that day',
 			LastMessageTime: '9 jun 11',
@@ -99,7 +108,7 @@ import Law from "$lib/profilepic/law.png"
 		},
 		{
 			ProfileURL: 'mdronok',
-			ProfileImage: Ronok ,
+			ProfileImage: Ronok,
 			UserName: 'Md ronok shahriar',
 			LastMessage: 'ethical hacking is my passion',
 			LastMessageTime: '10:34 PM',
@@ -110,7 +119,7 @@ import Law from "$lib/profilepic/law.png"
 		},
 		{
 			ProfileURL: 'samiulshakil',
-			ProfileImage: Shakil ,
+			ProfileImage: Shakil,
 			UserName: 'md samiul alim shakil',
 			LastMessage: 'I am feeling wanderful . wona go for a tour',
 			LastMessageTime: '12 mar 19',
@@ -132,7 +141,7 @@ import Law from "$lib/profilepic/law.png"
 		},
 		{
 			ProfileURL: 'hazem',
-			ProfileImage: Azim ,
+			ProfileImage: Azim,
 			UserName: 'Md Azim Mahfuz',
 			LastMessage: 'what a great day . got a job on Uniliver',
 			LastMessageTime: '23 sec',
@@ -289,7 +298,7 @@ import Law from "$lib/profilepic/law.png"
 		},
 		{
 			ProfileURL: 'law',
-			ProfileImage: Law ,
+			ProfileImage: Law,
 			UserName: 'Trafalger D. Water Law',
 			LastMessage: '     i must find the meaning of meaning of D.',
 			LastMessageTime: 'yesterday',
@@ -307,9 +316,7 @@ import Law from "$lib/profilepic/law.png"
 			'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060640/samples/jpeg_1_qlbtcn.jpg'
 	};
 
-
-    let x2: any = [
-	
+	let x2: any = [
 		{
 			ServerURL: 'postgres',
 			Name: 'Postgres',
@@ -510,11 +517,13 @@ import Law from "$lib/profilepic/law.png"
 				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
 		}
 	];
+	const AccordImg = new URL('../lib/icons/accord.svg', import.meta.url).href;
+	
 </script>
 
-<!-- <svelte:head>
-	<title> Accord </title>
-</svelte:head> -->
+<svelte:head>
+	<title>Accord</title>
+</svelte:head>
 
 <!-- markup (zero or more items) goes here -->
 
@@ -524,24 +533,26 @@ import Law from "$lib/profilepic/law.png"
 <!-- hash bar -->
 <!-- <Servers/> -->
 <!-- {:else} -->
-<div class="h-screen w-full transition-all flex flex-row  duration-500 ease-linear ">
-    <Dock ServerList={x2} />
+<div class="flex h-screen w-full flex-row transition-all  duration-500 ease-linear ">
+	<Dock ServerList={x2} />
 
-    
-    <Chat FriendList={x} {MyPro} />
-    <!-- else content here -->
-    <!-- {/if} -->
-    
-    <!-- <Dock2/> -->
-    
-    <div class=" flex h-screen w-full flex-col  flex-nowrap overflow-hidden bg-[#36393f] ">
-        <!-- nav bar -->
-        <NavBar {MyPro} />
-    
-        <!-- message and people -->
-        <div class=" h-full w-full overflow-y-scroll text-3xl text-white">
-            <Home />
-        </div>
-    </div>
+	<Chat FriendList={x}  />
+	<!-- else content here -->
+	<!-- {/if} -->
+
+	<!-- <Dock2/> -->
+
+	<div class=" flex h-screen w-full flex-col   flex-nowrap overflow-hidden bg-[#36393f] ">
+		<!-- nav bar -->
+		<NavBar  />
+		
+			<!-- <div class="flex flex-row h-screen w-full transition-all duration-500 ease-linear ">
+		<slot />
+	</div> -->
+
+			<!-- message and people -->
+			<div class=" h-full w-full overflow-y-scroll overflow-x-hidden text-3xl text-white scrol6">
+				<Home />
+			</div>
+	</div>
 </div>
-

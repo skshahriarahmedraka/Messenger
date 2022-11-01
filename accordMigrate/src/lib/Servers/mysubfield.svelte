@@ -1,10 +1,9 @@
-
+<!-- 
         {#each Array.from(Array(10+1).keys()).slice(1) as i }
          
    
         
         <div class=" w-full  bg-[#2f4136] flex flex-col ">
-            <!-- Sub Field list -->
             <div class=" bg-gray-400 flex flex-row">
                 <button class="" on:click={()=>{demoField= !demoField}}>
 
@@ -42,4 +41,4 @@
            {/if}
 
         </div>
-        {/each}
+        {/each} -->

@@ -10,19 +10,21 @@ import (
 
 func Router(r *mux.Router){
 	// DB1:=database.PostgresInit()
-	DB2:= database.MongodbConnection()
-	H:= database.DatabaseInitialization(DB2)
+	DB1:= database.MongoUserDBConn()
+	DB2:= database.MongoMsgDBConn()
+	H:= database.DatabaseInitialization(DB1,DB2)
 
 	// r.Use(middleware.ReqLog)
-	r.HandleFunc("/login", H.Login).Methods("POST")
+	// r.HandleFunc("/login", H.Login).Methods("POST")
 	r.HandleFunc("/sveltekit/login", H.SveltekitLogin).Methods("POST")
-	r.HandleFunc("/register", H.Register).Methods("POST")
+	// r.HandleFunc("/register", H.Register).Methods("POST")
 	r.HandleFunc("/sveltekit/register", H.SveltekitRegister).Methods("POST")
 	
 	// r.Use(middleware.AuthMiddleware)
 	r.HandleFunc("/", H.Home).Methods("GET")
 
-	r.HandleFunc("/{UID}", H.UserProfile).Methods("GET")
+	r.HandleFunc("/{UserID}", H.UserProfile).Methods("GET")
+	r.HandleFunc("/user/{UUID}", H.UserProData).Methods("GET")
 	r.HandleFunc("/{UID}/profile", H.UserPublicProfile).Methods("GET")
 	r.HandleFunc("/{UID}/profile/edit", H.UserProfileEdit).Methods("POST")
 
@@ -43,3 +45,5 @@ func Router(r *mux.Router){
 	// r.HandleFunc("/", handler.Home)
 	
 }
+
+

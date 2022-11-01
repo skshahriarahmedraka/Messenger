@@ -5,7 +5,7 @@ import { json } from "@sveltejs/kit";
 export async function POST({ request }) {
 	const data = await request.json();
     let resData
-    await fetch('http://localhost:8001/admin/addproduct', {
+    await fetch('http://localhost:88888/admin/addproduct', {
 			// credentials: 'same-origin',
 			method: 'POST',
 			mode: 'no-cors',

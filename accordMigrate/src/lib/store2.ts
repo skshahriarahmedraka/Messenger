@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store';
 // friend images
 // import Moji from "./profilepic/moji2.jpg"
 // import Rafi from "./profilepic/r4.jpg"
@@ -48,13 +48,30 @@ import { writable } from "svelte/store";
 // import Pro from "./profilepic/pro.jpeg"
 // // chat active
 
-
-
-
-
 //  const count = writable(0)
- const showPeopleList = writable(0)
- const ChatOrDock = writable(0)
+const showPeopleList = writable(0);
+const ChatOrDock = writable(0);
+const UserProData = writable({
+	UUID: '' as string,
+	UserID: '' as string,
+
+	Email: '' as string,
+	Password: '' as string,
+	UserName: '' as string,
+	Mobile: '' as string,
+	BirthDate: '' as string,
+
+	ProfileImg: '' as string,
+	BannerImg: '' as string,
+	Accounttype: '' as string,
+	Coin: 0 as number,
+	TransactionHistory: [] as string[],
+
+	ContactAdminMsg: [] as string[],
+	FrinedListID: [] as string[],
+
+	GroupListID: [] as string[]
+});
 //  const MessageList = writable([])
 
 // const FriendList= writable([])
@@ -70,7 +87,7 @@ import { writable } from "svelte/store";
 //         "NumberOfNotification": 43,
 //         "ActiveStatus": true,
 //         "LastActiveTime": "10:28 AM"
-        
+
 //     },
 //     {   "ProfileURL":"rafihasan",
 //         "ProfileImage": Rafi ,
@@ -81,7 +98,7 @@ import { writable } from "svelte/store";
 //         "NumberOfNotification": 3,
 //         "ActiveStatus": true,
 //         "LastActiveTime": "6 Jul 17"
-        
+
 //     },
 //     {   "ProfileURL":"ekbalhasan",
 //         "ProfileImage": Ekbal,
@@ -92,7 +109,7 @@ import { writable } from "svelte/store";
 //         "NumberOfNotification": 4,
 //         "ActiveStatus": false,
 //         "LastActiveTime": "29 Jun 18"
-        
+
 //     },
 //     {   "ProfileURL":"mdronok",
 //         "ProfileImage": Ronok,
@@ -103,7 +120,7 @@ import { writable } from "svelte/store";
 //         "NumberOfNotification": 1,
 //         "ActiveStatus": false,
 //         "LastActiveTime": "10:28 AM"
-        
+
 //     },
 //     {   "ProfileURL":"samiulshakil",
 //         "ProfileImage": Shakil,
@@ -114,7 +131,7 @@ import { writable } from "svelte/store";
 //         "NumberOfNotification": 7,
 //         "ActiveStatus": true,
 //         "LastActiveTime": "7 Aug 19"
-        
+
 //     },
 //     {   "ProfileURL":"hemelakash",
 //         "ProfileImage": Hemel,
@@ -279,10 +296,10 @@ import { writable } from "svelte/store";
 //         "LastActiveTime": "Active"
 //         }]
 
-// FriendList.update((n)=> n=x) 
+// FriendList.update((n)=> n=x)
 
 // let x2 = [
-//     {   
+//     {
 //         "ServerURL":"postgres",
 //         "Name": "Postgres",
 //         "NewMessage": true,
@@ -290,9 +307,9 @@ import { writable } from "svelte/store";
 //         "Notification": false,
 //         "NumberOfNotification": 0,
 //         "ServerImage": Ekbal
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"mongodb",
 //         "Name": "MongoDB",
 //         "NewMessage": false,
@@ -300,9 +317,9 @@ import { writable } from "svelte/store";
 //         "Notification": true,
 //         "NumberOfNotification": 3,
 //         "ServerImage": Moji
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"docker",
 //         "Name": "Docker",
 //         "NewMessage": true,
@@ -310,9 +327,9 @@ import { writable } from "svelte/store";
 //         "Notification": true,
 //         "NumberOfNotification": 6,
 //         "ServerImage": Rafi
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"kubernetes",
 //         "Name": "Kubernetes",
 //         "NewMessage": false,
@@ -320,9 +337,9 @@ import { writable } from "svelte/store";
 //         "Notification": true,
 //         "NumberOfNotification": 99,
 //         "ServerImage": Ronok
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"redis",
 //         "Name": "Redis",
 //         "NewMessage": true,
@@ -330,9 +347,9 @@ import { writable } from "svelte/store";
 //         "Notification": false,
 //         "NumberOfNotification": 0,
 //         "ServerImage": Shakil
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"tensorflow",
 //         "Name": "Tensorflow",
 //         "NewMessage": false,
@@ -340,9 +357,9 @@ import { writable } from "svelte/store";
 //         "Notification": false,
 //         "NumberOfNotification": 0,
 //         "ServerImage": Hemel
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"macity",
 //         "Name": "Mancity",
 //         "NewMessage": true,
@@ -350,9 +367,9 @@ import { writable } from "svelte/store";
 //         "Notification": false,
 //         "NumberOfNotification": 0,
 //         "ServerImage": Rakib
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"cpp",
 //         "Name": "C++",
 //         "NewMessage": true,
@@ -360,9 +377,9 @@ import { writable } from "svelte/store";
 //         "Notification": false,
 //         "NumberOfNotification": 0,
 //         "ServerImage": Rafel
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"ubuntu",
 //         "Name": "Ubuntu",
 //         "NewMessage": true,
@@ -370,9 +387,9 @@ import { writable } from "svelte/store";
 //         "Notification": true,
 //         "NumberOfNotification": 2,
 //         "ServerImage": Yurichi
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"realmadrid",
 //         "Name": "Real Madrid",
 //         "NewMessage": false,
@@ -380,9 +397,9 @@ import { writable } from "svelte/store";
 //         "Notification": false,
 //         "NumberOfNotification": 0,
 //         "ServerImage": Rakib2
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"bangladesh",
 //         "Name": "bangladesh",
 //         "NewMessage": true,
@@ -390,9 +407,9 @@ import { writable } from "svelte/store";
 //         "Notification": true,
 //         "NumberOfNotification": 4,
 //         "ServerImage": Rengokhu
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"c",
 //         "Name": "C",
 //         "NewMessage": false,
@@ -400,9 +417,9 @@ import { writable } from "svelte/store";
 //         "Notification": false,
 //         "NumberOfNotification": 0,
 //         "ServerImage": Saad
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"coffee",
 //         "Name": "Coffee",
 //         "NewMessage": false,
@@ -410,9 +427,9 @@ import { writable } from "svelte/store";
 //         "Notification": true,
 //         "NumberOfNotification": 45,
 //         "ServerImage": Shanks
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"chelsea",
 //         "Name": "Chelsea",
 //         "NewMessage": false,
@@ -420,9 +437,9 @@ import { writable } from "svelte/store";
 //         "Notification": false,
 //         "NumberOfNotification": 0,
 //         "ServerImage": Law
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"go",
 //         "Name": "Go",
 //         "NewMessage": true,
@@ -430,9 +447,9 @@ import { writable } from "svelte/store";
 //         "Notification": true,
 //         "NumberOfNotification": 65,
 //         "ServerImage": Go
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"mazda",
 //         "Name": "Mazda",
 //         "NewMessage": false,
@@ -440,9 +457,9 @@ import { writable } from "svelte/store";
 //         "Notification": true,
 //         "NumberOfNotification": 5,
 //         "ServerImage": Mazda
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"pinterest",
 //         "Name": "Pinterest",
 //         "NewMessage": false,
@@ -450,9 +467,9 @@ import { writable } from "svelte/store";
 //         "Notification": false,
 //         "NumberOfNotification": 0,
 //         "ServerImage": Pinterest
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"svelte",
 //         "Name": "Svelte",
 //         "NewMessage": true,
@@ -460,9 +477,9 @@ import { writable } from "svelte/store";
 //         "Notification": false,
 //         "NumberOfNotification": 0,
 //         "ServerImage": Sve
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"tea",
 //         "Name": "Tea",
 //         "NewMessage": true,
@@ -470,9 +487,9 @@ import { writable } from "svelte/store";
 //         "Notification": true,
 //         "NumberOfNotification": 999,
 //         "ServerImage": Tea
-        
+
 //     },
-//     {   
+//     {
 //         "ServerURL":"linux",
 //         "Name": "Linux",
 //         "NewMessage": true,
@@ -480,7 +497,7 @@ import { writable } from "svelte/store";
 //         "Notification": true,
 //         "NumberOfNotification": 90,
 //         "ServerImage": Linux
-        
+
 //     }
 // ]
 
@@ -550,6 +567,5 @@ import { writable } from "svelte/store";
 //     }
 // }
 
-
 // export {UseFriendList, ServerList,FriendList,count,showPeopleList,ChatOrDock,MessageList}
-export {ChatOrDock,showPeopleList}
+export { ChatOrDock, showPeopleList, UserProData };
