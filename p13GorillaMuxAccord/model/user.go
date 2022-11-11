@@ -1,6 +1,10 @@
 package model
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	// "time"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 // "time"
 
@@ -18,7 +22,8 @@ type AccordUser struct {
 	UserName string `gorm:"type:varchar(100);not null" json:"UserName" bson:"UserName"` 
 	Mobile string `gorm:"type:varchar(50);not null" json:"Mobile" bson:"Mobile"`
 	BirthDate string `gorm:"type:varchar(20);not null" json:"BirthDate" bson:"BirthDate"`
-	
+	UserBio string `gorm:"type:varchar(1000);not null" json:"UserBio" bson:"UserBio"`
+
 	ProfileImg string  `gorm:"type:varchar(200);not null" json:"ProfileImg" bson:"ProfileImg"` 
 	BannerImg string   `gorm:"type:varchar(200);not null" json:"BannerImg" bson:"BannerImg"`
 	
@@ -29,17 +34,28 @@ type AccordUser struct {
 	
 	
 	ContactAdminMsg []string `json:"ContactAdminMsg" bson:"ContactAdminMsg"`
-	FrinedListID []string  ` json:"FriendListID"   bson:"FriendListID" `
-	GroupListID []string  ` json:"GroupListID"   bson:"GroupListID" `
+	FrinedList []FriendStruct  ` json:"FriendList"   bson:"FriendList" `
+	GroupList []GroupStruct ` json:"GroupList"   bson:"GroupList" `
 
 	City    string `json:"City" bson:"City"`
 	Address string `json:"Address" bson:"Address"`
 	Country string `json:"Country"  bson:"Country"`
 	ZipCode string `json:"ZipCode" bson:"ZipCode"`
 
-	WishList           []string `json:"WishList" bson:"WishList"`
+	AccountCreatedTime primitive.DateTime `json:"AccountCreatedTime" bson:"AccountCreatedTime"`
+	// WishList           []string `json:"WishList" bson:"WishList"`
 	
 }
+type FriendStruct struct{
+	UserID string `json:"UserID" bson:"UserID"`
+	CollectionID string `json:"CollectionID" bson:"CollectionID"`
+}
+type GroupStruct struct{
+	GroupID string `json:"GroupID" bson:"GroupID"`
+	CollectionID string `json:"CollectionID" bson:"CollectionID"`
+} 
+
+
 
 type CoinReq struct {
 	Amount float64 `json:"Amount" bson:"Amount"`
@@ -59,9 +75,3 @@ type CoinReq struct {
 //     State     int      `gorm:"not null" json:"state"`
 //     LastSeen  string   `gorm:"not null" json:"lastseen"`
 // }
-
-
-
-
-
-

@@ -66,11 +66,16 @@ const UserProData = writable({
 	Accounttype: '' as string,
 	Coin: 0 as number,
 	TransactionHistory: [] as string[],
-
 	ContactAdminMsg: [] as string[],
-	FrinedListID: [] as string[],
+	GroupListID: [] as string[],
+	UserBio : '' as string,
+	FrinedList : [] as {UserID: string ,CollectionID : string}[] ,
+	GroupList: [] as {GroupID: string ,CollectionID : string}[],
+	City : "" as string ,
+	Address : "" as string ,
+	Country : "" as string ,
+	ZipCode : "" as string ,
 
-	GroupListID: [] as string[]
 });
 //  const MessageList = writable([])
 

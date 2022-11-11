@@ -45,7 +45,7 @@ export async function POST({ request }) {
 		BucketName: string;
 	};
 
-	await fetch('http://localhost:8888/api/getimglink', {
+	await fetch(`http://${process.env.GO_HOST}/api/getimglink`, {
 		method: 'POST',
 		mode: 'no-cors',
 

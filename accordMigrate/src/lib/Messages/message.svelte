@@ -20,7 +20,7 @@ import Party from './reactions/party.svelte';
 import Angrytalk from './reactions/angrytalk.svelte';
 import Fillinglove from './reactions/fillinglove.svelte';
 	export let message: any;
-	export let MyPro: any;
+	import {UserProData} from '$lib/store2';
 
 	// var person = { fname: 'Nick', lname: 'Jonas', age: 26 };
 	// for (let x in person) {
@@ -71,11 +71,11 @@ import Fillinglove from './reactions/fillinglove.svelte';
 </script>
 
 <!-- content here -->
-<!-- { message.writer=== MyPro.Name  ? "flex-row-reverse" : "flex-row" }  -->
+<!-- { message.writer=== UserProData.Name  ? "flex-row-reverse" : "flex-row" }  -->
 <!-- {#if true} -->
 <div class=" flex flex-col">
 	<div
-		class=" flex  {message.writer === MyPro.Userid
+		class=" flex  {message.writer === $UserProData.UserID
 			? 'flex-row-reverse'
 			: 'flex-row'}    mr-20 mt-4 ml-5 max-w-full   overflow-ellipsis text-base text-white "
 	>
@@ -83,7 +83,7 @@ import Fillinglove from './reactions/fillinglove.svelte';
 		<img src={Ek2} alt="" class=" m-2 h-10 w-10 rounded-2xl " />
 		<div class="flex max-w-[80%] flex-col flex-wrap ">
 			<div
-				class="flex flex-row  {message.writer != MyPro.Userid ? 'self-start' : 'self-end'} gap-1"
+				class="flex flex-row  {message.writer != $UserProData.UserID ? 'self-start' : 'self-end'} gap-1"
 			>
 				<button class=" h-6 text-[#04b1aa] line-clamp-1 hover:text-[#47faf4]">
 					{message.writerName}
@@ -94,7 +94,7 @@ import Fillinglove from './reactions/fillinglove.svelte';
 			</div>
 			<!-- MESSAGES -->
 			<div
-				class=" text-[15px] {message.writer === MyPro.Userid
+				class=" text-[15px] {message.writer === $UserProData.UserID
 					? 'bg-blue-400 bg-opacity-20 p-2 '
 					: 'bg-gray-700'}  rounded-lg p-2 "
 			>

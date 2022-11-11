@@ -85,14 +85,29 @@
 				mode: 'no-cors',
 				credentials: 'include',
 				body: JSON.stringify(LoginData)
-			}).then((res)=>{
-            	console.log("🚀 ~ file: index@root.svelte ~ line 93 ~ OnSubmit ~ res", res)
-				location.replace("/")
-				
-			}).catch((err)=>{
-            console.log("🚀 ~ file: login index@root.svelte ~ line 93 ~ OnSubmit ~ err", err)
-			ErrorMsg.Email[1] = `${err}`;
-			ErrorMsg.Email[0] = true;
+			}).then((res) => {
+					return res.json();
+				})
+				.then((resdata: any) => {
+					if (resdata.status === 'OK') {
+						LoginData = {
+							Email: '',
+							Password: ''
+							// let s:string="/"
+						};
+						goto('/')
+						
+					} else {
+						ErrorMsg.Email[1] = resdata.status;
+					
+						ErrorMsg.Email[0] = true;
+					}
+				}).catch((err)=>{
+					ErrorMsg.Email[1] = `${err}`;
+					
+						ErrorMsg.Email[0] = true;
+				console.log("🚀 ~ file: login index@root.svelte ~ line 93 ~ OnSubmit ~ err", err)
+				// location.replace("/")
 			
 		})
 		// console.log('🚀 ~ file: login index@blank.svelte ~ line 45 ~ OnSubmit ~ res', res);

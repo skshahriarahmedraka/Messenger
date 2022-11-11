@@ -182,7 +182,7 @@
 					<!-- content here -->
 					<p
 						on:click={() => {
-							navigator.clipboard.writeText('http://localhost:3000/' + $UserProData.UserID);
+							navigator.clipboard.writeText(`http://${process.env.HOST}/` + $UserProData.UserID);
 							showUserid = false;
 						}}
 						class=" cursor-pointer text-sm text-gray-500 line-clamp-1 hover:text-gray-400"
@@ -192,7 +192,7 @@
 				{:else}
 					<p
 						on:click={() => {
-							navigator.clipboard.writeText('http://localhost:3000/' + $UserProData.UserID);
+							navigator.clipboard.writeText(`http://${process.env.HOST}/` + $UserProData.UserID);
 						}}
 						class="{setTimeout(() => {
 							showUserid = true;

@@ -5,7 +5,7 @@
 
     import Message from "./message.svelte"
     export let FriendMsg:any
-    export let MyPro:any
+    // export let MyPro:any
     let showPeopleListValue: number 
     showPeopleList.subscribe(val=>{
         showPeopleListValue=val 
@@ -39,7 +39,7 @@
     <!-- all messaging -->
     <div class=" flex-grow bg-[#36393f]  z-10 flex flex-col-reverse overflow-y-scroll scrol3 ">
         {#each [...FriendMsg[1]].reverse() as item, index (item.id) }
-                <Message message={item} {MyPro}/>
+                <Message message={item} />
         {/each}
     </div>
     <!-- write message -->

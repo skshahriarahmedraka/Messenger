@@ -40,7 +40,7 @@ func (H *DatabaseCollections) Register(w http.ResponseWriter, r *http.Request) {
 	user.Accounttype="normal"
 	user.BannerImg=""
 	user.Coin=0.0
-	user.FrinedListID=[]string{}
+	user.FrinedList=[]model.FriendStruct{}
 	user.ProfileImg=""
 	myid:= uuid.New()
 	user.UUID=myid.String()

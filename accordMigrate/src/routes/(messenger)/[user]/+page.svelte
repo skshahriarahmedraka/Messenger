@@ -7,7 +7,6 @@
 	import Peoples from '$lib/Peoples/index.svelte';
 	import Messages from '$lib/Messages/index.svelte';
 	import Chat from '$lib/Chats/index.svelte';
-	import WebSocket, { WebSocketServer } from 'ws';
 
 	import { showPeopleList } from '$lib/store2';
 	let showPeopleListValue: number;
@@ -583,33 +582,15 @@
 			nickname: 'ssar'
 		}
 	};
-	// export let server;
+	
+	// import { io } from "socket.io-client";
 
-	// let socket = new WebSocket(server)
-	// console.log("🚀 ~ file: index.svelte ~ line 320 ~ socket", socket)
+	// const socket = io("ws://127.0.0.1:8888/socketio/");
+	// console.log("🚀 ~ file: +page.svelte ~ line 589 ~ socket", socket)
 
-	// let server:string="ws://localhost:8888/ws/raka/ssar"
-	// let socket =new WebSocket(server)
-
-	// socket.onopen=()=>{
-	//     socket.send(JSON.stringify({name:"raka",message:"whats your name??"}))
-
-	// }
-	// socket.onmessage=(event)=>{
-	//     let data =JSON.parse(event.data)
-	//     console.log("🚀 ~ file: index.svelte ~ line 332 ~ data", data)
-
-	// }
-	// let demoSend:string=""
-	// const sendMessage =()=>{
-	//     if (true  ){
-	//         socket.send(JSON.stringify({name:"sendmessage",message:"i am send message"}))
-	//     }
-
-	// }
 </script>
 
-<Chat FriendList={x} {MyPro} />
+<Chat FriendList={x}  />
 
 <div class=" flex h-screen w-full flex-col flex-nowrap overflow-hidden bg-stone-600 ">
 	<!-- nav bar -->
@@ -618,7 +599,7 @@
 	<!-- message and people -->
 	<div class="  flex h-full  w-full flex-row overflow-hidden bg-[#2f3136]">
 		<!-- messaging 830px -->
-		<Messages bind:FriendMsg {MyPro} />
+		<Messages bind:FriendMsg  />
 		<!-- people -->
 		{#if showPeopleListValue != 0}
 			<Peoples {PeopleData} />

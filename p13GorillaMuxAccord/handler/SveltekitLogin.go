@@ -82,7 +82,7 @@ func (H *DatabaseCollections) SveltekitLogin(w http.ResponseWriter, r *http.Requ
 	//  response.Write([]byte(`{"token":"`+jwtToken+`"}`))
 	// if user.ID != 0  {
 	//CREATE COOKIE
-	expirationTime := time.Now().Add(time.Hour * 1000)
+	expirationTime := time.Now().Add(time.Hour * 10000)
 	myClaim := &model.Claims{
 		UserName: dbUser.UserName,
 		Email:    dbUser.Email,

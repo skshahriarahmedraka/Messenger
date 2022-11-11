@@ -30,14 +30,14 @@
 
 	import Chat from '$lib/Chats/index.svelte';
 
-	let MyPro = {
-		Name: 'Sk Shahriar Ahmed Raka',
-		Userid: 'skraka',
-		ProfileImage:
-			'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060640/samples/jpeg_1_qlbtcn.jpg',
-		CoverImage:
-			'https://res.cloudinary.com/dqo0ssnti/image/upload/v1661613541/samples/Untitled_design_zmrybr.png'
-	};
+	// let MyPro = {
+	// 	Name: 'Sk Shahriar Ahmed Raka',
+	// 	Userid: 'skraka',
+	// 	ProfileImage:
+	// 		'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060640/samples/jpeg_1_qlbtcn.jpg',
+	// 	CoverImage:
+	// 		'https://res.cloudinary.com/dqo0ssnti/image/upload/v1661613541/samples/Untitled_design_zmrybr.png'
+	// };
 
 	// let showPeopleListValue: number
 	// let ChatOrDockValue: number

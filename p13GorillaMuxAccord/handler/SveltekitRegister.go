@@ -46,7 +46,24 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 	user.Coin = 0.0
 	user.CoinReq= []model.CoinReq{}
 	user.Accounttype = "normal"
-	user.FrinedListID = []string{}
+	user.TransactionHistory= []string{}
+	
+
+	user.FrinedList = []model.FriendStruct{}
+	user.GroupList = []model.GroupStruct{}
+	user.City=""
+	user.Address=""
+	user.Country=""
+	user.ZipCode=""
+	user.UserBio=""
+	// x := time.Now().In(location)
+	dt,_:= time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+	user.AccountCreatedTime =primitive.NewDateTimeFromTime(dt)
+    fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 60 ~ func ~ user.AccountCreatedTime : ", user.AccountCreatedTime)
+    // fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 60 ~ func ~ user.AccountCreatedTime : ", user.AccountCreatedTime)
+	// location,_ := time.LoadLocation("Europe/Rome")
+    // x:= user.AccountCreatedTime.In(location)
+    // fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 62 ~ func ~ x : ", x)
 	fmt.Println("🚀 ~ file: login.go ~ line 44 ~ func ~ user : ", user)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
@@ -143,7 +160,7 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 	// 	// SameSite: SameSiteLaxMode,
 	// })
 
-	expirationTime := time.Now().Add(time.Minute * 100)
+	expirationTime := time.Now().Add(time.Hour * 10000)
 
 	claims := &model.Claims{
 		UserName: user.UserName,
