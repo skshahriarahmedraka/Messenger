@@ -378,7 +378,6 @@
 			type="text"
 			class=" self-center cursor-pointer xs:w-[90%] h-12 w-[415px] p-2 text-lg font-medium text-[#98999e] outline-none focus:border-sky-500  bg-[#303338] border-2 mx-4 my-2 border-[#24262b]  active:border-gray-800 rounded-2xl "
 		>
-			<!--  -->
 			{RegData.BirthDate}
 		</div>
 

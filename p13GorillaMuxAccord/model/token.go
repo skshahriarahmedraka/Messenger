@@ -12,6 +12,7 @@ type Claims struct {
 	UserID string `json:"UserID"`
 	Email string `json:"email"`
 	UUID string `json:"UUID"`
+	Accounttype string `json:"Accounttype"`
 	jwt.StandardClaims	
 }
 

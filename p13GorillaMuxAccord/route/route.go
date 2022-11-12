@@ -29,7 +29,7 @@ func Router(r *mux.Router) {
 	r.HandleFunc("/user/{UUID}/frndsuggestion", H.FrndSuggestion).Methods("GET")// incomplete
 	
 	r.HandleFunc("/{UID}/profile", H.UserPublicProfile).Methods("GET")
-	r.HandleFunc("/{UID}/profile/edit", H.UserProfileEdit).Methods("POST")
+	r.HandleFunc("/user/profile/update", H.UserProfileUpdate).Methods("POST")
 
 	r.HandleFunc("/s/{SID}", H.ServerProfile).Methods("GET")
 	r.HandleFunc("/s/{SID}/settings", H.ServerSettings).Methods("GET")

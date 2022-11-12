@@ -51,6 +51,7 @@ import { writable } from 'svelte/store';
 //  const count = writable(0)
 const showPeopleList = writable(0);
 const ChatOrDock = writable(0);
+const UserSettingSelect = writable('General');
 const UserProData = writable({
 	UUID: '' as string,
 	UserID: '' as string,
@@ -60,22 +61,23 @@ const UserProData = writable({
 	UserName: '' as string,
 	Mobile: '' as string,
 	BirthDate: '' as string,
+	UserBio: '' as string,
 
 	ProfileImg: '' as string,
 	BannerImg: '' as string,
-	Accounttype: '' as string,
-	Coin: 0 as number,
-	TransactionHistory: [] as string[],
-	ContactAdminMsg: [] as string[],
-	GroupListID: [] as string[],
-	UserBio : '' as string,
-	FrinedList : [] as {UserID: string ,CollectionID : string}[] ,
-	GroupList: [] as {GroupID: string ,CollectionID : string}[],
-	City : "" as string ,
-	Address : "" as string ,
-	Country : "" as string ,
-	ZipCode : "" as string ,
 
+	Coin: 0 as number,
+	Accounttype: '' as string,
+	TransactionHistory: [] as string[],
+
+	City: '' as string,
+	Address: '' as string,
+	ZipCode: '' as string,
+	Country: '' as string,
+
+	FriendList: [] as { UserID: string; CollectionID: string }[],
+	GroupList: [] as { GroupID: string; CollectionID: string }[],
+	ContactAdminMsg: [] as string[]
 });
 //  const MessageList = writable([])
 
@@ -573,4 +575,4 @@ const UserProData = writable({
 // }
 
 // export {UseFriendList, ServerList,FriendList,count,showPeopleList,ChatOrDock,MessageList}
-export { ChatOrDock, showPeopleList, UserProData };
+export { ChatOrDock, showPeopleList, UserProData, UserSettingSelect };

@@ -90,8 +90,8 @@ func (H *DatabaseCollections) Register(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("🚀 ~ file: register.go ~ line 116 ~ func ~ res : ", res)
 	}
 
-	mongoRes, err := H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).InsertOne(ctx, user)
-	fmt.Println("🚀 ~ file: register.go ~ line 80 ~ func ~ mongoRes : ", mongoRes)
+	// mongoRes, err := H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).InsertOne(ctx, user)
+	// fmt.Println("🚀 ~ file: register.go ~ line 80 ~ func ~ mongoRes : ", mongoRes)
 
 	if err != nil {
     logerror.ERROR("🚀 ~ file: register.go ~ line 130 ~ func ~ err : ", err)

@@ -17,7 +17,7 @@
 	import Notification from './icons/notification.svelte';
 	import Settings from './icons/settings.svelte';
 	import Search from './icons/search.svelte';
-
+	import WalpaperLogo from '$lib/icons/walpaperLogo.svelte';
 	import Cross from '$lib/Navbar/profileImg/Cross.svelte';
 	import { goto } from '$app/navigation';
 	import { UserProData } from '$lib/store2';
@@ -28,7 +28,7 @@
 	let userOptions = { video: false, microphone: false, notificationSound: false, sound: false };
 	let SearchStyle: string = 'lg'; // sm,md,lg
 	let showUserid: boolean = true;
-	let showUserOptions = false;
+	let showUserOptions = true;
 	import Coin from '$lib/icons/coin2.svelte';
 	import Person from '$lib/icons/person.svelte';
 
@@ -51,24 +51,43 @@
 
 {#if showUserOptions}
 	<div
-		class=" mb-5 flex h-fit w-full flex-row flex-wrap   rounded-xl bg-[#18191c] bg-opacity-80 text-gray-300 "
+		class=" mb-0 flex h-fit w-full flex-row flex-wrap items-center justify-center  rounded-xl bg-[#18191c] bg-opacity-80 text-gray-300 "
 		on:blur={() => {
 			showUserOptions = false;
 		}}
 	>
 		<div class="h-40 w-full">
-			<img
-				src={$UserProData.BannerImg}
-				alt="coverImage"
-				class="h-40 w-full rounded-xl object-cover "
-			/>
-			<img
+			{#if $UserProData.ProfileImg === ''}
+				<div
+					class="flex h-40 w-full items-center justify-center rounded-xl border-2 border-slate-400 border-opacity-30 "
+				>
+					<WalpaperLogo class=" h-20 w-20" />
+				</div>
+			{:else}
+				<img
+					src={$UserProData.BannerImg}
+					alt="coverImage"
+					class="h-40 w-full rounded-xl object-cover "
+				/>
+			{/if}
+			{#if $UserProData.ProfileImg === ''}
+				<Person
+					class=" fixed -mt-7 ml-5 h-12 w-12 cursor-pointer rounded-xl border-2  border-gray-400  fill-gray-400 object-cover p-2    transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
+				/>
+			{:else}
+				<!-- <img
 				src={$UserProData.ProfileImg}
-				alt="coverImage"
-				class="fixed -mt-7 ml-5 h-12 w-12 rounded-xl object-cover"
-			/>
+				alt="ProfileImg"
+				class=" h-full  w-full cursor-pointer rounded-2xl   object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md "
+			/> -->
+				<img
+					src={$UserProData.ProfileImg}
+					alt="coverImage"
+					class="fixed -mt-7 ml-5 h-12 w-12 rounded-xl object-cover"
+				/>
+			{/if}
 		</div>
-		<p class="  ml-20 mt-6 self-center text-lg">{$UserProData.UserName}</p>
+		<p class="  mt-5 self-center font-Poppins text-2xl ">{$UserProData.UserName}</p>
 		<!-- <div class=" flex flex-col ">
 
 			<div
@@ -78,21 +97,21 @@
 			<p class="text-slate-200 ">{826753}</p>
 		</div>
 		</div> -->
-		<div class="mt-5 inline-flex h-16 w-full">
+		<div class="mt-2 inline-flex h-16 w-full">
 			<button
 				on:click={() => {
 					goto(`/${$UserProData.UserID}/profile`);
 				}}
-				class=" flex h-16 w-1/2 items-center justify-center rounded-lg  hover:bg-gray-900 "
+				class=" flex h-16 w-1/2 flex-row items-center justify-center  gap-2 rounded-lg hover:bg-gray-900 "
 			>
 				<Coin class="storke-[1px] h-8 w-8 stroke-yellow-300" />
-				<p class="text-slate-200 ">{826753}</p>
+				<p class="font-Poppins text-slate-200 ">{$UserProData.Coin}</p>
 			</button>
 			<button
 				on:click={() => {
-					goto(`/${$UserProData.UserID}/settings`);
+					goto(`/${$UserProData.UserID}/profile/settings`);
 				}}
-				class=" h-16  w-1/2 rounded-lg  hover:bg-gray-900 ">Settings</button
+				class=" h-16  w-1/2 rounded-lg  font-Poppins hover:bg-gray-900 ">Settings</button
 			>
 		</div>
 		<div class="inline-flex h-16 w-full">
@@ -100,13 +119,13 @@
 				on:click={() => {
 					goto(`/${$UserProData.UserID}/profile/edit`);
 				}}
-				class=" h-16 w-1/2 rounded-lg hover:bg-gray-900 ">Edit Profile</button
+				class=" h-16 w-1/2 rounded-lg font-Poppins hover:bg-gray-900">Edit Profile</button
 			>
 			<button
 				on:click={() => {
 					LogoutReq();
 				}}
-				class=" h-16 w-1/2 rounded-lg  hover:bg-gray-900 ">Logout</button
+				class=" h-16 w-1/2 rounded-lg  font-Poppins text-red-500 hover:bg-gray-900 ">Logout</button
 			>
 		</div>
 	</div>
@@ -153,7 +172,12 @@
 	{:else if SearchStyle === 'lg'}
 		<!-- USER PROFILE -->
 		{#if showUsername}
-			<div class="   mx-2 h-10 min-w-[2.5rem] ">
+			<div
+				on:click={() => {
+					showUserOptions = !showUserOptions;
+				}}
+				class="   mx-2 h-10 min-w-[2.5rem]  "
+			>
 				{#if $UserProData.ProfileImg === ''}
 					<Person
 						class="h-10 w-10  cursor-pointer rounded-2xl border-2  border-gray-400 fill-gray-400 p-2    transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
@@ -165,9 +189,6 @@
 						class=" h-full  w-full cursor-pointer rounded-2xl   object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
 					/> -->
 					<img
-						on:click={() => {
-							showUserOptions = !showUserOptions;
-						}}
 						src={$UserProData.ProfileImg}
 						alt=""
 						class=" h-full  w-full cursor-pointer rounded-2xl   object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"

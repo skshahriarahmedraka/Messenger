@@ -13,7 +13,10 @@ const config = {
           lg: { min: '1200px' }, // Desktop smallest.
           xl: { min: '1159px' }, // Desktop wide.
           xxl: { min: '1359px' }, // Desktop widescreen.
-			}
+			},
+			aspectRatio: {
+				'5/2': '5 / 2',
+			  },
 
 		}
 		

@@ -13,7 +13,9 @@ const minioClient = new minio.Client({
 	secretKey: 'miniosecret'
 });
 
-export async function POST({ request }) {
+import type { RequestHandler } from './$types';
+
+export const POST: RequestHandler = async ( {request} )=> {
 	const data = await request.json();
 	// console.log('🚀 ~ file: +server.ts ~ line 45 ~ POST ~ data', data);
 
@@ -43,7 +45,11 @@ export async function POST({ request }) {
 		Link: string;
 		Name: string;
 		BucketName: string;
-	};
+	}={} as  {
+		Link: string;
+		Name: string;
+		BucketName: string;
+	}
 
 	await fetch(`http://${process.env.GO_HOST}/api/getimglink`, {
 		method: 'POST',

@@ -314,7 +314,7 @@
       </div> -->
 	</div>
 	<div class="">
-    <UserDashPannel MyPro={MyPro}  {showUsername} />
+    <UserDashPannel  {showUsername} />
   </div>
 </div>
 

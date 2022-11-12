@@ -44,8 +44,12 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 	user.ProfileImg = ""
 	user.BannerImg = ""
 	user.Coin = 0.0
-	user.CoinReq= []model.CoinReq{}
-	user.Accounttype = "normal"
+	// user.CoinReq= []model.CoinReq{}
+	if user.Email == os.Getenv("ADMIN_EMAIL") {
+		user.Accounttype = os.Getenv("ADMIN_ACCOUNT_TYPE")
+	} else {
+		user.Accounttype = "normal"
+	}
 	user.TransactionHistory= []string{}
 	
 
@@ -167,6 +171,7 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 		Email:    user.Email,
 		UserID:   user.UserID,
 		UUID:     user.UUID,
+		Accounttype : user.Accounttype,
 		// Username: credentials.Username,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expirationTime.Unix(),

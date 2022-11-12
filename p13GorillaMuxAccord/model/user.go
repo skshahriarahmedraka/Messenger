@@ -28,7 +28,6 @@ type AccordUser struct {
 	BannerImg string   `gorm:"type:varchar(200);not null" json:"BannerImg" bson:"BannerImg"`
 	
 	Coin float64  ` json:"Coin" bson:"Coin"`
-	CoinReq []CoinReq `json:"CoinReq" bson:"CoinReq"` 
 	Accounttype string `gorm:"type:varchar(20);not null" json:"Accounttype" bson:"Accounttype"`
 	TransactionHistory []string `json:"TransactionHistory" bson:"TransactionHistory"`
 	
