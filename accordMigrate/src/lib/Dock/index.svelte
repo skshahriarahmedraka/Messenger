@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { ChatOrDock } from '$lib/store2';
+	import { ChatOrDock , UserProData } from '$lib/store2';
 	import Accord from '$lib/Dock/icons/accord.svelte';
 	import AccordLogo from '$lib/Dock/icons/accord.svelte';
 	// import {ServerList} from "$lib/store2"
@@ -52,7 +52,7 @@
 	}
 
 	let showMenu: boolean = false;
-	async function onRightClick(e) {
+	async function onRightClick(e:any) {
 		if (showMenu) {
 			showMenu = false;
 			await new Promise((res) => setTimeout(res, 100));
@@ -158,23 +158,39 @@
 			<Wallet1 class="h-[50px] w-[50px]" />
 		</div>
 	</button>
+
+	<!-- AdminMoneyManagement -->
+	{#if $UserProData.Accounttype=== 'admin'}
+		 <!-- content here -->
+		 <button
+		 on:click={() => {
+			goto('/moneymanagement');
+		}}
+		class="  group flex w-full  flex-row  items-center justify-center py-[5px]  transition-all duration-150 ease-linear hover:rounded-lg"
+	>
+		<div class=" relative flex items-center justify-center">
+			<!-- <svg  class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 95.1v320c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64v-320c0-35.35 28.65-63.1 64-63.1h320C419.3 31.1 448 60.65 448 95.1z"/></svg> -->
+			<div
+				in:scale={{ duration: 200 }}
+				out:scale
+				class="absolute -left-[58px] bg-transparent  transition-all duration-200 ease-linear group-hover:bg-white    {ActiveServer ===
+				'create'
+					? 'rounded-md h-[50px] w-[50px]'
+					: 'rounded-xl h-[10px] w-[50px] group-hover:rounded-md group-hover:h-[30px] group-hover:w-[50px] '}"
+			/>
+
+			<Wallet3 class="h-[50px] w-[50px] p-1" />
+		</div>
+	</button>
+	{/if}
+	
 	
 	<!-- download button -->
 	<div class="avatar  py-1 px-2">
 		<div
-			class=" h-14  w-14 cursor-pointer rounded-3xl  bg-sky-600 transition-all duration-150  ease-linear hover:rounded-xl hover:ring active:rounded-md "
+			class=" h-[50px] w-[50px] cursor-pointer flex justify-center items-center rounded-3xl bg-gray-700 transition-all duration-150  ease-linear hover:transition-all hover:duration-150  hover:ease-linear hover:rounded-xl hover:border-[#3ba55d] hover:border-[1px] active:rounded-md "
 		>
-			<svg
-				class="m-2 h-10 w-10"
-				fill="currentColor"
-				viewBox="0 0 20 20"
-				xmlns="http://www.w3.org/2000/svg"
-				><path
-					fill-rule="evenodd"
-					d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-					clip-rule="evenodd"
-				/></svg
-			>
+		<svg class="w-8 h-8 stroke-[1px] stroke-[#3ba55d]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
 		</div>
 	</div>
 </div>

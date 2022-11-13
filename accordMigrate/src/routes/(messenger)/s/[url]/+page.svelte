@@ -7,13 +7,13 @@
 	import { showPeopleList } from '$lib/store2';
 
   
-    let MyPro= {
-			Name: "Sk Shahriar Ahmed Raka",
-			Userid: 'skraka',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060640/samples/jpeg_1_qlbtcn.jpg',
-			CoverImage:"https://res.cloudinary.com/dqo0ssnti/image/upload/v1661613541/samples/Untitled_design_zmrybr.png"
-		};
+    // let MyPro= {
+	// 		Name: "Sk Shahriar Ahmed Raka",
+	// 		Userid: 'skraka',
+	// 		ProfileImage:
+	// 			'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060640/samples/jpeg_1_qlbtcn.jpg',
+	// 		CoverImage:"https://res.cloudinary.com/dqo0ssnti/image/upload/v1661613541/samples/Untitled_design_zmrybr.png"
+	// 	};
     let ServerPro={
     "Name": "Competitive Programming for Pro",
     "ProfileUrl": "ace",
@@ -326,16 +326,16 @@ let  ServerMsg = [
 	<title> Accord server </title>
 </svelte:head> -->
 
-<Servers MyPro={MyPro}/>
+<Servers />
 
 <div class=" w-full h-screen overflow-hidden bg-stone-600 flex flex-col flex-nowrap ">
     <!-- nav bar -->
-    <NavBar  MyPro={ServerPro} />
+    <NavBar  />
 
     <!-- message and people -->
     <div class="  w-full h-full  bg-[#2f3136] flex flex-row overflow-hidden">
         <!-- messaging 830px -->
-        <Messages FriendMsg={ServerMsg} MyPro={MyPro} />
+        <Messages FriendMsg={ServerMsg}  />
         <!-- people -->
         {#if showPeopleListValue != 0}
             <Peoples PeopleData={PeopleData}/>

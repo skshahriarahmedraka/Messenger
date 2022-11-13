@@ -16,7 +16,7 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 	console.log('🚀 ~ file: +layout.server.ts ~ line 4 ~ cookies', cookies.get('Auth1'));
 	const MyCookie = cookies.get('Auth1') || '';
 	const JWT_Auth_KEY: string = process.env.JWT_SECRET as string;
-	let Userdata:	{
+	let Userdata: {
 		UUID: string;
 		UserID: string;
 
@@ -32,7 +32,7 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 		Coin: number;
 		TransactionHistory: string[];
 		ContactAdminMsg: string[];
-	
+		
 		UserBio: string;
 		FriendList: { UserID: string; CollectionID: string }[];
 		GroupList: { GroupID: string; CollectionID: string }[];
@@ -42,41 +42,45 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 		ZipCode: string;
 	} = {
 		UUID: '' as string,
-		UserID: '' as string,
-	
-		Email: '' as string,
-		Password: '' as string,
-		UserName: '' as string,
-		Mobile: '' as string,
-		BirthDate: '' as string,
-		UserBio: '' as string,
-	
-		ProfileImg: '' as string,
-		BannerImg: '' as string,
-	
-		Coin: 0 as number,
-		Accounttype: '' as string,
-		TransactionHistory: [] as string[],
-	
-		City: '' as string,
-		Address: '' as string,
-		ZipCode: '' as string,
-		Country: '' as string,
-	
-		FriendList: [] as { UserID: string; CollectionID: string }[],
-		GroupList: [] as { GroupID: string; CollectionID: string }[],
-		ContactAdminMsg: [] as string[]
-	};
+	UserID: '' as string,
+
+	Email: '' as string,
+	Password: '' as string,
+	UserName: '' as string,
+	Mobile: '' as string,
+	BirthDate: '' as string,
+	UserBio: '' as string,
+
+	ProfileImg: '' as string,
+	BannerImg: '' as string,
+
+	Coin: 0 as number,
+	Accounttype: '' as string,
+	TransactionHistory: [] as string[],
+
+	City: '' as string,
+	Address: '' as string,
+	ZipCode: '' as string,
+	Country: '' as string,
+
+	FriendList: [] as { UserID: string; CollectionID: string }[],
+	GroupList: [] as { GroupID: string; CollectionID: string }[],
+	ContactAdminMsg: [] as string[]
+	} 
 	if (MyCookie != '') {
 		interface tokeninterface {
-			UserName: string;
-			Email: string;
-			UserID: string;
-			UUID: string;
-			exp: number;
+			UserName: string
+		Email:    string
+		UserID:   string 
+		UUID:     string
+		Accounttype : string
+			exp: number
 		}
 		const decoded = jwt.verify(MyCookie, JWT_Auth_KEY);
-		console.log('decoded: ', decoded);
+		console.log("🚀 ~ file: +page.server.ts ~ line 77 ~ constload:PageServerLoad= ~ decoded", decoded)
+		if ((decoded as tokeninterface).Accounttype != "admin"){
+			throw redirect(302,"/")
+		  }
 		//   let resdata
 		console.log(`http://${process.env.GO_HOST}/user/${(decoded as tokeninterface).UUID}`);
 		await fetch(`http://${process.env.GO_HOST}/user/${(decoded as tokeninterface).UUID}`, {
@@ -95,8 +99,29 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 		// const Userdata=GetUserData(decoded)
 		// console.log("🚀 ~ file: +layout.server.ts ~ line 17 ~ Userdata", Userdata)
 	}
-	console.log("🚀 ~ file: +page.server.ts ~ line 99 ~ constload:PageServerLoad= ~ Userdata", Userdata)
-	return {
-		Userdata
-	};
+
+
+
+	// let UserReqList: {
+	// 	UUID: string;
+	// 	Coin: number;
+	// 	ReqList: {
+	// 		Amount: number;
+	// 		JWT: string;
+	// 		Status: string;
+	// 	}[]
+	// }[]= []
+	//   await fetch(`http://${process.env.GO_HOST}/admin/moneymanagement`, {
+	//   		method: 'GET',
+	//   		mode: 'no-cors',
+
+	//   }).then((res)=>{return res.json()}).then((data)=>{
+	//   console.log("🚀 ~ file: +page.server.ts ~ line 112 ~ constload:PageServerLoad= ~ data", data)
+	//   UserReqList=data
+	//   })
+
+	  return {
+		  Userdata,
+		//   UserReqList
+	  };
 };

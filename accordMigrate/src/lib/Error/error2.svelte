@@ -269,7 +269,7 @@ import { goto } from "$app/navigation";
 	<title> 404 Error </title>
 </svelte:head>
 
-<div class="wrapper bg-[#36393f]  ">
+<div class="wrapper bg-[#36393f] h-screen w-full  ">
     <button on:click="{()=>{goto("/")}}" class=" absolute h-14 w-44 bg-[#6f5b92] hover:bg-purple-800 rounded-xl text-lg text-[#ffc541] font-bold right-10 top-6 ">
         Go Back Home
     </button>

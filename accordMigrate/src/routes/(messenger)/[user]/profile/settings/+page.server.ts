@@ -17,24 +17,28 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 	const MyCookie = cookies.get('Auth1') || '';
 	const JWT_Auth_KEY: string = process.env.JWT_SECRET as string;
 	let Userdata: {
+
 		UUID: string;
 		UserID: string;
-
+		
 		Email: string;
 		Password: string;
 		UserName: string;
 		Mobile: string;
 		BirthDate: string;
-
+		UserBio: string 
+		
 		ProfileImg: string;
 		BannerImg: string;
+
 		Accounttype: string;
 		Coin: number;
 		TransactionHistory: string[];
+
 		ContactAdminMsg: string[];
-		GroupListID: string[];
-		UserBio: string;
-		FrinedList: { UserID: string; CollectionID: string }[];
+		
+		
+		FriendList: { UserID: string; CollectionID: string }[];
 		GroupList: { GroupID: string; CollectionID: string }[];
 		City: string;
 		Address: string;
@@ -42,28 +46,30 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 		ZipCode: string;
 	} = {
 		UUID: '' as string,
-		UserID: '' as string,
+	UserID: '' as string,
 
-		Email: '' as string,
-		Password: '' as string,
-		UserName: '' as string,
-		Mobile: '' as string,
-		BirthDate: '' as string,
+	Email: '' as string,
+	Password: '' as string,
+	UserName: '' as string,
+	Mobile: '' as string,
+	BirthDate: '' as string,
+	UserBio: '' as string,
 
-		ProfileImg: '' as string,
-		BannerImg: '' as string,
-		Accounttype: '' as string,
-		Coin: 0 as number,
-		TransactionHistory: [] as string[],
-		ContactAdminMsg: [] as string[],
-		GroupListID: [] as string[],
-		UserBio: '' as string,
-		FrinedList: [] as { UserID: string; CollectionID: string }[],
-		GroupList: [] as { GroupID: string; CollectionID: string }[],
-		City: '' as string,
-		Address: '' as string,
-		Country: '' as string,
-		ZipCode: '' as string
+	ProfileImg: '' as string,
+	BannerImg: '' as string,
+
+	Coin: 0 as number,
+	Accounttype: '' as string,
+	TransactionHistory: [] as string[],
+
+	City: '' as string,
+	Address: '' as string,
+	ZipCode: '' as string,
+	Country: '' as string,
+
+	FriendList: [] as { UserID: string; CollectionID: string }[],
+	GroupList: [] as { GroupID: string; CollectionID: string }[],
+	ContactAdminMsg: [] as string[]
 	};
 	if (MyCookie != '') {
 		interface tokeninterface {

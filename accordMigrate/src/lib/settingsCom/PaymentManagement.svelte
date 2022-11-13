@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Coin2 from '$lib/icons/coin2.svelte';
+	import Githublist from '$lib/icons/githublist.svelte';
 	import { UserProData } from '$lib/store2';
 	// import Nop from '$lib/logo/nop.svelte';
 	// your script goes here
@@ -47,13 +48,7 @@
 			used: 0
 		};
 		if (
-			MoneyReqList !=
-			([] as {
-				Amount: string;
-				JWT: string;
-				Status: string;
-			}[])
-		){
+			MoneyReqList.length !=0){
 			for (let i of MoneyReqList) {
 				if (i.Status === 'accepted') {
 					NumOfReq.accepted++;
@@ -79,7 +74,7 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				UserID: $UserProData.UserID,
+				UUID: $UserProData.UUID,
 				JWT: inputJWT
 			})
 		})
@@ -93,6 +88,7 @@
 			});
 		console.log('🚀 ~ file: RequestToken.svelte ~ line 26 ~ requestMoney ~ resdata', resdata);
 		// let data = await response.json()
+		GetReqList()
 		SeeThroughMoneyReqList();
 	}
 	async function GetReqList() {
@@ -102,7 +98,7 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				UserID: $UserProData.UserID
+				UUID: $UserProData.UUID
 			})
 		})
 			.then((res) => {
@@ -165,13 +161,13 @@
 	<div class=" flex flex-col">
 		<p class=" m-3 font-Poppins text-2xl text-slate-200">Used Request :</p>
 		<div class="flex flex-row flex-wrap justify-around gap-2 ">
-			{#if NumOfReq.used === 0}
+			{#if NumOfReq.used === 0 && MoneyReqList.length != 0}
 				<!-- <Nop class=" h-20 w-20 stroke-slate-400  " /> -->
+				<Githublist />
+
 			{:else}
 				{#each MoneyReqList as req}
-					<!-- content here -->
-					{#if req.Status == 'used'}
-						<!-- content here -->
+					{#if req.Status === 'used'}
 						<div
 							class=" flex h-44 w-72 flex-col justify-center gap-1 rounded-lg border-2 border-slate-400 p-3"
 						>

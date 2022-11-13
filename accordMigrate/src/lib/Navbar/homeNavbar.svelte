@@ -1,6 +1,6 @@
 <script lang="ts">
     
-    import {showPeopleList} from "$lib/store2"
+    import {showPeopleList,UserProData} from "$lib/store2"
     import Taw from "./profileImg/t.jpg"
 
     let showPeopleList1:number  
@@ -19,7 +19,7 @@
     let inputValue:string=""
     let searchIconEvent:boolean=false
 
-    export let MyPro:any
+    // export let MyPro:any
 </script>
 
 <style>
@@ -86,7 +86,7 @@
          {/if}
      </div>
      <div class=" h-12 w-12 my-1 mx-2">
-          <img src="{ MyPro["ProfileImage"]}" alt="" class=" rounded-2xl hover:rounded-xl active:rounded-md object-cover w-full h-full hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600">
+          <img src="{ $UserProData.ProfileImg}" alt="" class=" rounded-2xl hover:rounded-xl active:rounded-md object-cover w-full h-full hover:ring hover:ring-cyan-500 transition-all duration-150 ease-linear cursor-pointer  active:ring  active:ring-offset-base-50  active:ring-blue-600">
          
      </div>
      <div class="my-2 mr-0 ml-0">

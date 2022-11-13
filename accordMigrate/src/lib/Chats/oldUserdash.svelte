@@ -9,11 +9,12 @@
 	import Notification from '$lib/icons/notification.svelte';
 	import Search from '$lib/Navbar/profileImg/search.svelte';
 	import Cross from '$lib/Navbar/profileImg/Cross.svelte';
+
     // import UserDashPannel from "$lib/UserDashPanel/index.svelte"
 
-	// import {FriendList ,MyPro} from "$lib/store2"
+	import {UserProData} from "$lib/store2"
 	// export let FriendList: any\
-	export let MyPro: any;
+	// export let MyPro: any;
 
 	let searchIconEvent: boolean = false;
 	let inputValue: string = '';
@@ -80,7 +81,7 @@
         </div>
         <div class="  my-1 mx-2 h-10 w-10 ">
             <img
-                src={MyPro['ProfileImage']}
+                src={$UserProData.ProfileImg}
                 alt=""
                 class=" rounded-2xl  object-cover w-full h-full   hover:rounded-xl active:rounded-md  transition-all duration-100  ease-linear cursor-pointer"
             />

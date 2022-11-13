@@ -20,7 +20,7 @@
 
   import UserDashPannel from "$lib/UserDashPanel/index.svelte"
 
-	export let MyPro: any;
+	
 	let subFieldName: string = '| Python |';
 	let listOfField = [
 		{ type: 'announcement', name: 'General' },

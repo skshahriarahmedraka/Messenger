@@ -3,6 +3,7 @@
 
 	import Coin2 from '$lib/icons/coin2.svelte';
 	import { UserProData } from '$lib/store2';
+	import Githublist from "$lib/icons/githublist.svelte";
 	// import Nop from '$lib/logo/nop.svelte';
 	let AllowedReq = [10, 20, 50, 100, 200, 500, 1000, 10000];
 
@@ -74,7 +75,7 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				UserID: $UserProData.UserID
+				UUID: $UserProData.UUID
 			})
 		})
 			.then((res) => {
@@ -99,7 +100,7 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				UserID: $UserProData.UserID,
+				UserID: $UserProData.UUID,
 				Amount: amount
 			})
 		})
@@ -131,6 +132,7 @@
 		<div class="flex flex-row flex-wrap justify-around gap-2  ">
 			{#if NumOfReq.accepted === 0}
 				<!-- <Nop class=" h-20 w-20 stroke-slate-400  " /> -->
+				<Githublist />
 			{:else}
 				{#each MoneyReqList as req}
 					{#if req.Status === 'accepted'}
@@ -187,7 +189,8 @@
 	<p class=" m-3 font-Poppins text-2xl text-slate-200">Pending Money Request :</p>
 	<div class="flex flex-row flex-wrap justify-around gap-2">
 		{#if NumOfReq.pending === 0}
-			<!-- <Nop class=" h-20 w-20 stroke-slate-400  " /> -->
+			<Githublist />
+
 		{:else}
 			{#each MoneyReqList as req}
 				<!-- content here -->
@@ -226,7 +229,7 @@
 					on:click={() => {
 						requestMoney(MoneyReq);
 					}}
-					class="h-10 w-fit self-center rounded-xl bg-blue-500 p-2 px-4 font-semibold text-slate-200 "
+					class="h-10 w-fit self-center rounded-xl bg-blue-500 hover:bg-blue-600 active:bg-blue-700 p-2 px-4 font-semibold text-slate-200 "
 					>Send Request</button
 				>
 			</div>

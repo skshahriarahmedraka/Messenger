@@ -131,6 +131,23 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 		_ = json.NewEncoder(w).Encode(`{status: " mongodb Connection error"}`)
 		return
 	}
+
+
+	var uMoney model.UserMoney
+	uMoney.UUID = user.UUID
+	uMoney.Coin = 0.0
+	uMoney.ReqList = []model.UserMoneyReq{}
+	res, err = H.MongoUser.Collection(os.Getenv("ADMIN_MONEY_MANAGE_COL")).InsertOne(ctx, uMoney)
+	fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 115 ~ returnfunc ~ res : ", res)
+	if err != nil {
+		logerror.ERROR("🚀 ~ file: SveltekitRegister.go ~ line 141 ~ func ~ err : ", err)
+		w.WriteHeader(http.StatusBadRequest)
+		resError.ErrorRes = "InsertOne(ctx, uMoney) error"
+		_ = json.NewEncoder(w).Encode(resError)
+		return
+		// c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		// return
+	}
 	// expirationTime := time.Now().Add(time.Hour * 1000)
 	// myClaim := &model.Claims{
 	// 	Username:   user.Username,

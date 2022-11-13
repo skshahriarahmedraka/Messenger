@@ -13,13 +13,13 @@
 	// let ChatOrDockValue: number;
 	// export let FriendData: any;
 	// export let FriendMsg: any;
-    let MyPro= {
-			Name: "Sk Shahriar Ahmed Raka",
-			Userid: 'skraka',
-			ProfileImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060640/samples/jpeg_1_qlbtcn.jpg',
-			CoverImage:"https://res.cloudinary.com/dqo0ssnti/image/upload/v1661613541/samples/Untitled_design_zmrybr.png"
-		};
+    // let MyPro= {
+	// 		Name: "Sk Shahriar Ahmed Raka",
+	// 		Userid: 'skraka',
+	// 		ProfileImage:
+	// 			'https://res.cloudinary.com/dqo0ssnti/image/upload/v1653060640/samples/jpeg_1_qlbtcn.jpg',
+	// 		CoverImage:"https://res.cloudinary.com/dqo0ssnti/image/upload/v1661613541/samples/Untitled_design_zmrybr.png"
+	// 	};
 
     let FriendData = {
 			Name: 'Portgas D. Ace',
@@ -596,7 +596,7 @@
 	class=" flex  h-screen w-full overflow-hidden bg-[#36393f] md:flex-col md:overflow-y-scroll lg:flex-row "
 >
 	<div class=" no-scrollbar h-fit  justify-center md:w-full lg:w-1/2 lg:overflow-y-scroll mb-6  ">
-
+		Wallet 
 	</div>
 </div>
 

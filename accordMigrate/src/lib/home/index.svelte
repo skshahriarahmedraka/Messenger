@@ -285,7 +285,7 @@
 	<!-- <Error1/> -->
 	<Error2 />
 {:else}
-	<div class="m-3 flex flex-row flex-wrap justify-between ">
+	<div class=" flex flex-row flex-wrap justify-evenly gap-2">
 		{#each x as i}
 			<!-- {#each Array.from(Array(10 + 1).keys()).slice(1) as i} -->
 			<div class=" flex h-80 w-48  flex-col    rounded-lg bg-gray-600 bg-opacity-80 ">

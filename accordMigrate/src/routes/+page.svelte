@@ -317,105 +317,105 @@
 	};
 
 	let x2: any = [
-		{
-			ServerURL: 'postgres',
-			Name: 'Postgres',
-			NewMessage: true,
-			NumberOfNewMessage: 3,
-			Notification: false,
-			NumberOfNotification: 0,
-			ServerImage: Rafel
-		},
-		{
-			ServerURL: 'mongodb',
-			Name: 'MongoDB',
-			NewMessage: false,
-			NumberOfNewMessage: 0,
-			Notification: true,
-			NumberOfNotification: 3,
-			ServerImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
-		},
-		{
-			ServerURL: 'docker',
-			Name: 'Docker',
-			NewMessage: true,
-			NumberOfNewMessage: 4,
-			Notification: true,
-			NumberOfNotification: 6,
-			ServerImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
-		},
-		{
-			ServerURL: 'kubernetes',
-			Name: 'Kubernetes',
-			NewMessage: false,
-			NumberOfNewMessage: 0,
-			Notification: true,
-			NumberOfNotification: 99,
-			ServerImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
-		},
-		{
-			ServerURL: 'redis',
-			Name: 'Redis',
-			NewMessage: true,
-			NumberOfNewMessage: 7,
-			Notification: false,
-			NumberOfNotification: 0,
-			ServerImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
-		},
-		{
-			ServerURL: 'tensorflow',
-			Name: 'Tensorflow',
-			NewMessage: false,
-			NumberOfNewMessage: 0,
-			Notification: false,
-			NumberOfNotification: 0,
-			ServerImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
-		},
-		{
-			ServerURL: 'macity',
-			Name: 'Mancity',
-			NewMessage: true,
-			NumberOfNewMessage: 2,
-			Notification: false,
-			NumberOfNotification: 0,
-			ServerImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
-		},
-		{
-			ServerURL: 'cpp',
-			Name: 'C++',
-			NewMessage: true,
-			NumberOfNewMessage: 4,
-			Notification: false,
-			NumberOfNotification: 0,
-			ServerImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
-		},
-		{
-			ServerURL: 'ubuntu',
-			Name: 'Ubuntu',
-			NewMessage: true,
-			NumberOfNewMessage: 7,
-			Notification: true,
-			NumberOfNotification: 2,
-			ServerImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
-		},
-		{
-			ServerURL: 'realmadrid',
-			Name: 'Real Madrid',
-			NewMessage: false,
-			NumberOfNewMessage: 0,
-			Notification: false,
-			NumberOfNotification: 0,
-			ServerImage:
-				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
-		},
+		// {
+		// 	ServerURL: 'postgres',
+		// 	Name: 'Postgres',
+		// 	NewMessage: true,
+		// 	NumberOfNewMessage: 3,
+		// 	Notification: false,
+		// 	NumberOfNotification: 0,
+		// 	ServerImage: Rafel
+		// },
+		// {
+		// 	ServerURL: 'mongodb',
+		// 	Name: 'MongoDB',
+		// 	NewMessage: false,
+		// 	NumberOfNewMessage: 0,
+		// 	Notification: true,
+		// 	NumberOfNotification: 3,
+		// 	ServerImage:
+		// 		'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
+		// },
+		// {
+		// 	ServerURL: 'docker',
+		// 	Name: 'Docker',
+		// 	NewMessage: true,
+		// 	NumberOfNewMessage: 4,
+		// 	Notification: true,
+		// 	NumberOfNotification: 6,
+		// 	ServerImage:
+		// 		'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
+		// },
+		// {
+		// 	ServerURL: 'kubernetes',
+		// 	Name: 'Kubernetes',
+		// 	NewMessage: false,
+		// 	NumberOfNewMessage: 0,
+		// 	Notification: true,
+		// 	NumberOfNotification: 99,
+		// 	ServerImage:
+		// 		'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
+		// },
+		// {
+		// 	ServerURL: 'redis',
+		// 	Name: 'Redis',
+		// 	NewMessage: true,
+		// 	NumberOfNewMessage: 7,
+		// 	Notification: false,
+		// 	NumberOfNotification: 0,
+		// 	ServerImage:
+		// 		'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
+		// },
+		// {
+		// 	ServerURL: 'tensorflow',
+		// 	Name: 'Tensorflow',
+		// 	NewMessage: false,
+		// 	NumberOfNewMessage: 0,
+		// 	Notification: false,
+		// 	NumberOfNotification: 0,
+		// 	ServerImage:
+		// 		'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
+		// },
+		// {
+		// 	ServerURL: 'macity',
+		// 	Name: 'Mancity',
+		// 	NewMessage: true,
+		// 	NumberOfNewMessage: 2,
+		// 	Notification: false,
+		// 	NumberOfNotification: 0,
+		// 	ServerImage:
+		// 		'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
+		// },
+		// {
+		// 	ServerURL: 'cpp',
+		// 	Name: 'C++',
+		// 	NewMessage: true,
+		// 	NumberOfNewMessage: 4,
+		// 	Notification: false,
+		// 	NumberOfNotification: 0,
+		// 	ServerImage:
+		// 		'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
+		// },
+		// {
+		// 	ServerURL: 'ubuntu',
+		// 	Name: 'Ubuntu',
+		// 	NewMessage: true,
+		// 	NumberOfNewMessage: 7,
+		// 	Notification: true,
+		// 	NumberOfNotification: 2,
+		// 	ServerImage:
+		// 		'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
+		// },
+		// {
+		// 	ServerURL: 'realmadrid',
+		// 	Name: 'Real Madrid',
+		// 	NewMessage: false,
+		// 	NumberOfNewMessage: 0,
+		// 	Notification: false,
+		// 	NumberOfNotification: 0,
+		// 	ServerImage:
+		// 		'https://res.cloudinary.com/dqo0ssnti/image/upload/v1658404332/samples/1652821445210_umwhko.jpg'
+		// },
 		{
 			ServerURL: 'bangladesh',
 			Name: 'bangladesh',
