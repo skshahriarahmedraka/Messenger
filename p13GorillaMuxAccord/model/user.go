@@ -47,11 +47,11 @@ type AccordUser struct {
 }
 type FriendStruct struct{
 	UUID string `json:"UUID" bson:"UUID"`
-	CollectionID string `json:"CollectionID" bson:"CollectionID"`
+	ConversationID string `json:"CollectionID" bson:"CollectionID"`
 }
 type GroupStruct struct{
 	UUID string `json:"UUID" bson:"UUID"`
-	CollectionID string `json:"CollectionID" bson:"CollectionID"`
+	ConversationID string `json:"CollectionID" bson:"CollectionID"`
 } 
 
 

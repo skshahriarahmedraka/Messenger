@@ -56,6 +56,34 @@
 	}
 	FetchSuggestionList();
 	
+	
+	async function AcceptFrndReq(requestor : string) {
+		await fetch(`http://localhost:8888/user/useracceptfrndreq/`, {
+			method: 'POST',
+			mode: 'cors',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				Acceptor: $UserProData.UUID,
+				Requestor: requestor
+			})
+		})
+			.then((res) => {
+				return res.json();
+			})
+			.then((d) => {
+				console.log("🚀 ~ file: +page.svelte ~ line 75 ~ .then ~ d", d)
+				// FrndSuggList = d;
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+			FetchSuggestionList();
+	}
+	// FetchSuggestionList();
+
+	
 	// FetchFrndReqList();
 	// let UserReqList: {
 	// 	UUID: string;
@@ -181,6 +209,7 @@
 						</p>
 						<div class="my-2 flex flex-col items-center justify-center     gap-2 text-base">
 							<button
+							on:click={()=>{AcceptFrndReq(i.UUID)}}
 								class="w-[90%] rounded-md bg-green-400 px-2 py-1 font-semibold text-slate-800 hover:bg-blue-600 active:bg-blue-700"
 								>Accept</button
 							>
