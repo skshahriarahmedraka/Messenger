@@ -33,7 +33,7 @@
 	// import Admiral from '$lib/profilepic/s5.jpg';
 	// import Law from '$lib/profilepic/law.png';
 
-	import {UserProData} from "$lib/store2";
+	import { UserProData } from '$lib/store2';
 
 	// let x = [
 	// 	{
@@ -271,50 +271,73 @@
 	// 		LastActiveTime: 'Active'
 	// 	}
 	// ];
-	let FrndSuggList:{
+	let FrndSuggList: {
 		UUID: string;
 		UserID: string;
-		UserName:string;
+		UserName: string;
 		ProfileImg: string;
 		UserBio: string;
-	}[]= [] as {
+	}[] = [] as {
 		UUID: string;
 		UserID: string;
-		UserName:string;
+		UserName: string;
 		ProfileImg: string;
 		UserBio: string;
-	}[]
+	}[];
 
 	async function FetchSuggestionList() {
-		await fetch(`http://localhost:8888/user/frndsuggestion`,{
+		await fetch(`http://localhost:8888/user/frndsuggestion`, {
 			method: 'POST',
 			mode: 'cors',
 			headers: {
-				'Content-Type': 'application/json',
-			
+				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				UUID: $UserProData.UUID,
-			}),
+				UUID: $UserProData.UUID
+			})
 		})
 			.then((res) => {
-				return res.json()
+				return res.json();
 			})
 			.then((d) => {
-				FrndSuggList=d
-				console.log("🚀 ~ file: index.svelte ~ line 296 ~ .then ~ FrndSuggList", FrndSuggList)
+				FrndSuggList = d;
+				console.log('🚀 ~ file: index.svelte ~ line 296 ~ .then ~ FrndSuggList', FrndSuggList);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-	
 	}
-	FetchSuggestionList()
+	FetchSuggestionList();
+
+	async function SendFriendReq() {
+		await fetch(`http://localhost:8888/user/frndsuggestion`, {
+			method: 'POST',
+			mode: 'cors',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				UUID: $UserProData.UUID
+			})
+		})
+			.then((res) => {
+				return res.json();
+			})
+			.then((d) => {
+				FrndSuggList = d;
+				console.log('🚀 ~ file: index.svelte ~ line 296 ~ .then ~ FrndSuggList', FrndSuggList);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}
+	SendFriendReq();
 	import Error2 from '$lib/Error/error2.svelte';
 	import { page } from '$app/stores';
 	import Loading from '$lib/Loading/solarAccord.svelte';
 	import { afterUpdate } from 'svelte';
 	import DiscordNoOne from '$lib/icons/discordNoOne.svelte';
+	import Accord from '$lib/Dock/icons/accord.svelte';
 
 	let loadingState: boolean = true;
 	afterUpdate(() => {
@@ -328,35 +351,47 @@
 	<!-- <Error1/> -->
 	<Error2 />
 {:else}
-	<div class=" flex flex-row flex-wrap justify-evenly gap-2  m-4">
-		{#if FrndSuggList.length>0}
-			 <!-- content here -->
-			 {#each FrndSuggList as i}
-				 <!-- {#each Array.from(Array(10 + 1).keys()).slice(1) as i} -->
-				 <div class=" flex h-[350px] w-[200px]  flex-col    rounded-lg bg-gray-600 bg-opacity-80 ">
-					 <!--  -->
-					 <img
-						 src={i.ProfileImg}
-						 alt="UserImage"
-						 class=" h-[60%]  w-fit rounded-t-lg object-cover"
-					 />
-					 <p class="mx-1 font-sans text-base font-semibold line-clamp-2  ">{i['UserName']}</p>
-					 <p
-						 class=" lamp-1 mx-1 font-sans text-sm font-light
-				 text-gray-300 text-center "
-					 >
-						 {i['UserBio']? i['UserBio'] : "No Bio" }
-						 <!-- Work at Google INCWork at Google INCWork at Google INC -->
-					 </p>
-					 <div class="my-2 flex flex-col items-center justify-center     gap-2 text-base">
-						 <button class="rounded-md bg-[#3982e4] px-2 py-1 w-[90%]">Add Friend</button>
-						 <button class="rounded-md  border-0 bg-[#3a3b3c] px-2 py-1 w-[90%] ">Remove</button>
-					 </div>
-				 </div>
-			 {/each}
+	<div class=" m-4 flex flex-row flex-wrap justify-evenly  gap-2">
+		{#if FrndSuggList.length > 0}
+			<!-- content here -->
+			{#each FrndSuggList as i}
+				<div class=" flex h-[350px] w-[200px]  flex-col    rounded-lg bg-gray-600 bg-opacity-80 ">
+					{#if i.ProfileImg.trim()=== ""}
+						 <!-- content here -->
+						 <Accord  class="h-[60%] self-center bg-slate-600 w-full rounded-t-lg object-cover" />
+					{:else}
+						 <!-- else content here -->
+						 <img
+							 src={i.ProfileImg}
+							 alt="UserImage"
+							 class=" h-[60%]  w-fit rounded-t-lg object-cover"
+						 />
+					{/if}
+					<p class="mx-1 font-sans text-base font-semibold line-clamp-2 self-center   ">{i['UserName']}</p>
+					<p
+						class=" lamp-1 mx-1 text-center font-sans text-sm
+		 font-light text-gray-300 "
+					>
+						{i['UserBio'] ? i['UserBio'] : 'No Bio'}
+						<!-- Work at Google INCWork at Google INCWork at Google INC -->
+					</p>
+					<div class="my-2 flex flex-col items-center justify-center     gap-2 text-base">
+						<button
+
+
+							class="w-[90%] rounded-md bg-[#3982e4] px-2 py-1 font-semibold text-slate-200 hover:bg-blue-600 active:bg-blue-700"
+							>Add Friend</button
+						>
+						<button
+							class="w-[90%]  rounded-md border-0 bg-[#3a3b3c] px-2 py-1 text-white hover:bg-gray-700 active:bg-gray-600"
+							>Remove</button
+						>
+					</div>
+				</div>
+			{/each}
 		{:else}
-			 <!-- else content here -->
-			 <DiscordNoOne class="justify-self-center self-center" />
+			<!-- else content here -->
+			<DiscordNoOne class="self-center justify-self-center" />
 		{/if}
 	</div>
 {/if}

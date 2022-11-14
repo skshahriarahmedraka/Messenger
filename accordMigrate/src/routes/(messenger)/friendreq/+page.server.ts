@@ -67,6 +67,18 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 	GroupList: [] as { GroupID: string; CollectionID: string }[],
 	ContactAdminMsg: [] as string[]
 	} 
+	let FrndReqList :{ UUID: string,
+        UserID : string,
+        ProfileImg: string,
+		UserBio: string,
+        UserName: string,
+}[]= []  as { UUID: string,
+	UserID : string,
+	ProfileImg: string,
+	UserBio: string,
+
+	UserName: string,
+}[]
 	if (MyCookie != '') {
 		interface tokeninterface {
 			UserName: string
@@ -96,6 +108,26 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 				//   UserProData.set(resdata);
 			});
 
+			
+				await fetch(`http://localhost:8888//user/userfriendreqlist/${(decoded as tokeninterface).UUID}`, {
+					method: 'GET',
+					// mode: 'no-cors',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					
+				})
+					.then((res) => {
+						return res.json();
+					})
+					.then((d) => {
+						FrndReqList= d;
+						console.log('🚀 ~ file: index.svelte ~ line 296 ~ .then ~ FrndSuggList', FrndReqList);
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			
 		// const Userdata=GetUserData(decoded)
 		// console.log("🚀 ~ file: +layout.server.ts ~ line 17 ~ Userdata", Userdata)
 	}
@@ -119,9 +151,10 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 	//   console.log("🚀 ~ file: +page.server.ts ~ line 112 ~ constload:PageServerLoad= ~ data", data)
 	//   UserReqList=data
 	//   })
-
+	
 	  return {
 		  Userdata,
+		  FrndReqList
 		//   UserReqList
 	  };
 };

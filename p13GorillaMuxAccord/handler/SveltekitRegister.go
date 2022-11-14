@@ -132,7 +132,7 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 		return
 	}
 
-
+// CREARTE MONEY MONGODB COLLECTION
 	var uMoney model.UserMoney
 	uMoney.UUID = user.UUID
 	uMoney.Coin = 0.0
@@ -143,6 +143,23 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 		logerror.ERROR("🚀 ~ file: SveltekitRegister.go ~ line 141 ~ func ~ err : ", err)
 		w.WriteHeader(http.StatusBadRequest)
 		resError.ErrorRes = "InsertOne(ctx, uMoney) error"
+		_ = json.NewEncoder(w).Encode(resError)
+		return
+		// c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		// return
+	}
+
+	// CREATE FRIEND REQUEST COLLECTION 
+	var FrndReqList model.FrndReqList
+	FrndReqList.UUID = user.UUID
+
+	FrndReqList.FrndReq= []model.FrndReqShort{}
+	res, err = H.MongoUser.Collection(os.Getenv("MONGO_FRND_REQ_COL")).InsertOne(ctx, FrndReqList)
+    fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 158 ~ func ~ res : ", res)
+	if err != nil {
+		logerror.ERROR("🚀 ~ file: SveltekitRegister.go ~ line 160 ~ func ~ err :  ", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		resError.ErrorRes = "FrndReqList error"
 		_ = json.NewEncoder(w).Encode(resError)
 		return
 		// c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

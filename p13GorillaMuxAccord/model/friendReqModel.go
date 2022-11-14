@@ -18,8 +18,13 @@ type FrndReqList struct {
 type FrndReqShort struct {
 	UUID string `json:"UUID" bson:"UUID"`
 	UserID string `json:"UserID" bson:"UserID"`
-	UserImg string `json:"UserImg" bson:"UserImg"`
+	ProfileImg string `json:"ProfileImg" bson:"ProfileImg"`
+	UserBio string `json:"UserBio" bson:"UserBio"`
 	UserName string `json:"UserName" bson:"UserName"`
 }
 
 
+type UserFrndReqSend struct {
+	UUID string `gorm:"type:varchar(100);unique_index;not null" json:"UUID" bson:"UUID"`
+	Frnd string `gorm:"type:varchar(100);not null" json:"Frnd" bson:"Frnd"`
+}

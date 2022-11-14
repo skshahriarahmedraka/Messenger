@@ -24,9 +24,13 @@ func Router(r *mux.Router) {
 	// r.Use(middleware.AuthMiddleware)
 	r.HandleFunc("/", H.ServerSettings).Methods("GET")
 
-	r.HandleFunc("/user/frndlist/{UUID}", H.FrndList).Methods("GET")// incomplete : get your friend list
 	r.HandleFunc("/user/{UUID}", H.UserProData).Methods("GET")//complete
+	r.HandleFunc("/user/frndlist/{UUID}", H.FrndList).Methods("GET")// incomplete : get your friend list
 	r.HandleFunc("/user/frndsuggestion", H.FrndSuggestion).Methods("POST")// complete
+	r.HandleFunc("/user/sendfrndreq", H.SendFriendReq).Methods("POST")// incomplete
+	r.HandleFunc("/user/userfriendreqlist/{UUID}", H.UserFriendReqList).Methods("GET")// complete
+	r.HandleFunc("/user/useracceptfrndreq/", H.UserAcceptFrndReq).Methods("POST")// incomplete
+
 	
 	// r.HandleFunc("/{UID}/profile", H.UserPublicProfile).Methods("GET")
 	r.HandleFunc("/user/profile/update", H.UserProfileUpdate).Methods("POST")//complete
