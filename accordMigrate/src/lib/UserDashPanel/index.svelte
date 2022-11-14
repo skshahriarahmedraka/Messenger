@@ -57,7 +57,7 @@
 		}}
 	>
 		<div class="h-40 w-full">
-			{#if $UserProData.ProfileImg === ''}
+			{#if $UserProData.BannerImg.trim() === ''}
 				<div
 					class="flex h-40 w-full items-center justify-center rounded-xl border-2 border-slate-400 border-opacity-30 "
 				>
@@ -191,7 +191,7 @@
 					<img
 						src={$UserProData.ProfileImg}
 						alt=""
-						class=" h-full  w-full cursor-pointer rounded-2xl   object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
+						class="  h-10  w-10  cursor-pointer rounded-2xl   object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
 					/>
 				{/if}
 			</div>
@@ -200,7 +200,6 @@
 					{$UserProData.UserName}
 				</p>
 				{#if showUserid}
-					<!-- content here -->
 					<p
 						on:click={() => {
 							navigator.clipboard.writeText(`http://${process.env.HOST}/`+$UserProData.UserID);

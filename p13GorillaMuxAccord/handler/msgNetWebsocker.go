@@ -1,22 +1,26 @@
 package handler
 
 import (
-	"fmt"
+	// "fmt"
+	"log"
+	"net/http"
 
 	"github.com/gorilla/websocket"
 )
 
-func (H *DatabaseCollections) MsgNetSocket(conn *websocket.Conn) {
-	for {
-		messageType, p, err := conn.ReadMessage()
-		fmt.Println("🚀 ~ file: Message.go ~ line 39 ~ func ~ p : ", string(p))
-		if err != nil {
-			fmt.Println("❌ ~ file: Message.go ~ line 26 ~ func ~ err : ", err)
-			return
-		}
-		if err := conn.WriteMessage(messageType, p); err != nil {
-			fmt.Println("❌ ~ file: Message.go ~ line 31 ~ iferr:=conn.WriteMessage ~ err : ", err)
-			return
-		}
-	}
+func (H *DatabaseCollections) MsgNetSocket(w http.ResponseWriter, r *http.Request) {
+	upgrader := websocket.Upgrader{
+        ReadBufferSize:  1024,
+        WriteBufferSize: 1024,
+        CheckOrigin: func(r *http.Request) bool {
+            return true
+        },
+    }
+	c, err := upgrader.Upgrade(w, r, nil)
+    if err != nil {
+        log.Println(err)
+        return
+    }
+    defer c.Close()
+	
 }

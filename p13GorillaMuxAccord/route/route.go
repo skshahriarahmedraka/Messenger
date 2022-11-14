@@ -3,7 +3,7 @@ package route
 import (
 	"app/database"
 	// "app/middleware"
-	// "app/middleware"
+	"app/handler"
 
 	"github.com/gorilla/mux"
 	// "golang.org/x/net/websocket"
@@ -22,11 +22,11 @@ func Router(r *mux.Router) {
 	r.HandleFunc("/sveltekit/register", H.SveltekitRegister).Methods("POST")
 
 	// r.Use(middleware.AuthMiddleware)
-	r.HandleFunc("/", H.Home).Methods("GET")
+	r.HandleFunc("/", H.ServerSettings).Methods("GET")
 
-	// r.HandleFunc("/{UserID}", H.UserProfile).Methods("GET")
+	r.HandleFunc("/user/frndlist/{UUID}", H.FrndList).Methods("GET")// incomplete : get your friend list
 	r.HandleFunc("/user/{UUID}", H.UserProData).Methods("GET")//complete
-	r.HandleFunc("/user/{UUID}/frndsuggestion", H.FrndSuggestion).Methods("GET")// incomplete
+	r.HandleFunc("/user/frndsuggestion", H.FrndSuggestion).Methods("POST")// complete
 	
 	// r.HandleFunc("/{UID}/profile", H.UserPublicProfile).Methods("GET")
 	r.HandleFunc("/user/profile/update", H.UserProfileUpdate).Methods("POST")//complete
@@ -45,18 +45,19 @@ func Router(r *mux.Router) {
 	
 	r.HandleFunc("/user/moneytokenreq", H.UserTokenReq).Methods("POST")// complete
 	r.HandleFunc("/user/moneytokenreqlist", H.UserTokenReqList).Methods("POST")//complete
-	r.HandleFunc("/user/rechargewallet", H.UserRechargeWallet).Methods("POST")
+	r.HandleFunc("/user/rechargewallet", H.UserRechargeWallet).Methods("POST")// complete
 
 
 	r.HandleFunc("/admin/moneymanagement", H.MoneyManagement).Methods("GET")//Complete
 	r.HandleFunc("/admin/moneyreqaccept", H.AdminMoneyReqAccept).Methods("POST")//complete
 
+	go handler.Main(&H)
 
-	// r.HandleFunc("/ws/{SendID}/{ReceiverID}", H.Message).Methods("GET")
-	r.Handle("/socketio", H.MsgSocketIO())
+	// r.HandleFunc("/ws/{SendID}/{ReceiverID}", H.Message)
+	// r.Handle("/socketio", H.MsgSocketIO())
 	// r.HandleFunc("/ws/{SendID}/{ReceiverID}",)
 	// r.HandleFunc("/ws/{SendID}/{ReceiverID}", websocket.Handler(H.MsgNetSocket))
-	// r.HandleFunc("/ws/{SendID}/{ReceiverID}", H.MsgGobwas)
+	// r.HandleFunc("/ws/raka", H.MsgGobwas).Methods("GET")
 	// r.HandleFunc("/", handler.Home)
 	// r.HandleFunc("/", handler.Home)
 	// r.HandleFunc("/", handler.Home)

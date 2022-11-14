@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { ChatOrDock , UserProData } from '$lib/store2';
+	import { ChatOrDock, UserProData } from '$lib/store2';
 	import Accord from '$lib/Dock/icons/accord.svelte';
 	import AccordLogo from '$lib/Dock/icons/accord.svelte';
 	// import {ServerList} from "$lib/store2"
@@ -9,6 +9,7 @@
 	import Plus from '$lib/icons/plus.svelte';
 	import Wallet3 from '$lib/icons/wallet3.svelte';
 	import Wallet1 from '$lib/icons/wallet1.svelte';
+	import FriendReq from '$lib/icons/FriendReq.svelte';
 
 	export let ServerList: any;
 	let ChatOrDockHelper: number;
@@ -52,7 +53,7 @@
 	}
 
 	let showMenu: boolean = false;
-	async function onRightClick(e:any) {
+	async function onRightClick(e: any) {
 		if (showMenu) {
 			showMenu = false;
 			await new Promise((res) => setTimeout(res, 100));
@@ -158,39 +159,70 @@
 			<Wallet1 class="h-[50px] w-[50px]" />
 		</div>
 	</button>
-
+	<!-- friend Req -->
+	<button
+			on:click={() => {
+				goto('/friendreq');
+			}}
+			class="  group flex w-full  flex-row   items-center justify-center py-[5px]  transition-all duration-150 ease-linear hover:rounded-lg"
+		>
+			<div class=" relative flex items-center justify-center">
+				<!-- <svg  class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 95.1v320c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64v-320c0-35.35 28.65-63.1 64-63.1h320C419.3 31.1 448 60.65 448 95.1z"/></svg> -->
+				<div
+					in:scale={{ duration: 200 }}
+					out:scale
+					class="absolute -left-[58px] bg-transparent  transition-all duration-200 ease-linear group-hover:bg-white    {ActiveServer ===
+					'create'
+						? 'rounded-md h-[50px] w-[50px]'
+						: 'rounded-xl h-[10px] w-[50px] group-hover:rounded-md group-hover:h-[30px] group-hover:w-[50px] '}"
+				/>
+				<FriendReq class="h-[50px] w-[50px] p-1   " />
+				<!-- <Wallet3 class="h-[50px] w-[50px] p-1" /> -->
+			</div>
+		</button>
 	<!-- AdminMoneyManagement -->
-	{#if $UserProData.Accounttype=== 'admin'}
-		 <!-- content here -->
-		 <button
-		 on:click={() => {
-			goto('/moneymanagement');
-		}}
-		class="  group flex w-full  flex-row  items-center justify-center py-[5px]  transition-all duration-150 ease-linear hover:rounded-lg"
-	>
-		<div class=" relative flex items-center justify-center">
-			<!-- <svg  class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 95.1v320c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64v-320c0-35.35 28.65-63.1 64-63.1h320C419.3 31.1 448 60.65 448 95.1z"/></svg> -->
-			<div
-				in:scale={{ duration: 200 }}
-				out:scale
-				class="absolute -left-[58px] bg-transparent  transition-all duration-200 ease-linear group-hover:bg-white    {ActiveServer ===
-				'create'
-					? 'rounded-md h-[50px] w-[50px]'
-					: 'rounded-xl h-[10px] w-[50px] group-hover:rounded-md group-hover:h-[30px] group-hover:w-[50px] '}"
-			/>
+	{#if $UserProData.Accounttype === 'admin'}
+		<!-- content here -->
+		<button
+			on:click={() => {
+				goto('/moneymanagement');
+			}}
+			class="  group flex w-full  flex-row  items-center justify-center py-[5px]  transition-all duration-150 ease-linear hover:rounded-lg"
+		>
+			<div class=" relative flex items-center justify-center">
+				<!-- <svg  class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 95.1v320c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64v-320c0-35.35 28.65-63.1 64-63.1h320C419.3 31.1 448 60.65 448 95.1z"/></svg> -->
+				<div
+					in:scale={{ duration: 200 }}
+					out:scale
+					class="absolute -left-[58px] bg-transparent  transition-all duration-200 ease-linear group-hover:bg-white    {ActiveServer ===
+					'create'
+						? 'rounded-md h-[50px] w-[50px]'
+						: 'rounded-xl h-[10px] w-[50px] group-hover:rounded-md group-hover:h-[30px] group-hover:w-[50px] '}"
+				/>
 
-			<Wallet3 class="h-[50px] w-[50px] p-1" />
-		</div>
-	</button>
+				<Wallet3 class="h-[50px] w-[50px] p-1" />
+			</div>
+		</button>
 	{/if}
-	
-	
+
 	<!-- download button -->
 	<div class="avatar  py-1 px-2">
 		<div
-			class=" h-[50px] w-[50px] cursor-pointer flex justify-center items-center rounded-3xl bg-gray-700 transition-all duration-150  ease-linear hover:transition-all hover:duration-150  hover:ease-linear hover:rounded-xl hover:border-[#3ba55d] hover:border-[1px] active:rounded-md "
+			class=" flex h-[50px] w-[50px] cursor-pointer items-center justify-center rounded-3xl bg-gray-700 transition-all duration-150  ease-linear hover:rounded-xl hover:border-[1px]  hover:border-[#3ba55d] hover:transition-all hover:duration-150 hover:ease-linear active:rounded-md "
 		>
-		<svg class="w-8 h-8 stroke-[1px] stroke-[#3ba55d]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+			<svg
+				class="h-8 w-8 stroke-[#3ba55d] stroke-[1px]"
+				fill="none"
+				stroke="currentColor"
+				viewBox="0 0 24 24"
+				xmlns="http://www.w3.org/2000/svg"
+				><path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+				/></svg
+			>
 		</div>
 	</div>
 </div>

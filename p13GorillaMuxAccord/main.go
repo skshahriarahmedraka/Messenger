@@ -15,6 +15,7 @@ import (
 	// "github.com/joho/godotenv"
 	"github.com/pytimer/mux-logrus"
 	"github.com/rs/cors"
+	// "app/cmd"
 )
 
 // func ERROR(e error, s string ){
@@ -30,6 +31,8 @@ func init(){
 
 }
 func main() {
+
+	// go cmd.Main()
 	//LOAD ENVIRONMENT VARIABLES 
 	// err:=godotenv.Load()
     // logerror.ERROR("🔥❌ ~ file: main.go ~ line 24 ~ funcmain ~ err : ",err)

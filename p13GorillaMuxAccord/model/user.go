@@ -46,11 +46,11 @@ type AccordUser struct {
 	
 }
 type FriendStruct struct{
-	UserID string `json:"UserID" bson:"UserID"`
+	UUID string `json:"UUID" bson:"UUID"`
 	CollectionID string `json:"CollectionID" bson:"CollectionID"`
 }
 type GroupStruct struct{
-	GroupID string `json:"GroupID" bson:"GroupID"`
+	UUID string `json:"UUID" bson:"UUID"`
 	CollectionID string `json:"CollectionID" bson:"CollectionID"`
 } 
 
@@ -74,3 +74,13 @@ type CoinReq struct {
 //     State     int      `gorm:"not null" json:"state"`
 //     LastSeen  string   `gorm:"not null" json:"lastseen"`
 // }
+
+
+type UserFrndSuggStruct struct {
+	UUID string `json:"UUID" bson:"UUID"`
+	UserID string `json:"UserID" bson:"UserID"`
+	ProfileImg string `json:"ProfileImg" bson:"ProfileImg"`
+	UserName string `json:"UserName" bson:"UserName"`
+	UserBio string `json:"UserBio" bson:"UserBio"`
+
+} 

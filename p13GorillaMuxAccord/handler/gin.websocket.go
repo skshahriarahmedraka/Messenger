@@ -1,24 +1,22 @@
 package handler
-
 import (
 	"fmt"
 	"net/http"
-	// "strings"
-	// "time"
 
+	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 )
+var upgrader = websocket.Upgrader{
+	ReadBufferSize:  1024,
+	WriteBufferSize: 1024,
+	CheckOrigin: func(r *http.Request) bool {
+		return true
+	},
+}
 
-func (H *DatabaseCollections) MsgGobwas(w http.ResponseWriter, r *http.Request) {
-	var upgrader = websocket.Upgrader{
-		ReadBufferSize:  1024,
-		WriteBufferSize: 1024,
-		CheckOrigin: func(r *http.Request) bool {
-			return true
-		},
-	}
-	
-	ws, err := upgrader.Upgrade(w, r, nil)
+func (H *DatabaseCollections)Instantbuy() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		ws, err := upgrader.Upgrade(c.Writer, c.Request, nil)
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -42,5 +40,5 @@ func (H *DatabaseCollections) MsgGobwas(w http.ResponseWriter, r *http.Request) 
 				break
 			}
 		}
+	}
 }
-

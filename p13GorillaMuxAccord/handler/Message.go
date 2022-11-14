@@ -7,8 +7,14 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/gorilla/websocket"
 )
-
 func (H *DatabaseCollections) Message(w http.ResponseWriter, r *http.Request) {
+	var upgrader = websocket.Upgrader{
+		ReadBufferSize:  1024,
+		WriteBufferSize: 1024,
+		CheckOrigin: func(r *http.Request) bool {
+			return true
+		},
+	}
 
 	// hj, ok := w.(http.Hijacker)
 	// if !ok {
@@ -45,13 +51,7 @@ func (H *DatabaseCollections) Message(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Content-Type", "application/json")
 
 	// var origins = []string{ "http://127.0.0.1:3000", "http://localhost:18081", "http://example.com"}
-	var upgrader = websocket.Upgrader{
-		ReadBufferSize:  1024,
-		WriteBufferSize: 1024,
-		CheckOrigin: func(r *http.Request) bool {
-			return true
-		},
-	}
+	
 
 	conn2, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
