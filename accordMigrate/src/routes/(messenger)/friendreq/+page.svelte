@@ -210,7 +210,7 @@
 						<div class="my-2 flex flex-col items-center justify-center     gap-2 text-base">
 							<button
 							on:click={()=>{AcceptFrndReq(i.UUID)}}
-								class="w-[90%] rounded-md bg-green-400 px-2 py-1 font-semibold text-slate-800 hover:bg-blue-600 active:bg-blue-700"
+								class="w-[90%] rounded-md bg-green-400 px-2 py-1 font-semibold text-slate-800 hover:bg-green-600 active:bg-green-700"
 								>Accept</button
 							>
 							<button
