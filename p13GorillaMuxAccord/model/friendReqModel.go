@@ -13,6 +13,8 @@ package model
 type FrndReqList struct {
 	UUID string `gorm:"type:varchar(100);unique_index;not null" json:"UUID" bson:"UUID"`
 	FrndReq []FrndReqShort `json:"FrndReq" bson:"FrndReq"`
+	FrndReqPending []FrndReqShort `json:"FrndReqPending" bson:"FrndReqPending"`
+
 }
 
 type FrndReqShort struct {

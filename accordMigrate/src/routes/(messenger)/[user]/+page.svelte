@@ -7,12 +7,20 @@
 	import Peoples from '$lib/Peoples/index.svelte';
 	import Messages from '$lib/Messages/index.svelte';
 	import Chat from '$lib/Chats/index.svelte';
+	import { page } from '$app/stores'
+	let PathUrl : string=$page.url.pathname.slice(1)
+	console.log("$page.url.searchParams.get('ref')",PathUrl)
 
-	import { showPeopleList } from '$lib/store2';
+	import {showPeopleList, UserProData, ActiveFrndData, UserActive} from '$lib/store2';
 	let showPeopleListValue: number;
 	// let ChatOrDockValue: number;
 	// export let FriendData: any;
 	// export let FriendMsg: any;
+
+	export let data: PageData;
+
+	let { Userdata, Frnddata } = data;
+	UserProData.update((d) => (d = Userdata));
     let MyPro= {
 			Name: "Sk Shahriar Ahmed Raka",
 			Userid: 'skraka',
@@ -582,7 +590,22 @@
 			nickname: 'ssar'
 		}
 	};
-	
+
+	async function GetFrndData(PathUrl:string){
+		await fetch(`/api/frienddata/`,{
+			method:"POST",
+			mode: 'no-cors',
+			body: JSON.stringify({"UserID":PathUrl})
+		}).then((res)=>{
+			return res.json()
+		}).then((d)=>{
+			console.log(" post Frnddata ",d)
+			Frnddata=d
+		})
+		ActiveFrndData.set(Frnddata)
+		UserActive.set(Frnddata.UserID)
+	}
+	$: GetFrndData(PathUrl)
 	// import { io } from "socket.io-client";
 
 	// const socket = io("ws://127.0.0.1:8888/socketio/");
@@ -594,7 +617,7 @@
 
 <div class=" flex h-screen w-full flex-col flex-nowrap overflow-hidden bg-stone-600 ">
 	<!-- nav bar -->
-	<NavBar MyPro={FriendData} />
+	<NavBar FrndPro={Frnddata} />
 
 	<!-- message and people -->
 	<div class="  flex h-full  w-full flex-row overflow-hidden bg-[#2f3136]">

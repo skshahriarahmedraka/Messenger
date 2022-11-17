@@ -544,7 +544,7 @@
 
 	<div class=" flex h-screen w-full flex-col   flex-nowrap overflow-hidden bg-[#36393f] ">
 		<!-- nav bar -->
-		<NavBar  />
+		<NavBar FrndPro={Userdata} />
 		
 			<!-- <div class="flex flex-row h-screen w-full transition-all duration-500 ease-linear ">
 		<slot />

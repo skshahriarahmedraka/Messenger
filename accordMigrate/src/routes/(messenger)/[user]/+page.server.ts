@@ -2,7 +2,7 @@ import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import * as jwt from 'jsonwebtoken';
 
-export const load: PageServerLoad = async ({ cookies, locals }) => {
+export const load: PageServerLoad = async ({ cookies, locals, params }) => {
 	// redirect user if not logged in
 	if (!locals.user.Authenticated) {
 		console.log(
@@ -32,7 +32,6 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 		Coin: number;
 		TransactionHistory: string[];
 		ContactAdminMsg: string[];
-		GroupListID: string[];
 		UserBio: string;
 		FrinedList: { UserID: string; CollectionID: string }[];
 		GroupList: { GroupID: string; CollectionID: string }[];
@@ -56,7 +55,53 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 		Coin: 0 as number,
 		TransactionHistory: [] as string[],
 		ContactAdminMsg: [] as string[],
-		GroupListID: [] as string[],
+		UserBio: '' as string,
+		FrinedList: [] as { UserID: string; CollectionID: string }[],
+		GroupList: [] as { GroupID: string; CollectionID: string }[],
+		City: '' as string,
+		Address: '' as string,
+		Country: '' as string,
+		ZipCode: '' as string
+	};
+	let Frnddata: {
+		UUID: string;
+		UserID: string;
+
+		Email: string;
+		Password: string;
+		UserName: string;
+		Mobile: string;
+		BirthDate: string;
+
+		ProfileImg: string;
+		BannerImg: string;
+		Accounttype: string;
+		Coin: number;
+		TransactionHistory: string[];
+		ContactAdminMsg: string[];
+		UserBio: string;
+		FrinedList: { UserID: string; CollectionID: string }[];
+		GroupList: { GroupID: string; CollectionID: string }[];
+		City: string;
+		Address: string;
+		Country: string;
+		ZipCode: string;
+	} = {
+		UUID: '' as string,
+		UserID: '' as string,
+
+		Email: '' as string,
+		Password: '' as string,
+		UserName: '' as string,
+		Mobile: '' as string,
+		BirthDate: '' as string,
+
+		ProfileImg: '' as string,
+		BannerImg: '' as string,
+		Accounttype: '' as string,
+		Coin: 0 as number,
+		TransactionHistory: [] as string[],
+		ContactAdminMsg: [] as string[],
 		UserBio: '' as string,
 		FrinedList: [] as { UserID: string; CollectionID: string }[],
 		GroupList: [] as { GroupID: string; CollectionID: string }[],
@@ -95,19 +140,32 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 		// console.log("🚀 ~ file: +layout.server.ts ~ line 17 ~ Userdata", Userdata)
 
 
-		await fetch(`http://${process.env.GO_HOST}/user/frndlist/${(decoded as tokeninterface).UUID}`,{
+		// await fetch(`http://${process.env.GO_HOST}/user/frndlist/${(decoded as tokeninterface).UUID}`,{
+		// 	mode: 'no-cors'
+		// }).then((res)=>{
+		// 	return res.json()
+		// }).then((d)=>{
+		// 	FriendList=d
+		// })
+
+
+		await fetch(`http://${process.env.GO_HOST}/user/frienddata/${params.user}`,{
 			mode: 'no-cors'
 		}).then((res)=>{
 			return res.json()
 		}).then((d)=>{
-			FriendList=d
-		})	
+			Frnddata=d
+		})
+
 	}
+
+
 	
-	console.log("🚀 ~ file: +page.server.ts ~ line 104 ~ awaitfetch ~ FriendList", FriendList)
+	// console.log("🚀 ~ file: +page.server.ts ~ line 104 ~ awaitfetch ~ FriendList", FriendList)
 
 
 	return {
-		Userdata
+		Userdata,
+		Frnddata
 	};
 };

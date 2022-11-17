@@ -95,6 +95,9 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 		// const Userdata=GetUserData(decoded)
 		// console.log("🚀 ~ file: +layout.server.ts ~ line 17 ~ Userdata", Userdata)
 	}
+
+
+	
 	console.log("🚀 ~ file: +page.server.ts ~ line 99 ~ constload:PageServerLoad= ~ Userdata", Userdata)
 	return {
 		Userdata

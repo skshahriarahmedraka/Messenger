@@ -26,11 +26,15 @@ func Router(r *mux.Router) {
 
 	r.HandleFunc("/user/{UUID}", H.UserProData).Methods("GET")//complete
 	r.HandleFunc("/user/frndsuggestion", H.FrndSuggestion).Methods("POST")// complete
-	r.HandleFunc("/user/sendfrndreq", H.SendFriendReq).Methods("POST")// incomplete
+	r.HandleFunc("/user/sendfrndreq", H.SendFriendReq).Methods("POST")// not complete
 	r.HandleFunc("/user/userfriendreqlist/{UUID}", H.UserFriendReqList).Methods("GET")// complete
+	r.HandleFunc("/user/userfriendreqpendinglist/{UUID}", H.UserFriendReqPendingList).Methods("GET")// not complete
 
-	r.HandleFunc("/user/useracceptfrndreq/", H.UserAcceptFrndReq).Methods("POST")// incomplete : have to check
+	r.HandleFunc("/user/useracceptfrndreq/", H.UserAcceptFrndReq).Methods("POST")// complete : have to check
 	r.HandleFunc("/user/frndlist/{UUID}", H.FrndList).Methods("GET")// incomplete : get your friend list
+	r.HandleFunc("/user/chatfrndlist", H.ChatFrndList).Methods("POST")// incomplete : get your friend list
+	r.HandleFunc("/user/frienddata/{UUID}", H.UserFrndData).Methods("GET")// incomplete : get your friend list
+
 
 	
 	// r.HandleFunc("/{UID}/profile", H.UserPublicProfile).Methods("GET")

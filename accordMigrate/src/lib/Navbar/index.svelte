@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { showPeopleList } from '$lib/store2';
+	import {ActiveFrndData, showPeopleList} from '$lib/store2';
 	import Hash from './profileImg/hash.svelte';
 	import AudioCall from './profileImg/audioCall.svelte';
 	import Circle from './profileImg/circle.svelte';
@@ -14,6 +14,49 @@
 	import { UserProData } from '$lib/store2';
 	import Person from '$lib/icons/person.svelte';
 
+	export let  FrndPro: {
+		UUID: string;
+		UserID: string;
+
+		Email: string;
+		Password: string;
+		UserName: string;
+		Mobile: string;
+		BirthDate: string;
+
+		ProfileImg: string;
+		BannerImg: string;
+		Accounttype: string;
+		Coin: number;
+		TransactionHistory: string[];
+		ContactAdminMsg: string[];
+		UserBio: string;
+		FrinedList: { UserID: string; CollectionID: string }[];
+		GroupList: { GroupID: string; CollectionID: string }[];
+		City: string;
+		Address: string;
+		Country: string;
+		ZipCode: string;
+	}
+	// FrndPro= $ActiveFrndData
+
+	// async function GetFrndData(PathUrl:string){
+	// 	await fetch(`/api/frienddata/`,{
+	// 		method:"POST",
+	// 		mode: 'no-cors',
+	// 		body: JSON.stringify({"UserID":PathUrl})
+	// 	}).then((res)=>{
+	// 		return res.json()
+	// 	}).then((d)=>{
+	// 		console.log(" post Frnddata ",d)
+	// 		FrndPro=d
+	// 	})
+	// 	// return Frnddata
+	// }
+	//  GetFrndData("PathUrl")
+	// ActiveFrndData.subscribe((n)=>{
+	// 	FrndPro=n
+	// })
 	let showPeopleList1: number;
 	showPeopleList.subscribe((val) => {
 		showPeopleList1 = val;
@@ -39,7 +82,7 @@
 		class="mx-2 flex cursor-pointer flex-row items-center space-x-1 fill-slate-400 text-slate-400 transition-all duration-200 ease-linear hover:fill-white hover:text-white"
 	>
 		<Attherate class="h-6 w-6 " />
-		<p class="my-3 text-lg font-semibold ">Gaming Chat</p>
+		<p class="my-3 text-lg font-semibold ">{$ActiveFrndData.UserID}</p>
 	</div>
 	<!-- gap -->
 	<!-- search -->
@@ -110,11 +153,11 @@
 	</div>
 	<div class="flex flex-col ">
 		<div class="mr-2 mt-1  w-60 truncate text-right  font-medium text-gray-300 ">
-			Sk Shahriar Ahmed Raka
+			{$ActiveFrndData.UserName}
 		</div>
-		{#if true}
+		{#if true }
 			<div class="  mr-2 place-content-end truncate text-right text-sm text-[#6e6a5c] ">
-				Active 1 hour ago
+				Active few hour ago
 			</div>
 		{:else}
 			<div class=" mr-2 flex flex-row  place-content-end items-center gap-1  ">
@@ -124,13 +167,13 @@
 		{/if}
 	</div>
 	<div class=" my-1 mx-2 h-10 w-10">
-		{#if $UserProData.ProfileImg === ''}
+		{#if $ActiveFrndData.ProfileImg === ''}
 			<Person
 				class="h-10 w-10  cursor-pointer rounded-2xl border-2  border-gray-400 fill-gray-400 p-2    transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
 			/>
 		{:else}
 			<img
-				src={$UserProData.ProfileImg}
+				src={FrndPro.ProfileImg}
 				alt="ProfileImg"
 				class=" h-full  w-full cursor-pointer rounded-2xl   object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md "
 			/>

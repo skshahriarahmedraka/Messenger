@@ -67,7 +67,7 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 	GroupList: [] as { GroupID: string; CollectionID: string }[],
 	ContactAdminMsg: [] as string[]
 	} 
-	let FrndReqList :{ UUID: string,
+	let FrndList :{ UUID: string,
         UserID : string,
         ProfileImg: string,
 		UserBio: string,
@@ -76,18 +76,8 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 	UserID : string,
 	ProfileImg: string,
 	UserBio: string,
+
 	UserName: string,
-}[]
-let FrndReqListPending :{ UUID: string,
-	UserID : string,
-	ProfileImg: string,
-	UserBio: string,
-	UserName: string,
-}[]= []  as { UUID: string,
-UserID : string,
-ProfileImg: string,
-UserBio: string,
-UserName: string,
 }[]
 	if (MyCookie != '') {
 		interface tokeninterface {
@@ -119,38 +109,23 @@ UserName: string,
 			});
 
 			
-				await fetch(`http://localhost:8888/user/userfriendreqlist/${(decoded as tokeninterface).UUID}`, {
-					method: 'GET',
-					// mode: 'no-cors',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					
-				})
-					.then((res) => {
-						return res.json();
-					})
-					.then((d) => {
-						FrndReqList= d;
-						console.log('🚀 ~ file: index.svelte ~ line 296 ~ .then ~ FrndSuggList', FrndReqList);
-					})
-					.catch((err) => {
-						console.log(err);
-					});
-				
-					// FrndReqListPending
-
-					await fetch(`http://${process.env.GO_HOST}/user/userfriendreqpendinglist/${(decoded as tokeninterface).UUID}`, {
-			// credentials: 'same-origin',
-			method: 'GET',
-			mode: 'no-cors',
-			headers: new Headers({ 'Content-Type': 'application/json', Accept: 'application/json' }),
-
+	await fetch(`http://${process.env.GO_HOST}/user/frndlist/${(decoded as tokeninterface).UUID}`, {
+		method: 'GET',
+		mode: 'no-cors',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		
+	})
+		.then((res) => {
+			return res.json();
 		})
-			.then((response) => response.json())
-			.then((data) => {
-                FrndReqListPending=data
-                console.log("🚀 ~ file: +page.server.ts ~ line 153 ~ .then ~ FrndReqListPending", FrndReqListPending)
+		.then((d) => {
+			FrndList= d;
+			console.log('🚀 ~ file: index.svelte ~ line 296 ~ .then ~ FrndSuggList', FrndList);
+		})
+		.catch((err) => {
+			console.log(err);
 		});
 			
 		// const Userdata=GetUserData(decoded)
@@ -179,8 +154,7 @@ UserName: string,
 	
 	  return {
 		  Userdata,
-		  FrndReqList,
-		  FrndReqListPending
+		  FrndList
 		//   UserReqList
 	  };
 };

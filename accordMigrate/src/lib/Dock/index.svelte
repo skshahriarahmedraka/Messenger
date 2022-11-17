@@ -10,6 +10,9 @@
 	import Wallet3 from '$lib/icons/wallet3.svelte';
 	import Wallet1 from '$lib/icons/wallet1.svelte';
 	import FriendReq from '$lib/icons/FriendReq.svelte';
+	import Frnds from '$lib/icons/Frnds.svelte';
+	import Addfriends from '$lib/icons/addfriends.svelte';
+	import AddManyFrnd from '$lib/icons/addManyFrnd.svelte';
 
 	export let ServerList: any;
 	let ChatOrDockHelper: number;
@@ -161,25 +164,46 @@
 	</button>
 	<!-- friend Req -->
 	<button
-			on:click={() => {
-				goto('/friendreq');
-			}}
-			class="  group flex w-full  flex-row   items-center justify-center py-[5px]  transition-all duration-150 ease-linear hover:rounded-lg"
-		>
-			<div class=" relative flex items-center justify-center">
-				<!-- <svg  class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 95.1v320c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64v-320c0-35.35 28.65-63.1 64-63.1h320C419.3 31.1 448 60.65 448 95.1z"/></svg> -->
-				<div
-					in:scale={{ duration: 200 }}
-					out:scale
-					class="absolute -left-[58px] bg-transparent  transition-all duration-200 ease-linear group-hover:bg-white    {ActiveServer ===
-					'create'
-						? 'rounded-md h-[50px] w-[50px]'
-						: 'rounded-xl h-[10px] w-[50px] group-hover:rounded-md group-hover:h-[30px] group-hover:w-[50px] '}"
-				/>
-				<FriendReq class="h-[50px] w-[50px] p-1   " />
-				<!-- <Wallet3 class="h-[50px] w-[50px] p-1" /> -->
-			</div>
-		</button>
+		on:click={() => {
+			goto('/friendreq');
+		}}
+		class="  group flex w-full  flex-row   items-center justify-center py-[5px]  transition-all duration-150 ease-linear hover:rounded-lg"
+	>
+		<div class=" relative flex items-center justify-center">
+			<!-- <svg  class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 95.1v320c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64v-320c0-35.35 28.65-63.1 64-63.1h320C419.3 31.1 448 60.65 448 95.1z"/></svg> -->
+			<div
+				in:scale={{ duration: 200 }}
+				out:scale
+				class="absolute -left-[58px] bg-transparent  transition-all duration-200 ease-linear group-hover:bg-white    {ActiveServer ===
+				'create'
+					? 'rounded-md h-[50px] w-[50px]'
+					: 'rounded-xl h-[10px] w-[50px] group-hover:rounded-md group-hover:h-[30px] group-hover:w-[50px] '}"
+			/>
+			<AddManyFrnd class="h-[50px] w-[50px] p-1   " />
+			<!-- <Wallet3 class="h-[50px] w-[50px] p-1" /> -->
+		</div>
+	</button>
+	<!-- friend List -->
+	<button
+		on:click={() => {
+			goto('/friendlist');
+		}}
+		class="  group flex w-full  flex-row   items-center justify-center py-[5px]  transition-all duration-150 ease-linear hover:rounded-lg"
+	>
+		<div class=" relative flex items-center justify-center">
+			<!-- <svg  class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 95.1v320c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64v-320c0-35.35 28.65-63.1 64-63.1h320C419.3 31.1 448 60.65 448 95.1z"/></svg> -->
+			<div
+				in:scale={{ duration: 200 }}
+				out:scale
+				class="absolute -left-[58px] bg-transparent  transition-all duration-200 ease-linear group-hover:bg-white    {ActiveServer ===
+				'create'
+					? 'rounded-md h-[50px] w-[50px]'
+					: 'rounded-xl h-[10px] w-[50px] group-hover:rounded-md group-hover:h-[30px] group-hover:w-[50px] '}"
+			/>
+			<Frnds class="h-[50px] w-[50px] p-1   " />
+			<!-- <Wallet3 class="h-[50px] w-[50px] p-1" /> -->
+		</div>
+	</button>
 	<!-- AdminMoneyManagement -->
 	{#if $UserProData.Accounttype === 'admin'}
 		<!-- content here -->

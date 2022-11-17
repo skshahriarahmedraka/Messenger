@@ -38,9 +38,9 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	
+
 	user.ID = primitive.NewObjectID()
-	user.UUID =uuid.New().String()
+	user.UUID = uuid.New().String()
 	user.ProfileImg = ""
 	user.BannerImg = ""
 	user.Coin = 0.0
@@ -50,33 +50,32 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 	} else {
 		user.Accounttype = "normal"
 	}
-	user.TransactionHistory= []string{}
-	
+	user.TransactionHistory = []string{}
 
-	user.FrinedList = []model.FriendStruct{}
+	user.FriendList = []model.FriendStruct{}
 	user.GroupList = []model.GroupStruct{}
-	user.City=""
-	user.Address=""
-	user.Country=""
-	user.ZipCode=""
-	user.UserBio=""
+	user.City = ""
+	user.Address = ""
+	user.Country = ""
+	user.ZipCode = ""
+	user.UserBio = ""
 	// x := time.Now().In(location)
-	dt,_:= time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
-	user.AccountCreatedTime =primitive.NewDateTimeFromTime(dt)
-    fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 60 ~ func ~ user.AccountCreatedTime : ", user.AccountCreatedTime)
-    // fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 60 ~ func ~ user.AccountCreatedTime : ", user.AccountCreatedTime)
+	dt, _ := time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+	user.AccountCreatedTime = primitive.NewDateTimeFromTime(dt)
+	fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 60 ~ func ~ user.AccountCreatedTime : ", user.AccountCreatedTime)
+	// fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 60 ~ func ~ user.AccountCreatedTime : ", user.AccountCreatedTime)
 	// location,_ := time.LoadLocation("Europe/Rome")
-    // x:= user.AccountCreatedTime.In(location)
-    // fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 62 ~ func ~ x : ", x)
+	// x:= user.AccountCreatedTime.In(location)
+	// fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 62 ~ func ~ x : ", x)
 	fmt.Println("🚀 ~ file: login.go ~ line 44 ~ func ~ user : ", user)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
 	defer cancel()
-	
+
 	// SEARCH EMAIL
 	count, err := H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).CountDocuments(ctx, bson.M{"Email": user.Email})
 	if err != nil {
-    logerror.ERROR("🚀 ~ file: SveltekitRegister.go ~ line 56 ~ func ~ err : ", err)
+		logerror.ERROR("🚀 ~ file: SveltekitRegister.go ~ line 56 ~ func ~ err : ", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		resError.ErrorRes = "mongodb countDocument email connection error"
 		_ = json.NewEncoder(w).Encode(resError)
@@ -85,14 +84,14 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 	if count > 0 {
 		w.WriteHeader(http.StatusBadRequest)
 		resError.ErrorRes = "User already registered"
-        fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 65 ~ func ~ resError.ErrorRes  : ", resError.ErrorRes )
+		fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 65 ~ func ~ resError.ErrorRes  : ", resError.ErrorRes)
 		_ = json.NewEncoder(w).Encode(resError)
 		return
 	}
 	//MOBILE
 	count, err = H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).CountDocuments(ctx, bson.M{"Mobile": user.Mobile})
 	if err != nil {
-    logerror.ERROR("🚀 ~ file: SveltekitRegister.go ~ line 72 ~ func ~ err : ", err)
+		logerror.ERROR("🚀 ~ file: SveltekitRegister.go ~ line 72 ~ func ~ err : ", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		resError.ErrorRes = "mongodb countDocument mobile connection error"
 		_ = json.NewEncoder(w).Encode(resError)
@@ -103,7 +102,7 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 		// c.JSON(http.StatusBadRequest, gin.H{"error": "mobile already in use"})
 		w.WriteHeader(http.StatusBadRequest)
 		resError.ErrorRes = "mobile number already registered"
-        fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 83 ~ func ~ resError.ErrorRes : ", resError.ErrorRes)
+		fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 83 ~ func ~ resError.ErrorRes : ", resError.ErrorRes)
 		_ = json.NewEncoder(w).Encode(resError)
 		return
 	}
@@ -132,7 +131,7 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 		return
 	}
 
-// CREARTE MONEY MONGODB COLLECTION
+	// CREARTE MONEY MONGODB COLLECTION
 	var uMoney model.UserMoney
 	uMoney.UUID = user.UUID
 	uMoney.Coin = 0.0
@@ -149,13 +148,14 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 		// return
 	}
 
-	// CREATE FRIEND REQUEST COLLECTION 
+	// CREATE FRIEND REQUEST COLLECTION
 	var FrndReqList model.FrndReqList
 	FrndReqList.UUID = user.UUID
 
-	FrndReqList.FrndReq= []model.FrndReqShort{}
+	FrndReqList.FrndReq = []model.FrndReqShort{}
+	FrndReqList.FrndReqPending = []model.FrndReqShort{}
 	res, err = H.MongoUser.Collection(os.Getenv("MONGO_FRND_REQ_COL")).InsertOne(ctx, FrndReqList)
-    fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 158 ~ func ~ res : ", res)
+	fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 158 ~ func ~ res : ", res)
 	if err != nil {
 		logerror.ERROR("🚀 ~ file: SveltekitRegister.go ~ line 160 ~ func ~ err :  ", err)
 		w.WriteHeader(http.StatusInternalServerError)
@@ -165,6 +165,25 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 		// c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		// return
 	}
+	// CREATE CHAT SHORT COL
+	var UserChatFrndList model.UserChatFrndList
+	UserChatFrndList.ID = primitive.NewObjectID()
+	UserChatFrndList.UUID = user.UUID
+
+	UserChatFrndList.FrndChatList = []model.FrndChatShort{}
+
+	res, err = H.MongoUser.Collection(os.Getenv("MONGO_FRND_CHATSHORT_COL")).InsertOne(ctx, UserChatFrndList)
+	if err != nil {
+		logerror.ERROR("🚀UserChatFrndList ~ file: SveltekitRegister.go ~ line 160 ~ func ~ err :  ", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		resError.ErrorRes = "UserChatFrndList error"
+		_ = json.NewEncoder(w).Encode(resError)
+		return
+		// c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		// return
+	}
+	fmt.Println("🚀 ~ file: SveltekitRegister.go ~ line 176 ~ func ~ res : ", res)
+
 	// expirationTime := time.Now().Add(time.Hour * 1000)
 	// myClaim := &model.Claims{
 	// 	Username:   user.Username,
@@ -201,11 +220,11 @@ func (H *DatabaseCollections) SveltekitRegister(w http.ResponseWriter, r *http.R
 	expirationTime := time.Now().Add(time.Hour * 10000)
 
 	claims := &model.Claims{
-		UserName: user.UserName,
-		Email:    user.Email,
-		UserID:   user.UserID,
-		UUID:     user.UUID,
-		Accounttype : user.Accounttype,
+		UserName:    user.UserName,
+		Email:       user.Email,
+		UserID:      user.UserID,
+		UUID:        user.UUID,
+		Accounttype: user.Accounttype,
 		// Username: credentials.Username,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expirationTime.Unix(),

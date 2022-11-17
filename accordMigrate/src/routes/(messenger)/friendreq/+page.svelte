@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Accord from '$lib/Dock/icons/accord.svelte';
 
 	// your script goes here
@@ -10,51 +11,15 @@
 	import type { PageData } from './$types';
 	export let data: PageData;
 
-	let { Userdata,FrndReqList } = data;
+	let { Userdata,FrndReqList,FrndReqListPending } = data;
 	console.log('🚀 ~ file: +page.svelte ~ line 10 ~ Userdata', Userdata);
 
 	UserProData.update((d) => (d = Userdata));
 
-	let FrndSuggList: {
-		UUID: string;
-		UserID: string;
-		UserName: string;
-		ProfileImg: string;
-		UserBio: string;
-	}[] = [] as {
-		UUID: string;
-		UserID: string;
-		UserName: string;
-		ProfileImg: string;
-		UserBio: string;
-	}[];
-
+	
 	
 	
 
-	async function FetchSuggestionList() {
-		await fetch(`http://localhost:8888/user/frndsuggestion`, {
-			method: 'POST',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				UUID: $UserProData.UUID
-			})
-		})
-			.then((res) => {
-				return res.json();
-			})
-			.then((d) => {
-				FrndSuggList = d;
-				console.log('🚀 ~ file: index.svelte ~ line 296 ~ .then ~ FrndSuggList', FrndSuggList);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}
-	FetchSuggestionList();
 	
 	
 	async function AcceptFrndReq(requestor : string) {
@@ -79,8 +44,10 @@
 			.catch((err) => {
 				console.log(err);
 			});
-			FetchSuggestionList();
+			//FetchSuggestionList();
 	}
+
+
 	// FetchSuggestionList();
 
 	
@@ -176,13 +143,13 @@
 
 <!-- markup (zero or more items) goes here -->
 <div
-	class=" flex h-screen   w-full overflow-hidden bg-[#36393f] md:flex-col md:overflow-y-scroll lg:flex-row xl:flex-col  "
+	class=" flex h-screen   w-full overflow-y-scroll bg-[#36393f] md:flex-col md:overflow-y-scroll lg:flex-row xl:flex-col  "
 >
 	<!-- FRIEND req -->
 	<div class="flex w-[80%]  flex-col gap-4 p-5  transition-all  duration-200 ease-linear">
 		<p class=" text-3xl text-white ">All Friend Request :</p>
 		<div class="flex flex-row flex-wrap justify-evenly">
-			{#if FrndReqList.length > 0}
+			{#if FrndReqList.length != 0}
 				<!-- content here -->
 				{#each FrndReqList as i}
 					<!-- {#each Array.from(Array(10 + 1).keys()).slice(1) as i} -->
@@ -209,7 +176,7 @@
 						</p>
 						<div class="my-2 flex flex-col items-center justify-center     gap-2 text-base">
 							<button
-							on:click={()=>{AcceptFrndReq(i.UUID)}}
+							on:click={()=>{AcceptFrndReq(i.UUID) ; goto("/") }}
 								class="w-[90%] rounded-md bg-green-400 px-2 py-1 font-semibold text-slate-800 hover:bg-green-600 active:bg-green-700"
 								>Accept</button
 							>
@@ -225,21 +192,17 @@
 			{/if}
 		</div>
 	</div>
-	<!-- People you may know -->
-	<div class="flex w-[80%] flex-col gap-4 p-5  transition-all  duration-200 ease-linear">
-		<p class=" w-full text-3xl text-white ">People you may know</p>
+	<!-- FRIEND req Pending -->
+	
+	<div class="flex w-[80%]  flex-col gap-4 p-5  transition-all  duration-200 ease-linear">
+		<p class=" text-3xl text-white ">All Friend Request Pending :</p>
 		<div class="flex flex-row flex-wrap justify-evenly">
-			{#if FrndSuggList.length > 0}
-				<!-- content here -->
-				{#each FrndSuggList as i}
-					<!-- {#each Array.from(Array(10 + 1).keys()).slice(1) as i} -->
+			{#if FrndReqListPending.length != 0}
+				{#each FrndReqListPending as i}
 					<div class=" flex h-[350px] w-[200px]  flex-col    rounded-lg bg-gray-600 bg-opacity-80 ">
-						<!--  -->
 						{#if i.ProfileImg.trim() === ''}
-							<!-- content here -->
 							<Accord class="h-[60%] w-full self-center rounded-t-lg bg-slate-600 object-cover" />
 						{:else}
-							<!-- else content here -->
 							<img
 								src={i.ProfileImg}
 								alt="UserImage"
@@ -252,15 +215,15 @@
 				 font-light text-gray-300 "
 						>
 							{i['UserBio'] ? i['UserBio'] : 'No Bio'}
-							<!-- Work at Google INCWork at Google INCWork at Google INC -->
 						</p>
 						<div class="my-2 flex flex-col items-center justify-center     gap-2 text-base">
 							<button
-								class="w-[90%] rounded-md bg-[#3982e4] px-2 py-1 font-semibold text-slate-200 hover:bg-blue-600 active:bg-blue-700"
-								>Add Friend</button
+						
+								class="w-[90%] rounded-md bg-yellow-400 px-2 py-1 font-semibold text-slate-800 hover:bg-yellow-600 active:bg-yellow-700">
+								Pending</button
 							>
 							<button
-								class="w-[90%]  rounded-md border-0 bg-[#3a3b3c] px-2 py-1  text-slate-200 hover:bg-gray-700 active:bg-gray-600"
+								class="w-[90%]  rounded-md border-0 bg-[#3a3b3c] px-2 py-1 text-white hover:bg-gray-700 active:bg-gray-600"
 								>Remove</button
 							>
 						</div>
@@ -271,4 +234,6 @@
 			{/if}
 		</div>
 	</div>
+	<!-- People you may know -->
+	
 </div>

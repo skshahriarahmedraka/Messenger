@@ -16,9 +16,9 @@ const AccordImg = new URL('../lib/icons/accord.svg', import.meta.url).href
 
 </script>
 
-<svelte:head>
+<!-- <svelte:head>
 	<link rel="icon" href="{AccordImg}">
-</svelte:head>
+</svelte:head> -->
 
 
 {#if loadingState}

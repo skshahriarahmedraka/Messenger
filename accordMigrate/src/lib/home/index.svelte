@@ -1,38 +1,5 @@
 <script lang="ts">
-	// let suggestedFrineds = [
-	// 	{
-	// 		name: 'md abdullah ',
-	// 		bio: 'work at Google ',
-	// 		img: 'https://res.cloudinary.com/dqo0ssnti/image/upload/v1660151599/samples/about_dmmlnj.jpg'
-	// 	},
-	// 	{
-	// 		name: '',
-	// 		bio: '',
-	// 		img: 'https://res.cloudinary.com/dqo0ssnti/image/upload/v1660151599/samples/about_dmmlnj.jpg'
-	// 	}
-	// ];
-	// import Moji from '$lib/profilepic/moji2.jpg';
-	// import Rafi from '$lib/profilepic/r4.jpg';
-	// import Ekbal from '$lib/profilepic/e2.jpg';
-	// import Ronok from '$lib/profilepic/r5.jpg';
-	// import Shakil from '$lib/profilepic/s2.jpg';
-	// import Hemel from '$lib/profilepic/h1.jpg';
-	// import Azim from '$lib/profilepic/a1.jpg';
-	// import Rafel from '$lib/profilepic/r2.jpg';
-	// import Rakib from '$lib/profilepic/r.jpg';
-	// import Istique from '$lib/profilepic/ot2.jpg';
-	// import Rakib2 from '$lib/profilepic/r3.jpg';
-	// import Toki from '$lib/profilepic/t.jpg';
-	// import Yurichi from '$lib/profilepic/y.jpeg';
-	// import Rengokhu from '$lib/profilepic/rengokhu.png';
-	// import Vegeta from '$lib/profilepic/s2.png';
-	// import Saad from '$lib/profilepic/s3.jpg';
-	// import Hankok from '$lib/profilepic/h2.jpg';
-	// import Nejuko from '$lib/profilepic/n1.jpg';
-	// import Shanks from '$lib/profilepic/s4.jpg';
-	// import Admiral from '$lib/profilepic/s5.jpg';
-	// import Law from '$lib/profilepic/law.png';
-
+	
 	import { UserProData } from '$lib/store2';
 
 	// let x = [
@@ -286,7 +253,7 @@
 	}[];
 
 	async function FetchSuggestionList() {
-		await fetch(`http://localhost:8888/user/frndsuggestion`, {
+		await fetch(`/api/profile/frndsuggestion`, {
 			method: 'POST',
 			mode: 'cors',
 			headers: {
@@ -300,7 +267,10 @@
 				return res.json();
 			})
 			.then((d) => {
-				FrndSuggList = d;
+				if (d) {
+
+					FrndSuggList = d;
+				}
 				console.log('🚀 ~ file: index.svelte ~ line 296 ~ .then ~ FrndSuggList', FrndSuggList);
 			})
 			.catch((err) => {
@@ -309,35 +279,40 @@
 	}
 	FetchSuggestionList();
 
-	async function SendFriendReq() {
-		await fetch(`http://localhost:8888/user/frndsuggestion`, {
+	async function SendFriendReq(Frnd :string) {
+		await fetch(`http://localhost:8888/user/sendfrndreq`, {
 			method: 'POST',
 			mode: 'cors',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				UUID: $UserProData.UUID
+				UUID: $UserProData.UUID,
+				Frnd: Frnd
 			})
 		})
 			.then((res) => {
 				return res.json();
 			})
 			.then((d) => {
-				FrndSuggList = d;
-				console.log('🚀 ~ file: index.svelte ~ line 296 ~ .then ~ FrndSuggList', FrndSuggList);
+				console.log("🚀 ~ file: index.svelte ~ line 331 ~ .then ~ d", d)
+				// FrndSuggList = d;
+				// console.log('🚀 ~ file: index.svelte ~ line 296 ~ .then ~ FrndSuggList', FrndSuggList);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
+			FetchSuggestionList();
+
 	}
-	SendFriendReq();
+	// SendFriendReq();
 	import Error2 from '$lib/Error/error2.svelte';
 	import { page } from '$app/stores';
 	import Loading from '$lib/Loading/solarAccord.svelte';
 	import { afterUpdate } from 'svelte';
 	import DiscordNoOne from '$lib/icons/discordNoOne.svelte';
 	import Accord from '$lib/Dock/icons/accord.svelte';
+	import { goto } from '$app/navigation';
 
 	let loadingState: boolean = true;
 	afterUpdate(() => {
@@ -377,7 +352,10 @@
 					</p>
 					<div class="my-2 flex flex-col items-center justify-center     gap-2 text-base">
 						<button
-
+							on:click={() => {
+								SendFriendReq(i.UUID);
+								goto("/friendreq")
+							}}
 
 							class="w-[90%] rounded-md bg-[#3982e4] px-2 py-1 font-semibold text-slate-200 hover:bg-blue-600 active:bg-blue-700"
 							>Add Friend</button

@@ -24,7 +24,7 @@ func (H *DatabaseCollections) SendFriendReq(w http.ResponseWriter, r *http.Reque
 	var ReqData model.UserFrndReqSend
 
 	err := json.NewDecoder(r.Body).Decode(&ReqData)
-    fmt.Println("🚀 ~ file: UserSendFriendReq.go ~ line 27 ~ func ~ ReqData : ", ReqData)
+	fmt.Println("🚀 ~ file: UserSendFriendReq.go ~ line 27 ~ func ~ ReqData : ", ReqData)
 	// err := c.BindJSON(&ReqData)
 	if err != nil {
 		logerror.ERROR("🚀 ~ file: UserTokenReqList.go ~ line 30 ~ func ~ err : ", err)
@@ -49,7 +49,7 @@ func (H *DatabaseCollections) SendFriendReq(w http.ResponseWriter, r *http.Reque
 	filter := bson.D{{"UUID", ReqData.UUID}}
 	var result model.AccordUser
 	err = H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).FindOne(ctx, filter).Decode(&result)
-    fmt.Println("🚀 ~ file: UserSendFriendReq.go ~ line 52 ~ func ~ result : ", result)
+	fmt.Println("🚀 ~ file: UserSendFriendReq.go ~ line 52 ~ func ~ result : ", result)
 	if err != nil {
 		logerror.ERROR("🚀 ~ file: adminMoneyManagement.go ~ line 25 ~ func ~ err : ", err)
 		resError.ErrorRes = "mongodb FindOne(ctx, filter) error"
@@ -67,9 +67,8 @@ func (H *DatabaseCollections) SendFriendReq(w http.ResponseWriter, r *http.Reque
 	opts := options.Update().SetUpsert(true)
 	filter = bson.D{{"UUID", ReqData.Frnd}}
 	update := bson.M{"$push": bson.M{
-		"FrndReq": FrndReqShort,
-	},
-	}
+		"FrndReq": FrndReqShort}}
+	fmt.Println("🚀 ~ file: UserSendFriendReq.go ~ line 72 ~ func ~ FrndReqShort : ", FrndReqShort)
 	res, err := H.MongoUser.Collection(os.Getenv("MONGO_FRND_REQ_COL")).UpdateOne(ctx, filter, update, opts)
 
 	fmt.Println("🚀 ~ file: UserRechargeWallet.go ~ line 72 ~ returnfunc ~ res : ", res)
@@ -87,9 +86,45 @@ func (H *DatabaseCollections) SendFriendReq(w http.ResponseWriter, r *http.Reque
 
 	}
 
-	
-
+	// update your own pending request list
+	filter = bson.D{{"UUID", ReqData.Frnd}}
+	// var result model.AccordUser
+	err = H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).FindOne(ctx, filter).Decode(&result)
+    fmt.Println("🚀 ~ file: UserSendFriendReq.go ~ line 93 ~ func ~ result : ", result)
+	if err != nil {
+		logerror.ERROR("🚀 ~ file: adminMoneyManagement.go ~ line 25 ~ func ~ err : ", err)
+		resError.ErrorRes = "mongodb FindOne(ctx, filter) error"
+		w.WriteHeader(http.StatusInternalServerError)
+		err = json.NewEncoder(w).Encode(resError)
+		logerror.ERROR("🚀 ~ file: adminMoneyManagement.go ~ line 30 ~ func ~ err : ", err)
+		return
+	}
+	// var FrndReqShort model.FrndReqShort
+	FrndReqShort.UUID = result.UUID
+	FrndReqShort.UserID = result.UserID
+	FrndReqShort.ProfileImg = result.ProfileImg
+	FrndReqShort.UserBio = result.UserBio
+	FrndReqShort.UserName = result.UserName
+	opts = options.Update().SetUpsert(true)
+	filter = bson.D{{"UUID", ReqData.UUID}}
+	update = bson.M{"$push": bson.M{
+		"FrndReqPending": FrndReqShort}}
+	fmt.Println("🚀 ~ file: UserSendFriendReq.go ~ line 72 ~ func ~ FrndReqShort : ", FrndReqShort)
+	res, err = H.MongoUser.Collection(os.Getenv("MONGO_FRND_REQ_COL")).UpdateOne(ctx, filter, update, opts)
 	// fmt.Println("🚀 ~ file: adminMoneyManagement.go ~ line 45 ~ func ~ results : ", results)
+	if err != nil {
+		logerror.ERROR("🚀 ~ file: UserSendFriendReq.go ~ line 96 ~ func ~ err : ", err)
+		resError.ErrorRes = "mongodb  update one error"
+		w.WriteHeader(http.StatusInternalServerError)
+		err = json.NewEncoder(w).Encode(resError)
+		logerror.ERROR("🚀 ~ file: adminMoneyManagement.go ~ line 30 ~ func ~ err : ", err)
+		return
+		// LogError.LogError("mongodb update one error", err)
+		// c.JSON(http.StatusInternalServerError, gin.H{"error": "mongodb update one error"})
+		// return
+		
+	}
+	fmt.Println("🚀 ~ file: UserSendFriendReq.go ~ line 114 ~ func ~ res : ", res)
 	w.WriteHeader(http.StatusOK)
 	err = json.NewEncoder(w).Encode(&FrndReqShort)
 	logerror.ERROR("🚀 ~ file: adminMoneyManagement.go ~ line 45 ~ func ~ err : ", err)

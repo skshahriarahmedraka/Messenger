@@ -60,10 +60,12 @@ func (H *DatabaseCollections) UserAcceptFrndReq(w http.ResponseWriter, r *http.R
 	newConversation.GroupID = uuid.New().String()
 	newConversation.ConversationID = uuid.New().String()
 	newConversation.Members = append(newConversation.Members, ReqData.Acceptor, ReqData.Requestor)
+	newConversation.Messages=[]model.Message{}
+	newConversation.TotalMessages=0
 	// newConversation.Messages =
 	// newConversation.TotalMessages =
 
-	// opts := options.FindOne().SetProjection(bson.M{"FrinedList":1})
+	// opts := options.FindOne().SetProjection(bson.M{"FriendList":1})
 	res, err := H.MongoUser.Collection(os.Getenv("MONGO_USER_MSG_COL")).InsertOne(ctx, newConversation)
 	if err != nil {
 		logerror.ERROR("🚀 ~ file: UserAcceptFrndReq.go ~ line 69 ~ func ~ err Collection(os.Getenv(MONGO_USER_MSG_COL)).InsertOne(ctx,newConversation): ", err)
@@ -84,7 +86,7 @@ func (H *DatabaseCollections) UserAcceptFrndReq(w http.ResponseWriter, r *http.R
 
 	filter := bson.D{{"UUID", ReqData.Acceptor}}
 	update := bson.M{"$push": bson.M{
-		"FrinedList": FriendStruct,
+		"FriendList": FriendStruct,
 	},
 	}
 	opts := options.Update().SetUpsert(true)
@@ -106,7 +108,7 @@ func (H *DatabaseCollections) UserAcceptFrndReq(w http.ResponseWriter, r *http.R
 
 	filter = bson.D{{"UUID", ReqData.Requestor}}
 	update = bson.M{"$push": bson.M{
-		"FrinedList": FriendStruct,
+		"FriendList": FriendStruct,
 	},
 	}
 	opts = options.Update().SetUpsert(true)
@@ -119,6 +121,10 @@ func (H *DatabaseCollections) UserAcceptFrndReq(w http.ResponseWriter, r *http.R
 		return
 
 	}
+
+
+
+
 	fmt.Println("🚀 ~ file: UserAcceptFrndReq.go ~ line 98 ~ func ~ UpdateRes : ", UpdateRes)
 
 	// PULL OUT THE FRIEND REQUEST
@@ -131,66 +137,116 @@ func (H *DatabaseCollections) UserAcceptFrndReq(w http.ResponseWriter, r *http.R
 
 	UpdateRes, err = H.MongoUser.Collection(os.Getenv("MONGO_FRND_REQ_COL")).UpdateOne(ctx, filter, update, opts)
 	if err != nil {
-    logerror.ERROR("🚀 ~ file: UserAcceptFrndReq.go ~ line 134 ~ func ~ err Collection(os.Getenv(MONGO_FRND_REQ_COL)).UpdateOne(ctx, filter, update, opts) : ", err)
+		logerror.ERROR("🚀ReqData.Acceptor ~ file: UserAcceptFrndReq.go ~ line 134 ~ func ~ err Collection(os.Getenv(MONGO_FRND_REQ_COL)).UpdateOne(ctx, filter, update, opts) : ", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		resError.ErrorRes = "error Collection(os.Getenv(MONGO_FRND_REQ_COL)).UpdateOne(ctx, filter, update, opts)"
 		_ = json.NewEncoder(w).Encode(resError)
 		return
 
 	}
-	fmt.Println("🚀 ~ file: UserAcceptFrndReq.go ~ line 109 ~ func ~ UpdateRes : ", UpdateRes)
+
+	
+	fmt.Println("🚀 ~ file: UserAcceptFrndReq.go ~ line 133 ~ func ~ UpdateRes : ", UpdateRes)
+	filter = bson.D{{"UUID", ReqData.Requestor}}
+	update = bson.M{"$pull": bson.M{
+		"FrndReqPending": bson.M{"UUID": ReqData.Acceptor},
+	},
+	}
+
+	UpdateRes, err = H.MongoUser.Collection(os.Getenv("MONGO_FRND_REQ_COL")).UpdateOne(ctx, filter, update, opts)
+	if err != nil {
+		logerror.ERROR("🚀 ReqData.Requestor ~ file: UserAcceptFrndReq.go ~ line 134 ~ func ~ err Collection(os.Getenv(MONGO_FRND_REQ_COL)).UpdateOne(ctx, filter, update, opts) : ", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		resError.ErrorRes = "error Collection(os.Getenv(MONGO_FRND_REQ_COL)).UpdateOne(ctx, filter, update, opts)"
+		_ = json.NewEncoder(w).Encode(resError)
+		return
+
+	}
+	fmt.Println("🚀ReqData.Requestor ~ file: UserAcceptFrndReq.go ~ line 109 ~ func ~ UpdateRes : ", UpdateRes)
+
+	// GET ACCEPTOR DATA
+	var AcceptorData model.AccordUser
+	err = H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).FindOne(ctx, bson.M{"UUID": ReqData.Acceptor}).Decode(&AcceptorData)
+	if err != nil {
+		logerror.ERROR("🚀 AcceptorData ~ file: UserAcceptFrndReq.go ~ line 134 ~ func ~ err Collection(os.Getenv(MONGO_FRND_REQ_COL)).UpdateOne(ctx, filter, update, opts) : ", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		resError.ErrorRes = "error Collection(os.Getenv(MONGO_FRND_REQ_COL)).UpdateOne(ctx, filter, update, opts)"
+		_ = json.NewEncoder(w).Encode(resError)
+		return
+
+	}
+    fmt.Println("🚀 ~ file: UserAcceptFrndReq.go ~ line 248 ~ func ~ AcceptorData : ", AcceptorData)
+	// GET REQUESOR  DATA
+	var RequestorData model.AccordUser
+	err = H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).FindOne(ctx, bson.M{"UUID": ReqData.Requestor}).Decode(&RequestorData)
+	if err != nil {
+		logerror.ERROR("🚀 RequestorData ~ file: UserAcceptFrndReq.go ~ line 134 ~ func ~ err Collection(os.Getenv(MONGO_FRND_REQ_COL)).UpdateOne(ctx, filter, update, opts) : ", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		resError.ErrorRes = "error Collection(os.Getenv(MONGO_FRND_REQ_COL)).UpdateOne(ctx, filter, update, opts)"
+		_ = json.NewEncoder(w).Encode(resError)
+		return
+
+	}
+    fmt.Println("🚀 ~ file: UserAcceptFrndReq.go ~ line 262 ~ func ~ RequestorData : ", RequestorData)
+
+	
+	// create chat short 
+	var FrndChatShort model.FrndChatShort
+	FrndChatShort.UUID = AcceptorData.UUID
+	FrndChatShort.UserID = AcceptorData.UserID
+	FrndChatShort.UserName = AcceptorData.UserName
+	FrndChatShort.ActiveStatus =false
+	FrndChatShort.UserImg=AcceptorData.ProfileImg
+	FrndChatShort.LastMessage = ""
+	FrndChatShort.LastMessageTime = time.Now().String()
+	FrndChatShort.LastActiveTime = time.Now().String()
+	FrndChatShort.NumberOfNotification=0
+	FrndChatShort.SilentNotification=false
+
+
+	opts2 := options.FindOneAndUpdate().SetUpsert(true)
+
+	filter = bson.D{{"UUID", RequestorData.UUID}}
+	update = bson.M{"$push": bson.M{
+		"FrndChatList": FrndChatShort,
+	},
+	}
+
+	res2 := H.MongoUser.Collection(os.Getenv("MONGO_FRND_CHATSHORT_COL")).FindOneAndUpdate(ctx, filter, update, opts2)
+    fmt.Println("🚀 ~ file: UserAcceptFrndReq.go ~ line 219 ~ func ~ res2 : ", res2)
+	
+	// create chat short 
+	// var FrndChatShort model.FrndChatShort
+	FrndChatShort.UUID = RequestorData.UUID
+	FrndChatShort.UserID = RequestorData.UserID
+	FrndChatShort.UserName = RequestorData.UserName
+	FrndChatShort.ActiveStatus =false
+	FrndChatShort.UserImg=RequestorData.ProfileImg
+	FrndChatShort.LastMessage = ""
+	FrndChatShort.LastMessageTime = time.Now().String()
+	FrndChatShort.LastActiveTime = time.Now().String()
+	FrndChatShort.NumberOfNotification=0
+	FrndChatShort.SilentNotification=false
+
+
+	opts2 = options.FindOneAndUpdate().SetUpsert(true)
+
+	filter = bson.D{{"UUID", AcceptorData.UUID}}
+	update = bson.M{"$push": bson.M{
+		"FrndChatList": FrndChatShort,
+	},
+	}
+
+	res2 = H.MongoUser.Collection(os.Getenv("MONGO_FRND_CHATSHORT_COL")).FindOneAndUpdate(ctx, filter, update, opts2)
+    fmt.Println("🚀 ~ file: UserAcceptFrndReq.go ~ line 219 ~ func ~ res2 : ", res2)
+	
+
+	// opts := options.FindOne().SetProjection(bson.M{"FriendList":1})
+	// res, err := H.MongoUser.Collection(os.Getenv("MONGO_USER_MSG_COL")).InsertOne(ctx, newConversation)
 
 	w.WriteHeader(http.StatusOK)
 	err = json.NewEncoder(w).Encode(&UpdateRes)
 	logerror.ERROR("🚀 ~ file: adminMoneyManagement.go ~ line 45 ~ func ~ err : ", err)
-	// ////////////////////////////////////////////////////////////////////////////
-	// ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
-	// defer cancel()
-	// filter := bson.D{{"UUID", ReqData.Acceptor}}
-	// var result []model.FriendStruct
-	// opts := options.FindOne().SetProjection(bson.M{"FrinedList":1})
-	// err = H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).FindOne(ctx, filter,opts).Decode(&result)
-	// fmt.Println("🚀 ~ file: UserAcceptFrndReq.go ~ line 57 ~ func ~ result : ", result)
 
-	// if err != nil {
-	// 	logerror.ERROR("🚀 ~ file: adminMoneyManagement.go ~ line 25 ~ func ~ err : ", err)
-	// 	resError.ErrorRes = "mongodb FindOne(ctx, filter) error"
-	// 	w.WriteHeader(http.StatusInternalServerError)
-	// 	err = json.NewEncoder(w).Encode(resError)
-	// 	logerror.ERROR("🚀 ~ file: adminMoneyManagement.go ~ line 30 ~ func ~ err : ", err)
-	// 	return
-	// }
-	// var FrndReqShort model.FrndReqShort
-	// FrndReqShort.UUID = result.UUID
-	// FrndReqShort.UserID = result.UserID
-	// FrndReqShort.ProfileImg = result.ProfileImg
-	// FrndReqShort.UserBio = result.UserBio
-	// FrndReqShort.UserName = result.UserName
-	// filter = bson.D{{"UUID", ReqData.Frnd}}
-	// update := bson.M{"$push": bson.M{
-	// 	"FrndReq": FrndReqShort,
-	// },
-	// }
-	// res, err := H.MongoUser.Collection(os.Getenv("MONGO_FRND_REQ_COL")).UpdateOne(ctx, filter, update, opts)
-
-	// fmt.Println("🚀 ~ file: UserRechargeWallet.go ~ line 72 ~ returnfunc ~ res : ", res)
-
-	// if err != nil {
-	// 	logerror.ERROR("🚀 ~ file: UserRechargeWallet.go ~ line 63 ~ func ~ err : ", err)
-	// 	resError.ErrorRes = "mongodb  update one error"
-	// 	w.WriteHeader(http.StatusInternalServerError)
-	// 	err = json.NewEncoder(w).Encode(resError)
-	// 	logerror.ERROR("🚀 ~ file: adminMoneyManagement.go ~ line 30 ~ func ~ err : ", err)
-	// 	return
-	// 	// LogError.LogError("mongodb update one error", err)
-	// 	// c.JSON(http.StatusInternalServerError, gin.H{"error": "mongodb update one error"})
-	// 	// return
-
-	// }
-
-	// fmt.Println("🚀 ~ file: adminMoneyManagement.go ~ line 45 ~ func ~ results : ", results)
-	// w.WriteHeader(http.StatusOK)
-	// err = json.NewEncoder(w).Encode(&FrndReqShort)
-	// logerror.ERROR("🚀 ~ file: adminMoneyManagement.go ~ line 45 ~ func ~ err : ", err)
 
 }
