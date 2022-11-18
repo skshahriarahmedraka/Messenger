@@ -5,7 +5,7 @@
 
 	// import {page} from "$app/stores"
 	// $: console.log("$page.params ",$page.params)
-	import { ChatOrDock ,ActiveFrndChatShort,ActiveConversationID } from '$lib/store2';
+	import {ChatOrDock, ActiveFrndChatShort, ActiveConversationID, ActiveConversationData} from '$lib/store2';
 	import Notification from '$lib/icons/notification.svelte';
 	// import Search from '$lib/Navbar/profileImg/search.svelte';
 	// import Cross from '$lib/Navbar/profileImg/Cross.svelte';
@@ -136,11 +136,11 @@
 
 	//         return res.json()
 
-	// let ConversationID: string ="" as string
+	let ConversationID: string ="" as string
 	// async function GetConversationID(){
 	// 	let req ={
 	// 		ReqUUID : $UserProData.UUID as string ,
-	// 		FrndUUID: $ActiveFrndData.UUID as string
+	// 		FrndUUID: $ActiveFrndChatShort.UUID as string
 	// 	}
 	//
 	// 	console.log("req :" ,req)
@@ -156,6 +156,60 @@
 	// 	})
 	//
 	// }
+	async  function GetConversationID(){
+
+		let req ={
+			ReqUUID : $UserProData.UUID as string ,
+			FrndUUID: $ActiveFrndChatShort.UUID as string
+		}
+		let messageInput = ""
+		let socket = new WebSocket("ws://127.0.0.1:8889/gin/user/getconversationid/")
+
+		console.log("GetConversationID send req ",req)
+
+		socket.onopen = () => {
+			socket.send(JSON.stringify(req))
+		}
+
+		socket.onmessage = (event) => {
+
+			let data = JSON.parse(event.data)
+			console.log("websocket Active ConversationID : ",data)
+			ConversationID=data.ConversationID
+			ActiveConversationID.set(ConversationID)
+			console.log("websocket Get active ConversationID : ",data)
+
+		}
+
+	}
+	// GetConversationID()
+
+	async  function GetAllConversationData(){
+		// let messageInput = ""
+		let socket = new WebSocket("ws://127.0.0.1:8889/gin/user/getconversationmsg")
+
+		let req ={
+			ConversationID : $ActiveConversationID
+		}
+
+		socket.onopen = () => {
+			socket.send(JSON.stringify(req))
+		}
+
+		socket.onmessage = (event) => {
+
+			let data = JSON.parse(event.data)
+			console.log("websocket GetAllConversationData : ",data)
+			ActiveConversationData.set(data)
+			console.log("ActiveConversationData ",$ActiveConversationData)
+
+		}
+		// messengerValue=""
+
+
+	}
+
+
 
 	// GetFrndData()
 </script>
@@ -178,6 +232,8 @@
 						GetFrndData(i.UserID)
 						ActiveFrndChatShort.set(i)
 						console.log("ActiveFrndChatShort" ,$ActiveFrndChatShort)
+						GetConversationID()
+						GetAllConversationData()
 						goto(`/${i.UserID}`)}
 					}
 					class="  m-1   h-16 w-full hover:text-white    {$UserActive === i.UserID

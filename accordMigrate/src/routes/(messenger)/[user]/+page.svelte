@@ -12,6 +12,7 @@
 	console.log("$page.url.searchParams.get('ref')",PathUrl)
 
 	import {showPeopleList, UserProData, ActiveFrndData, UserActive} from '$lib/store2';
+	import {to_number} from "svelte/internal";
 	let showPeopleListValue: number;
 	// let ChatOrDockValue: number;
 	// export let FriendData: any;
@@ -20,6 +21,7 @@
 	export let data: PageData;
 
 	let { Userdata, Frnddata } = data;
+	UserActive.set(Frnddata)
 	UserProData.update((d) => (d = Userdata));
     let MyPro= {
 			Name: "Sk Shahriar Ahmed Raka",
@@ -35,6 +37,21 @@
 			ProfileImage:
 				'https://res.cloudinary.com/dqo0ssnti/image/upload/v1642489744/samples/1007550_t0uscy.jpg'
 		};
+
+	let Message = {
+		SenderID: "" as string ,
+		SenderName : "" as string,
+		Message : "" as string,
+		Reactions : [] as number[],
+		UserReaction : [] as {
+			UserID : ""  ,
+			ReactionID : 0
+		}[] ,
+		Timestamp : "" as string,
+	}
+
+
+
 
 		let FriendMsg = [
 			{

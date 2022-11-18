@@ -1,6 +1,6 @@
 <script lang="ts">
 
-    import {ActiveFrndData,ActiveFrndChatShort, showPeopleList, UserProData, UserActive} from "$lib/store2"
+    import {ActiveFrndData,ActiveFrndChatShort, showPeopleList, UserProData, UserActive,ActiveConversationData, ActiveConversationID} from "$lib/store2"
     import { fade, blur, fly, slide, scale } from "svelte/transition";
 
     import Message from "./message.svelte"
@@ -24,6 +24,7 @@
         },
         Timestamp :"" as string
     }
+
     showPeopleList.subscribe(val=>{
         showPeopleListValue=val 
     }) 
@@ -67,7 +68,8 @@
     }
     function keyHandler(e: { key: string; }){
         if (e.key ==="Enter"){
-            SendMessage()
+            // SendMessage()
+            SendMyMsg()
         }
     }
 
@@ -97,45 +99,119 @@
     }
 
         // GetConversationMsg()
-    var intervalId = window.setInterval(function(){
-        // call your function here
-    }, 5000);
 
-    //     }).then((d)=>{
-    //         console.log(" post getconversationdata ",d)
-    //         ConversationID=d.ConversationID
-    //     })
-    //
-    // }
-    // GetConversationIDData()
-    // let messageInput = ""
-    // let socket = new WebSocket("ws://127.0.0.1:8889/gin/ws")
-    //
-    //
-    //
-    // socket.onopen = () => {
-    //     socket.send(JSON.stringify({"UUID": "hello websocket" }))
-    // }
-    //
-    // socket.onmessage = (event) => {
-    //
-    //     let data = JSON.parse(event.data)
-    //     console.log("websocket data",data)
-    //     // if (checkForId(data)) return
-    //
-    //     // messages.update( msgs => {
-    //     // 	if(Array.isArray(data)) return [...msgs, ...data]
-    //     // 	return [...msgs, data]
-    //     // })
-    // }
-    //
-    // const sendMessage = () => {
-    //     if(messageInput.length){
-    //         socket.send(JSON.stringify({"UUID":"What a message"}))
-    //     }
-    //     messageInput = ""
-    // }
-    // console.log("ActiveConversationID",$ActiveConversationID)
+    let SendMoney={
+        SenderUUID : "" as string,
+        ReceiverUUID : "" as string ,
+        Amount: 0 as number
+    }
+    async function SendMyMsg() {
+        messengerValue.trimStart()
+        messengerValue.trimEnd()
+        if (messengerValue != ""){
+            MessageData.ConversationID=$ActiveFrndChatShort.ConversationID
+            MessageData.SenderID=$UserProData.UserID
+            MessageData.SenderName=$UserProData.UserName
+            MessageData.Message=messengerValue
+            let currentDate = new Date().toJSON().slice(0, 10);
+            console.log(currentDate)
+            MessageData.Timestamp=currentDate
+            // $MessageList=[messengerValue,...$MessageList]
+            // console.log($MessageList)
+            // SendUserMsg()
+        }else {
+            return
+        }
+
+
+        let messageInput = ""
+        let socket = new WebSocket("ws://127.0.0.1:8889/gin/user/sendmessage")
+
+
+
+        socket.onopen = () => {
+            socket.send(JSON.stringify(MessageData))
+        }
+
+        socket.onmessage = (event) => {
+
+            let data = JSON.parse(event.data)
+            console.log("websocket data",data)
+            // if (checkForId(data)) return
+
+            // messages.update( msgs => {
+            // 	if(Array.isArray(data)) return [...msgs, ...data]
+            // 	return [...msgs, data]
+            // })
+        }
+        messengerValue=""
+
+        const sendMessage = () => {
+            if(messageInput.length){
+                socket.send(JSON.stringify({"UUID":"What a message"}))
+            }
+            messageInput = ""
+        }
+        GetAllConversationData()
+        // console.log("ActiveConversationID",$ActiveConversationID)
+    }
+
+    async  function GetAllConversationData(){
+        let messageInput = ""
+        let socket = new WebSocket("ws://127.0.0.1:8889/gin/user/getconversationmsg")
+
+        let req ={
+            ConversationID : $ActiveConversationID
+        }
+
+        socket.onopen = () => {
+            socket.send(JSON.stringify(req))
+        }
+
+        socket.onmessage = (event) => {
+
+            let data = JSON.parse(event.data)
+            console.log("websocket GetAllConversationData : ",data)
+            ActiveConversationData.set(data)
+            console.log("ActiveConversationData ",$ActiveConversationData)
+
+        }
+        messengerValue=""
+
+        const sendMessage = () => {
+            if(messageInput.length){
+                socket.send(JSON.stringify({"UUID":"What a message"}))
+            }
+            messageInput = ""
+        }
+
+    }
+
+
+
+    let Messagex = {
+        SenderID: "" as string ,
+        SenderName : "" as string,
+        Message : "" as string,
+        Reactions : [] as number[],
+        UserReaction : [] as {
+            UserID : ""  ,
+            ReactionID : 0
+        }[] ,
+        Timestamp : "" as string,
+    }
+    let MsgArr : {SenderName: string, Message: string, UserReaction: {UserID: "", ReactionID: 0}[], Reactions: number[], SenderID: string, Timestamp: string}[]
+
+    Messagex.Message="whats up"
+    Messagex.SenderName="Sk shahriar"
+    Messagex.Timestamp="12 july"
+    Messagex.SenderID="skssar"
+    // MsgArr.push(Messagex)
+
+    // var intervalId = window.setInterval(function(){
+    //     // call your function here
+    //     // GetAllConversationData()
+    // }, 5000);
 </script>
 
 <style>
@@ -143,12 +219,23 @@
 </style>
 
 
-<div class=" {showPeopleListValue!=0 ? "w-5/6": "w-full"} h-full overflow-hidden  transition-all duration-200 ease-linear bg-[#36393f] flex flex-col">
+<div class=" {showPeopleListValue!=0 ? "w-5/6": "w-full"} h-full overflow-hidden   bg-[#36393f] flex flex-col">
     <!-- all messaging -->
     <div class=" flex-grow bg-[#36393f]  z-10 flex flex-col-reverse overflow-y-scroll scrol3 ">
-        {#each [...FriendMsg[1]].reverse() as item, index (item.id) }
-                <Message message={item} />
-        {/each}
+        <!--{#each [...FriendMsg[1]].reverse() as item, index (item.id) }-->
+        <!--        <Message message={item} />-->
+        <!--{/each}-->
+    {#if $ActiveConversationData.length !=0 }
+        {#each $ActiveConversationData.reverse() as message }
+        <Message message={message} />
+            {/each}
+        {:else }
+        <p class =""> NO Message found </p>
+        {/if}
+
+    <!--{#each MsgArr as item }-->
+<!--    {/each}-->
+
     </div>
     <!-- write message -->
     <div class="  w-full  py-2 px-1 flex flex-row h-14 place-items-center  ">
@@ -173,10 +260,14 @@
                 <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd"></path></svg>
             </button>
             {#if writeFocus || messengerValue.length>0  } 
-            <button in:scale out:scale  on:click="{SendMessage}" type="submit" class=" w-10  h-10 ?  ">
+            <button in:scale out:scale  on:click="{()=>{
+                SendMyMsg()
+                        GetAllConversationData()
+
+            }}" type="submit" class=" w-10  h-10   ">
                 <svg class=" fill-cyan-600" style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="info"/><g id="icons"><path d="M21.5,11.1l-17.9-9C2.7,1.7,1.7,2.5,2.1,3.4l2.5,6.7L16,12L4.6,13.9l-2.5,6.7c-0.3,0.9,0.6,1.7,1.5,1.2l17.9-9   C22.2,12.5,22.2,11.5,21.5,11.1z" id="send"/></g></svg>
             </button>
             {/if}
         </div>
-        
+
 </div>

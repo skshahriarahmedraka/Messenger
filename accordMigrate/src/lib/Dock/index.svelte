@@ -71,7 +71,7 @@
 
 <!-- dock folder 48x48 and small icons 16x16 -->
 <div
-	class=" no-scrollbar flex   min-w-[72px] max-w-[72px] flex-col items-center  overflow-y-scroll bg-[#202225] transition-all duration-300 ease-linear "
+	class=" no-scrollbar flex   min-w-[72px] max-w-[72px] flex-col items-center  overflow-y-scroll bg-[#202225]  "
 >
 	<!-- company icon button -->
 	<div

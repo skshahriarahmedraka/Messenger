@@ -235,7 +235,7 @@
 </script>
 
 
-	<div class="h-screen w-full transition-all flex flex-row  duration-500 ease-linear ">
+	<div class="h-screen w-full  flex flex-row  ">
 		<Dock ServerList={x2} />
 
 		<slot />

@@ -26,7 +26,7 @@ const AccordImg = new URL('../lib/icons/accord.svg', import.meta.url).href
 {:else if $page.error}
 	<Error2 />
 {:else}
-	<div class="flex flex-row min-h-screen max-h-screen w-screen transition-all duration-500 ease-linear ">
+	<div class="flex flex-row min-h-screen max-h-screen w-screen  ">
 		<slot />
 	</div>
 {/if}

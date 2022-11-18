@@ -54,6 +54,19 @@ const ChatOrDock = writable(0);
 const UserSettingSelect = writable('General');
 const ActiveConversationID = writable('');
 const UserActive = writable('');
+const ActiveConversationData= writable(
+	[{
+		SenderID: "" as string ,
+		SenderName : "" as string,
+		Message : "" as string,
+		Reactions : [] as number[],
+		UserReaction : [] as {
+			UserID : ""  ,
+			ReactionID : 0
+		}[] ,
+		Timestamp : "" as string,
+	}]
+)
 const ActiveFrndChatShort=writable({
 	UUID: "" as string,
 	UserID: "" as string,
@@ -619,4 +632,4 @@ const ActiveFrndData = writable({
 // }
 
 // export {UseFriendList, ServerList,FriendList,count,showPeopleList,ChatOrDock,MessageList}
-export { ChatOrDock, showPeopleList, UserProData, UserSettingSelect,UserActive ,ActiveFrndData ,ActiveFrndChatShort,ActiveConversationID};
+export { ChatOrDock, showPeopleList, UserProData, UserSettingSelect,UserActive ,ActiveFrndData ,ActiveFrndChatShort,ActiveConversationID, ActiveConversationData};

@@ -19,14 +19,37 @@ import Angryx from './reactions/angry.svelte';
 import Party from './reactions/party.svelte';
 import Angrytalk from './reactions/angrytalk.svelte';
 import Fillinglove from './reactions/fillinglove.svelte';
-	export let message: any;
-	import {UserProData} from '$lib/store2';
-
+	export let message: {SenderName: string, Message: string, UserReaction: {UserID: "", ReactionID: 0}[], Reactions: number[], SenderID: string, Timestamp: string};
+	import {UserProData , ActiveFrndData} from '$lib/store2';
+	console.log("my message :" ,message)
 	// var person = { fname: 'Nick', lname: 'Jonas', age: 26 };
 	// for (let x in person) {
 	// 	console.log(x + ': ' + person[x]);
 	// }
+	import Person from '$lib/icons/person.svelte';
 
+
+
+	let Message = {
+		SenderID: "" as string ,
+		SenderName : "" as string,
+		Message : "" as string,
+		Reactions : [] as number[],
+		UserReaction : [] as {
+			UserID : ""  ,
+			ReactionID : 0
+		}[] ,
+		Timestamp : "" as string,
+	}
+	let MsgArr : {SenderName: string, Message: string, UserReaction: {UserID: "", ReactionID: 0}[], Reactions: number[], SenderID: string, Timestamp: string}[]
+
+	Message.Message="whats up"
+	Message.SenderName="Sk shahriar"
+	Message.Timestamp="12 july"
+	Message.SenderID="skssar"
+	// message =Message
+
+	Message=message
 	function ReactCount(react: { [key: string]: number }) {
 		let r = [
 			[0, 0],
@@ -75,49 +98,53 @@ import Fillinglove from './reactions/fillinglove.svelte';
 <!-- {#if true} -->
 <div class=" flex flex-col">
 	<div
-		class=" flex  {message.writer === $UserProData.UserID
+		class=" flex  {Message.SenderID === $UserProData.UserID
 			? 'flex-row-reverse'
 			: 'flex-row'}    mr-20 mt-4 ml-5 max-w-full   overflow-ellipsis text-base text-white "
 	>
 		<!-- <div class="w-[80%] ?"> -->
-		<img src={Ek2} alt="" class=" m-2 h-10 w-10 rounded-2xl " />
+		{#if $ActiveFrndData.ProfileImg != "" }
+		<img src={$ActiveFrndData.ProfileImg} alt="" class=" m-2 h-10 w-10 rounded-2xl " />
+			{:else }
+<!--			<img src={Ek2} alt="" class=" m-2 h-10 w-10 rounded-2xl " />-->
+			<Person
+					class="m-2 h-10 w-10 rounded-2xl cursor-pointer rounded-xl border-2  border-gray-400  fill-gray-400 object-cover p-2    transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md"
+			/>
+			{/if}
 		<div class="flex max-w-[80%] flex-col flex-wrap ">
 			<div
-				class="flex flex-row  {message.writer != $UserProData.UserID ? 'self-start' : 'self-end'} gap-1"
+				class="flex flex-row  {Message.SenderID != $UserProData.UserID ? 'self-start' : 'self-end'} gap-1"
 			>
 				<button class=" h-6 text-[#04b1aa] line-clamp-1 hover:text-[#47faf4]">
-					{message.writerName}
+					{Message.SenderName}
 				</button>
 				<div class=" mt-2 ml-2 text-xs text-[#6e6a5c]">
-					{message.time}
+					{Message.Timestamp}
 				</div>
 			</div>
 			<!-- MESSAGES -->
 			<div
-				class=" text-[15px] {message.writer === $UserProData.UserID
+				class=" text-[15px] {Message.SenderID === $UserProData.UserID
 					? 'bg-blue-400 bg-opacity-20 p-2 '
 					: 'bg-gray-700'}  rounded-lg p-2 "
 			>
-				{message.message}
+				{Message.Message}
 			</div>
 			<!-- REACTIONS -->
 			<div class="no-scrollbar flex h-6 w-full flex-row overflow-x-scroll gap-1 ">
 				<!-- {#each ReactCount(message.react) as x} -->
-				{#each message.numberOfReact as x,id}
-					<!-- content here -->
-					<!-- reactions[{x[1]}] -->
-
-					<!-- {console.log(reactions[x[0]])} -->
-					{#if x != 0}
-						<!-- content here -->
-						<div class=" border-0 bg-[#2f3136] rounded-xl w-fit  flex flex-row justify-center items-center gap-1">
-							<svelte:component this={reactions[id]} class=" h-[18px] w-[18px]" />
-							<p class=" h-6 self-end  text-xs p-1 mr-1">{x}</p>
-						</div>
-					{/if}
-				{:else}
-					<!-- empty list -->
-				{/each}
+				<!--{#each message.numberOfReact as x,id}-->
+				<!--	-->
+				<!--	{#if x != 0}-->
+				<!--		-->
+				<!--		<div class=" border-0 bg-[#2f3136] rounded-xl w-fit  flex flex-row justify-center items-center gap-1">-->
+				<!--			<svelte:component this={reactions[id]} class=" h-[18px] w-[18px]" />-->
+				<!--			<p class=" h-6 self-end  text-xs p-1 mr-1">{x}</p>-->
+				<!--		</div>-->
+				<!--	{/if}-->
+				<!--{:else}-->
+				<!--	-->
+				<!--{/each}-->
 				<div class="relative" on:click="{()=>{GivingReact=!GivingReact}}">
 					{#if GivingReact}
 						<div class=" fixed  z-50  bg-white  h-6 w-36 rounded-lg ">

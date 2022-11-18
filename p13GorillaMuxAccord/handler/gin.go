@@ -31,6 +31,10 @@ func Main(H *DatabaseCollections) {
 	// router.RouteWithoutAuth(r)
 	r.GET("/gin/hello", H.Hello())
 	r.GET("/gin/ws", H.Instantbuy())
+	r.GET("/gin/user/sendmoney", H.GinUserSendMoney())
+	r.GET("/gin/user/sendmessage", H.GinUserSendMsg())
+	r.GET("/gin/user/getconversationmsg", H.GinUserConversationMsg())
+	r.GET("/gin/user/getconversationid/", H.GinGetConversationID())
 
 	log.Println("Server is started in PORT 8889 ...👨‍💻 ")
 	if e := r.Run(os.Getenv("HOST") + ":" + os.Getenv("GIN_PORT")); e != nil {

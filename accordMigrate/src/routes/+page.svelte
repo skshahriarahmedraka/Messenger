@@ -534,7 +534,7 @@
 <!-- hash bar -->
 <!-- <Servers/> -->
 <!-- {:else} -->
-<div class="flex h-screen w-full flex-row transition-all  duration-500 ease-linear ">
+<div class="flex h-screen w-full flex-row  ">
 	<Dock ServerList={x2} />
 
 	<Chat />
