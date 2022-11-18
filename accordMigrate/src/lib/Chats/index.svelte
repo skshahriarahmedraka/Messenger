@@ -156,11 +156,13 @@
 	// 	})
 	//
 	// }
-	 function GetConversationID(){
-		 // let getUserProData
-		 // let getfrndProData
-		 // UserProData.subscribe((d)=>{getUserProData=d})
-		 // ActiveFrndChatShort.subscribe((d)=>{getfrndProData=d})
+	//  function GetConversationID(){
+	// 	 let getUserProData
+	// 	 let getfrndProData
+	// 	 UserProData.subscribe((d)=>{getUserProData=d})
+	// 	 ActiveFrndChatShort.subscribe((d)=>{getfrndProData=d})
+	// 	 socket.close();
+	// }
 		let req ={
 			ReqUUID : $UserProData.UUID as string ,
 			FrndUUID: $ActiveFrndChatShort.UUID as string
@@ -183,24 +185,39 @@
 			console.log("websocket Get active ConversationID : ",data)
 
 		}
-		 // socket.close();
+	const GetConversationID = () => {
+		// if(messageInput.length){
+		req ={
+			ReqUUID : $UserProData.UUID as string ,
+			FrndUUID: $ActiveFrndChatShort.UUID as string
+		}
+		socket.send(JSON.stringify(req))
+		// }
+		// messageInput = ""
 	}
 	// GetConversationID()
 
-	 function GetAllConversationData(){
-		// let messageInput = ""
-		let socket = new WebSocket("ws://127.0.0.1:8889/gin/user/getconversationmsg")
+	//  function GetAllConversationData(){
+	// 	// let messageInput = ""
+	// 	// messengerValue=""
+	// 	//  socket.close();
+	//
+	//
+	// }
+		let socket2 = new WebSocket("ws://127.0.0.1:8889/gin/user/getconversationmsg")
 		let get
 		 ActiveConversationID.subscribe((d)=>{get=d})
-		let req ={
-			ConversationID : get
+		// let req2 ={
+		// 	ConversationID : get
+		// }
+
+		socket2.onopen = () => {
+			socket2.send(JSON.stringify({
+				ConversationID : $ActiveConversationID
+			}))
 		}
 
-		socket.onopen = () => {
-			socket.send(JSON.stringify(req))
-		}
-
-		socket.onmessage = (event) => {
+		socket2.onmessage = (event) => {
 
 			let data = JSON.parse(event.data)
 			console.log("websocket GetAllConversationData : ",data)
@@ -208,11 +225,14 @@
 			console.log("ActiveConversationData ",$ActiveConversationData)
 
 		}
-		// messengerValue=""
-		//  socket.close();
-
+	const GetAllConversationData = () => {
+		let req ={
+			ConversationID : $ActiveConversationID
+		}
+		socket2.send(JSON.stringify(req))
 
 	}
+	// socket2.close();
 
 	function  ResetGetAllConversationData(){
 		ActiveConversationData.set([{
@@ -256,6 +276,8 @@
 
 						GetConversationID()
 						//GetAllConversationData()
+						GetAllConversationData()
+						socket2.close()
 						goto(`/${i.UserID}`)}
 					}
 					class="  m-1   h-16 w-full hover:text-white    {$UserActive === i.UserID
@@ -323,8 +345,8 @@
 						<div class="  mb-2 flex w-72 flex-row">
 							<!-- last message -->
 							<p class=" h-full w-72  text-left  text-sm  line-clamp-1">
-								<!-- {i.LastMessage} -->
-								LastMessage
+								 {i.LastMessage}
+<!--								LastMessage-->
 							</p>
 							<!-- number of notification -->
 							{#if i.SilentNotification && i.NumberOfNotification != 0}

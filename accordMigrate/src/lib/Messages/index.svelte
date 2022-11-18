@@ -157,6 +157,7 @@
         // console.log("ActiveConversationID",$ActiveConversationID)
     }
 
+
     async  function GetAllConversationData(){
         let messageInput = ""
 
@@ -175,7 +176,7 @@
 
             let data = JSON.parse(event.data)
             console.log("websocket GetAllConversationData : ",data)
-            ActiveConversationData.set(data)
+            ActiveConversationData.update((d)=>d=data)
             console.log("ActiveConversationData ",$ActiveConversationData)
 
         }

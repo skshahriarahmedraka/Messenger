@@ -55,6 +55,7 @@ import Fillinglove from './reactions/fillinglove.svelte';
 
 	}
 
+	let MsgData=$ActiveConversationData
 	let socket = new WebSocket("ws://127.0.0.1:8889/gin/user/getconversationmsg")
 
 	let req ={
@@ -69,18 +70,17 @@ import Fillinglove from './reactions/fillinglove.svelte';
 
 		let data = JSON.parse(event.data)
 		console.log("websocket GetAllConversationData : ",data)
+		MsgData=data
 		ActiveConversationData.set(data)
 		console.log("ActiveConversationData ",$ActiveConversationData)
 
 	}
 	const GetMessage = () => {
-		// if(messageInput.length){
 		req ={
 			ConversationID : $ActiveConversationID
 		}
 		socket.send(JSON.stringify(req))
-		// }
-		// messageInput = ""
+
 	}
 
 	// let Message = {
@@ -165,8 +165,8 @@ import Fillinglove from './reactions/fillinglove.svelte';
 			: 'flex-row'}    mr-20 mt-4 ml-5 max-w-full   overflow-ellipsis text-base text-white "
 	>
 		<!-- <div class="w-[80%] ?"> -->
-		{#if $ActiveFrndData.ProfileImg != "" }
-		<img src={$ActiveFrndData.ProfileImg} alt="" class=" m-2 h-10 w-10 rounded-2xl " />
+		{#if Message.ProfileImg != null }
+		<img src={Message.ProfileImg} alt="" class=" m-2 h-10 w-10 rounded-2xl " />
 			{:else }
 <!--			<img src={Ek2} alt="" class=" m-2 h-10 w-10 rounded-2xl " />-->
 			<Person

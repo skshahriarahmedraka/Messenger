@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { ChatOrDock, UserProData, ActiveFrndData } from '$lib/store2';
+	import { ChatOrDock, UserProData, ActiveFrndData,UserSettingSelect } from '$lib/store2';
 	import Accord from '$lib/Dock/icons/accord.svelte';
 	import AccordLogo from '$lib/Dock/icons/accord.svelte';
 	// import {ServerList} from "$lib/store2"
@@ -32,8 +32,8 @@
 			keepfocus: true
 		});
 	}
-	let ActiveServer: string = '';
-	let HoverServer: string = '';
+	let ActiveServer = '';
+	let HoverServer = '';
 	let title: string | undefined = 'Accord';
 
 	function OnClickServer(e: {
@@ -56,7 +56,7 @@
 		});
 	}
 
-	let showMenu: boolean = false;
+	let showMenu = false;
 	async function onRightClick(e: any) {
 		if (showMenu) {
 			showMenu = false;
@@ -84,42 +84,40 @@
         </div> -->
 	</div>
 	<!-- user list -->
-	{#each ServerList as u}
-		<button
-			on:contextmenu|preventDefault={onRightClick}
-			on:click={() => {
-				ActiveServer = u['ServerURL'];
-				OnClickServer(u);
-			}}
-			class="  group flex w-full  flex-row  items-center justify-center py-[5px]  transition-all duration-150 ease-linear hover:rounded-lg"
-		>
-			<div class=" relative flex items-center justify-center">
-				<!-- <svg  class="fill-white  -left-[63px] -top-1  absolute  h-16 w-16 " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 95.1v320c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64v-320c0-35.35 28.65-63.1 64-63.1h320C419.3 31.1 448 60.65 448 95.1z"/></svg> -->
-				<div
-					in:scale={{ duration: 200 }}
-					out:scale
-					class="absolute -left-[58px]  bg-white transition-all duration-200 ease-linear    {ActiveServer ===
-					u['ServerURL']
-						? 'rounded-md h-[50px] w-[50px]'
-						: 'rounded-xl h-[10px] w-[50px] group-hover:rounded-md group-hover:h-[30px] group-hover:w-[50px] '}"
-				/>
-				<!-- <svg in:scale="{{  duration: 200 }}" out:scale class="fill-white   -left-[55px] -top-[25px]   absolute  h-[50px] w-[50px] " viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M384 32H64C28.65 32 0 60.66 0 96v320c0 35.34 28.65 64 64 64h320c35.35 0 64-28.66 64-64V96C448 60.66 419.3 32 384 32zM319.1 280h-192C114.8 280 103.1 269.2 103.1 256c0-13.2 10.8-24 24-24h192c13.2 0 23.1 10.8 23.1 24C343.1 269.2 333.2 280 319.1 280z"/></svg> -->
+	<!--{#each ServerList as u}-->
+	<!--	<button-->
+	<!--		on:contextmenu|preventDefault={onRightClick}-->
+	<!--		on:click={() => {-->
+	<!--			ActiveServer = u['ServerURL'];-->
+	<!--			OnClickServer(u);-->
+	<!--		}}-->
+	<!--		class="  group flex w-full  flex-row  items-center justify-center py-[5px]  transition-all duration-150 ease-linear hover:rounded-lg"-->
+	<!--	>-->
+	<!--		<div class=" relative flex items-center justify-center">-->
+	<!--			<div-->
+	<!--				in:scale={{ duration: 200 }}-->
+	<!--				out:scale-->
+	<!--				class="absolute -left-[58px]  bg-white transition-all duration-200 ease-linear    {ActiveServer ===-->
+	<!--				u['ServerURL']-->
+	<!--					? 'rounded-md h-[50px] w-[50px]'-->
+	<!--					: 'rounded-xl h-[10px] w-[50px] group-hover:rounded-md group-hover:h-[30px] group-hover:w-[50px] '}"-->
+	<!--			/>-->
 
-				<img
-					src={u['ServerImage']}
-					alt=""
-					class="  h-[48px] w-[48px] cursor-pointer rounded-[1.25rem] object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md  "
-				/>
-				{#if u['Notification']}
-					<span
-						class=" absolute -bottom-2  -right-2 rounded-full border-2 border-[#202225] bg-red-500  px-1 text-xs font-semibold text-white "
-					>
-						{u['NumberOfNotification']}
-					</span>
-				{/if}
-			</div>
-		</button>
-	{/each}
+	<!--			<img-->
+	<!--				src={u['ServerImage']}-->
+	<!--				alt=""-->
+	<!--				class="  h-[48px] w-[48px] cursor-pointer rounded-[1.25rem] object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md  "-->
+	<!--			/>-->
+	<!--			{#if u['Notification']}-->
+	<!--				<span-->
+	<!--					class=" absolute -bottom-2  -right-2 rounded-full border-2 border-[#202225] bg-red-500  px-1 text-xs font-semibold text-white "-->
+	<!--				>-->
+	<!--					{u['NumberOfNotification']}-->
+	<!--				</span>-->
+	<!--			{/if}-->
+	<!--		</div>-->
+	<!--	</button>-->
+	<!--{/each}-->
 
 	<!-- create button -->
 	<button
@@ -145,7 +143,8 @@
 	<!-- Wallet -->
 	<button
 		on:click={() => {
-			goto('/wallet');
+			UserSettingSelect.set("Payment Mangement")
+			goto(`/${$UserProData.UserID}/profile/settings`);
 		}}
 		class="  group flex w-full  flex-row  items-center justify-center py-[5px]  transition-all duration-150 ease-linear hover:rounded-lg"
 	>

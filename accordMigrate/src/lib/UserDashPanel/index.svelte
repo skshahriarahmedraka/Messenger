@@ -20,14 +20,14 @@
 	import WalpaperLogo from '$lib/icons/walpaperLogo.svelte';
 	import Cross from '$lib/Navbar/profileImg/Cross.svelte';
 	import { goto } from '$app/navigation';
-	import { UserProData } from '$lib/store2';
+	import { UserProData ,UserSettingSelect } from '$lib/store2';
 	// export let $UserProData: any;
-	let searchIconEvent: boolean = false;
-	let inputValue: string = '';
+	let searchIconEvent = false;
+	let inputValue = '';
 	export let showUsername: boolean;
 	let userOptions = { video: false, microphone: false, notificationSound: false, sound: false };
-	let SearchStyle: string = 'lg'; // sm,md,lg
-	let showUserid: boolean = true;
+	let SearchStyle = 'lg'; // sm,md,lg
+	let showUserid = true;
 	let showUserOptions = true;
 	import Coin from '$lib/icons/coin2.svelte';
 	import Person from '$lib/icons/person.svelte';
@@ -117,9 +117,11 @@
 		<div class="inline-flex h-16 w-full">
 			<button
 				on:click={() => {
-					goto(`/${$UserProData.UserID}/profile/edit`);
+					UserSettingSelect.set("Request Token")
+			goto(`/${$UserProData.UserID}/profile/settings`);
+
 				}}
-				class=" h-16 w-1/2 rounded-lg font-Poppins hover:bg-gray-900">Edit Profile</button
+				class=" h-16 w-1/2 rounded-lg font-Poppins hover:bg-gray-900">Recharge Wallet</button
 			>
 			<button
 				on:click={() => {

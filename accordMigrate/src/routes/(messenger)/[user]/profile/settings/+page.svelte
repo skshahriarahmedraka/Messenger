@@ -56,7 +56,7 @@
             {#each list as l}
                 <div
                     on:click={() => {
-                        active = l.name;
+                        UserSettingSelect.set(l.name)
                     }}
                     
                     on:keypress={()=>{}}
@@ -74,24 +74,24 @@
         <div
         class="  flex h-fit min-h-[300px] w-[880px] flex-col rounded-lg  bg-slate-700 bg-opacity-30 font-Poppins  "
         >
-            {#if active === 'General'}
+            {#if $UserSettingSelect === 'General'}
                 <General />
                 
-            {:else if active === 'Payment Mangement'}
+            {:else if $UserSettingSelect === 'Payment Mangement'}
                 <PaymentManagement />
-            {:else if active === 'Request Token'}
+            {:else if $UserSettingSelect === 'Request Token'}
                 <RequestToken />
-            {:else if active ==='Password & Security'}
+            {:else if $UserSettingSelect ==='Password & Security'}
                 <PassSec />
-            {:else if  active ==='Transaction'}
+            {:else if  $UserSettingSelect ==='Transaction'}
             <Transaction />
-            {:else if active ==='Group List'}
+            {:else if $UserSettingSelect ==='Group List'}
                 <GroupList />
-            {:else if  active ==='Contact Admin'}
+            {:else if  $UserSettingSelect ==='Contact Admin'}
                 <ContractAdimin />
             <!-- {:else if active ==='Contact Game Developer'}
                 <ContractGameDev /> -->
-                {:else if active ==='Friend List'}
+                {:else if $UserSettingSelect ==='Friend List'}
                 <FriendList />
             {:else}
                 <!-- else content here -->
