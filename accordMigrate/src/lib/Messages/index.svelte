@@ -28,8 +28,8 @@
     showPeopleList.subscribe(val=>{
         showPeopleListValue=val 
     }) 
-    let writeFocus:boolean=false
-    let messengerValue:string=""
+    let writeFocus=false
+    let messengerValue=""
 
     async  function SendUserMsg (){
         // await  fetch("")
@@ -152,6 +152,7 @@
             }
             messageInput = ""
         }
+        // socket.close();
         GetAllConversationData()
         // console.log("ActiveConversationID",$ActiveConversationID)
     }
@@ -176,14 +177,8 @@
             console.log("ActiveConversationData ",$ActiveConversationData)
 
         }
-        messengerValue=""
 
-        const sendMessage = () => {
-            if(messageInput.length){
-                socket.send(JSON.stringify({"UUID":"What a message"}))
-            }
-            messageInput = ""
-        }
+        // socket.close();
 
     }
 
@@ -210,7 +205,7 @@
 
     // var intervalId = window.setInterval(function(){
     //     // call your function here
-    //     // GetAllConversationData()
+    //     GetAllConversationData()
     // }, 5000);
 </script>
 
@@ -225,10 +220,10 @@
         <!--{#each [...FriendMsg[1]].reverse() as item, index (item.id) }-->
         <!--        <Message message={item} />-->
         <!--{/each}-->
-    {#if $ActiveConversationData.length !=0 }
-        {#each $ActiveConversationData.reverse() as message }
-        <Message message={message} />
-            {/each}
+    {#if $ActiveConversationData[0] !={} }
+        <!--{#each $ActiveConversationData.reverse() as message }-->
+        <Message />
+            <!--{/each}-->
         {:else }
         <p class =""> NO Message found </p>
         {/if}

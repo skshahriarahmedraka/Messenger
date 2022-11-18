@@ -53,7 +53,8 @@ func (H *DatabaseCollections) GinUserConversationMsg() gin.HandlerFunc {
 			var ReqUserData TempMessage
 
 			err := ws.ReadJSON(&ReqUserData)
-			fmt.Println("🚀 ~ file: gin.websocket.go ~ line 56 ~ returnfunc ~ ReqData : ", ReqUserData)
+            fmt.Println("🚀 ~ file: gin.UserConversationMsg.go ~ line 56 ~ returnfunc ~ ReqUserData : ", ReqUserData)
+			// fmt.Println("🚀 ~ file: gin.websocket.go ~ line 56 ~ returnfunc ~ ReqData : ", ReqUserData)
 			// mt, message, err := ws.ReadMessage()
 			if err != nil {
 				logerror.ERROR("🚀 ~ file: Instantbuy.go ~ line 58 ~ func ~ err : ", err)
@@ -70,13 +71,15 @@ func (H *DatabaseCollections) GinUserConversationMsg() gin.HandlerFunc {
 
 			ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
 			defer cancel()
+            fmt.Println("🚀  ReqUserData.ConversationID : ", ReqUserData.ConversationID)
 			err = H.MongoUser.Collection(os.Getenv("MONGO_USER_MSG_COL")).FindOne(ctx, bson.M{"ConversationID": ReqUserData.ConversationID}).Decode(&UserDataDB)
 			if err != nil {
 				logerror.ERROR("🚀 ~ file: gin.UserConversationMsg.go ~ line 78 ~ returnfunc ~ err : ", err)
 				return
 			}
 			//Response message to client
-
+			
+            fmt.Println("🚀 ~ file: gin.UserConversationMsg.go ~ line 81 ~ returnfunc ~ UserDataDB.Messages : ", UserDataDB.Messages)
 			err = ws.WriteJSON(UserDataDB.Messages)
 			if err != nil {
 				fmt.Println("🚀 ~ file: gin.websocket.go ~ line 73 ~ returnfunc ~ err : ", err)

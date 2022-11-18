@@ -17,7 +17,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	// "go.mongodb.org/mongo-driver/mongo/options"
 	// "github.com/gorilla/websocket"
 	// "go.mongodb.org/mongo-driver/bson"
 )
@@ -86,12 +86,12 @@ func (H *DatabaseCollections) GinUserSendMsg() gin.HandlerFunc {
 	// var UserDataDB model.Conversation
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*20)
 	defer cancel()
-	opts := options.Update().SetUpsert(true)
+	// opts := options.Update().SetUpsert(true)
 	filter := bson.D{{"ConversationID", ReqData.ConversationID}}
 	update := bson.M{"$push": bson.M{
 		"Messages": MyMsg}}
 	// fmt.Println("🚀 ~ file: UserSendFriendReq.go ~ line 72 ~ func ~ FrndReqShort : ", FrndReqShort)
-	res, err := H.MongoUser.Collection(os.Getenv("MONGO_USER_MSG_COL")).UpdateOne(ctx, filter, update, opts)
+	res, err := H.MongoUser.Collection(os.Getenv("MONGO_USER_MSG_COL")).UpdateOne(ctx, filter, update)
     fmt.Println("🚀 ~ file: UserSendMessage.go ~ line 62 ~ func ~ res : ", res)
 
 

@@ -61,8 +61,8 @@
 			ChatOrDock.update((n) => (n = 1));
 		}
 	}
-	let searchIconEvent: boolean = false;
-	let inputValue: string = '';
+	let searchIconEvent = false;
+	let inputValue = '';
 
 	let title: string | undefined = 'Accord';
 
@@ -124,9 +124,9 @@
 			body: JSON.stringify({"UserID":PathUrl})
 		}).then((res)=>{
 			return res.json()
-		}).then((d)=>{
-			console.log(" post Frnddata ",d)
-			ActiveFrndData.set(d)
+		}).then((data)=>{
+			console.log(" post Frnddata ",data)
+			ActiveFrndData.set(data)
 			console.log("ActiveFrndData",$ActiveFrndData)
 			// Frnddata=d
 		})
@@ -156,13 +156,16 @@
 	// 	})
 	//
 	// }
-	async  function GetConversationID(){
-
+	 function GetConversationID(){
+		 // let getUserProData
+		 // let getfrndProData
+		 // UserProData.subscribe((d)=>{getUserProData=d})
+		 // ActiveFrndChatShort.subscribe((d)=>{getfrndProData=d})
 		let req ={
 			ReqUUID : $UserProData.UUID as string ,
 			FrndUUID: $ActiveFrndChatShort.UUID as string
 		}
-		let messageInput = ""
+		// let messageInput = ""
 		let socket = new WebSocket("ws://127.0.0.1:8889/gin/user/getconversationid/")
 
 		console.log("GetConversationID send req ",req)
@@ -180,16 +183,17 @@
 			console.log("websocket Get active ConversationID : ",data)
 
 		}
-
+		 // socket.close();
 	}
 	// GetConversationID()
 
-	async  function GetAllConversationData(){
+	 function GetAllConversationData(){
 		// let messageInput = ""
 		let socket = new WebSocket("ws://127.0.0.1:8889/gin/user/getconversationmsg")
-
+		let get
+		 ActiveConversationID.subscribe((d)=>{get=d})
 		let req ={
-			ConversationID : $ActiveConversationID
+			ConversationID : get
 		}
 
 		socket.onopen = () => {
@@ -205,10 +209,26 @@
 
 		}
 		// messengerValue=""
+		//  socket.close();
 
 
 	}
 
+	function  ResetGetAllConversationData(){
+		ActiveConversationData.set([{
+			SenderID: "" as string ,
+			SenderName : "" as string,
+			Message : "" as string,
+			Reactions : [] as number[],
+			UserReaction : [] as {
+				UserID : ""  ,
+				ReactionID : 0
+			}[] ,
+			Timestamp : "" as string,
+		}])
+
+		ActiveConversationID.set("")
+	}
 
 
 	// GetFrndData()
@@ -232,6 +252,8 @@
 						GetFrndData(i.UserID)
 						ActiveFrndChatShort.set(i)
 						console.log("ActiveFrndChatShort" ,$ActiveFrndChatShort)
+						//ResetGetAllConversationData()
+
 						GetConversationID()
 						GetAllConversationData()
 						goto(`/${i.UserID}`)}

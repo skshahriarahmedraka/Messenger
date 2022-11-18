@@ -19,37 +19,63 @@ import Angryx from './reactions/angry.svelte';
 import Party from './reactions/party.svelte';
 import Angrytalk from './reactions/angrytalk.svelte';
 import Fillinglove from './reactions/fillinglove.svelte';
-	export let message: {SenderName: string, Message: string, UserReaction: {UserID: "", ReactionID: 0}[], Reactions: number[], SenderID: string, Timestamp: string};
-	import {UserProData , ActiveFrndData} from '$lib/store2';
-	console.log("my message :" ,message)
+	// export let message: {SenderName: string, Message: string, UserReaction: {UserID: "", ReactionID: 0}[], Reactions: number[], SenderID: string, Timestamp: string};
+	import {UserProData, ActiveFrndData, ActiveConversationID, ActiveConversationData} from '$lib/store2';
+	// console.log("my message :" ,message)
 	// var person = { fname: 'Nick', lname: 'Jonas', age: 26 };
 	// for (let x in person) {
 	// 	console.log(x + ': ' + person[x]);
 	// }
 	import Person from '$lib/icons/person.svelte';
 
+	function GetAllConversationData(){
+		// let messageInput = ""
+		let socket = new WebSocket("ws://127.0.0.1:8889/gin/user/getconversationmsg")
+		// let get
+		// ActiveConversationID.subscribe((d)=>{get=d})
+		let req ={
+			ConversationID : $ActiveConversationID
+		}
+
+		socket.onopen = () => {
+			socket.send(JSON.stringify(req))
+		}
+
+		socket.onmessage = (event) => {
+
+			let data = JSON.parse(event.data)
+			// console.log("websocket GetAllConversationData : ",data)
+			ActiveConversationData.set(data)
+			// console.log("ActiveConversationData ",$ActiveConversationData)
+
+		}
+		// socket.close();
+		// messengerValue=""
 
 
-	let Message = {
-		SenderID: "" as string ,
-		SenderName : "" as string,
-		Message : "" as string,
-		Reactions : [] as number[],
-		UserReaction : [] as {
-			UserID : ""  ,
-			ReactionID : 0
-		}[] ,
-		Timestamp : "" as string,
 	}
-	let MsgArr : {SenderName: string, Message: string, UserReaction: {UserID: "", ReactionID: 0}[], Reactions: number[], SenderID: string, Timestamp: string}[]
 
-	Message.Message="whats up"
-	Message.SenderName="Sk shahriar"
-	Message.Timestamp="12 july"
-	Message.SenderID="skssar"
-	// message =Message
 
-	Message=message
+	// let Message = {
+	// 	SenderID: "" as string ,
+	// 	SenderName : "" as string,
+	// 	Message : "" as string,
+	// 	Reactions : [] as number[],
+	// 	UserReaction : [] as {
+	// 		UserID : ""  ,
+	// 		ReactionID : 0
+	// 	}[] ,
+	// 	Timestamp : "" as string,
+	// }
+	// let MsgArr : {SenderName: string, Message: string, UserReaction: {UserID: "", ReactionID: 0}[], Reactions: number[], SenderID: string, Timestamp: string}[]
+
+	// Message.Message="whats up"
+	// Message.SenderName="Sk shahriar"
+	// Message.Timestamp="12 july"
+	// Message.SenderID="skssar"
+	// // message =Message
+	//
+	// Message=message
 	function ReactCount(react: { [key: string]: number }) {
 		let r = [
 			[0, 0],
@@ -90,12 +116,20 @@ import Fillinglove from './reactions/fillinglove.svelte';
 	let reactions = [Likex, Lovex, Happy, Fillinglove, Wowx, Hahax, Unlike, Sadx, Cry, Angryx];
 
 	// like 1 , love 2 ,happy 3 , care 4 ,wow 5,haha 6,Unlike 7 ,sad 8, cry 9,angry 10
-	let GivingReact:boolean=false
+	let GivingReact=false
+	var intervalId = window.setInterval(function(){
+	    // call your function here
+	    GetAllConversationData()
+	}, 5000);
+	// GetAllConversationData()
 </script>
 
 <!-- content here -->
 <!-- { message.writer=== UserProData.Name  ? "flex-row-reverse" : "flex-row" }  -->
 <!-- {#if true} -->
+
+{#each $ActiveConversationData.reverse() as Message }
+
 <div class=" flex flex-col">
 	<div
 		class=" flex  {Message.SenderID === $UserProData.UserID
@@ -153,13 +187,14 @@ import Fillinglove from './reactions/fillinglove.svelte';
 					{/if}
 					<AddReaction  class="h-6 w-6" />
 				</div>
-				
 
-			
+
+
 			</div>
 		</div>
 	</div>
 </div>
+{/each}
 
 <!-- {/if} -->
 <style>

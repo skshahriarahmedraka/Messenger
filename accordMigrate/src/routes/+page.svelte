@@ -19,7 +19,7 @@
 	console.log('🚀 ~ file: +layout.svelte ~ line 26 ~ Userdata', Userdata);
 	UserProData.update((d) => (d = Userdata));
 
-	ActiveFrndData.set($UserProData)
+	ActiveFrndData.set(Userdata)
 
 	import Dock from '$lib/Dock/index.svelte';
 	// import Servers from "$lib/_Servers/index.svelte"

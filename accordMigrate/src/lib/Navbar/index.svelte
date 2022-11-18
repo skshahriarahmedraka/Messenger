@@ -15,6 +15,7 @@
 	import Person from '$lib/icons/person.svelte';
 	import Cash from '$lib/icons/cash.svelte';
 	let ShowSendMoney=false
+
 	export let  FrndPro: {
 		UUID: string;
 		UserID: string;
