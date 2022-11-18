@@ -10,7 +10,7 @@
 	// 	console.log('the component has been updated');
 	// 	});
 	import type { PageData } from './$types';
-	import { UserProData } from '$lib/store2';
+	import { UserProData, ActiveFrndData } from '$lib/store2';
 
 
 	export let data: PageData;
@@ -19,6 +19,7 @@
 	console.log('🚀 ~ file: +layout.svelte ~ line 26 ~ Userdata', Userdata);
 	UserProData.update((d) => (d = Userdata));
 
+	ActiveFrndData.set($UserProData)
 
 	import Dock from '$lib/Dock/index.svelte';
 	// import Servers from "$lib/_Servers/index.svelte"
@@ -536,7 +537,7 @@
 <div class="flex h-screen w-full flex-row transition-all  duration-500 ease-linear ">
 	<Dock ServerList={x2} />
 
-	<Chat FriendList={x}  />
+	<Chat />
 	<!-- else content here -->
 	<!-- {/if} -->
 

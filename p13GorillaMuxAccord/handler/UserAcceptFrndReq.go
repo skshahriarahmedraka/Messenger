@@ -202,6 +202,7 @@ func (H *DatabaseCollections) UserAcceptFrndReq(w http.ResponseWriter, r *http.R
 	FrndChatShort.LastActiveTime = time.Now().String()
 	FrndChatShort.NumberOfNotification=0
 	FrndChatShort.SilentNotification=false
+	FrndChatShort.ConversationID=FriendStruct.ConversationID
 
 
 	opts2 := options.FindOneAndUpdate().SetUpsert(true)
@@ -227,6 +228,7 @@ func (H *DatabaseCollections) UserAcceptFrndReq(w http.ResponseWriter, r *http.R
 	FrndChatShort.LastActiveTime = time.Now().String()
 	FrndChatShort.NumberOfNotification=0
 	FrndChatShort.SilentNotification=false
+	FrndChatShort.ConversationID=FriendStruct.ConversationID
 
 
 	opts2 = options.FindOneAndUpdate().SetUpsert(true)

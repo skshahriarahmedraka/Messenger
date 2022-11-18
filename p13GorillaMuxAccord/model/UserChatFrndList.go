@@ -20,4 +20,5 @@ type FrndChatShort struct {
 		NumberOfNotification int `json:"NumberOfNotification" bson:"NumberOfNotification"`
 		ActiveStatus bool `json:"ActiveStatus" bson:"ActiveStatus"`
 		LastActiveTime string `json:"LastActiveTime" bson:"LastActiveTime"`
+		ConversationID string `json:"ConversationID" bson:"ConversationID"`
 }

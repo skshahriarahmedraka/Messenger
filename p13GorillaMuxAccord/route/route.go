@@ -31,10 +31,15 @@ func Router(r *mux.Router) {
 	r.HandleFunc("/user/userfriendreqpendinglist/{UUID}", H.UserFriendReqPendingList).Methods("GET")// not complete
 
 	r.HandleFunc("/user/useracceptfrndreq/", H.UserAcceptFrndReq).Methods("POST")// complete : have to check
-	r.HandleFunc("/user/frndlist/{UUID}", H.FrndList).Methods("GET")// incomplete : get your friend list
-	r.HandleFunc("/user/chatfrndlist", H.ChatFrndList).Methods("POST")// incomplete : get your friend list
-	r.HandleFunc("/user/frienddata/{UUID}", H.UserFrndData).Methods("GET")// incomplete : get your friend list
+	r.HandleFunc("/user/frndlist/{UUID}", H.FrndList).Methods("GET")// complete : get your friend list
+	r.HandleFunc("/user/chatfrndlist", H.ChatFrndList).Methods("POST")// complete : get your friend list
+	r.HandleFunc("/user/frienddata/{UUID}", H.UserFrndData).Methods("GET")// complete : get your friend list
+	r.HandleFunc("/user/getconversationid/", H.GetConversationID).Methods("POST")// incomplete : get your friend list
 
+	r.HandleFunc("/user/sendmessage/", H.UserSendMessage).Methods("POST")// complete : have to check
+	r.HandleFunc("/user/getconversationmsg/", H.UserConversationMsg).Methods("POST")// not complete : have to check
+	
+	r.HandleFunc("/user/sendmoney/", H.UserSendMoney).Methods("POST")// complete : have to check
 
 	
 	// r.HandleFunc("/{UID}/profile", H.UserPublicProfile).Methods("GET")

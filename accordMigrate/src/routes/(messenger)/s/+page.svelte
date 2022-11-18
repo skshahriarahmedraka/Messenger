@@ -318,7 +318,7 @@
 <!-- hash bar -->
 <!-- <Servers/> -->
 <!-- {:else} -->
-<Chat FriendList={x}  />
+<Chat  />
 <!-- else content here -->
 <!-- {/if} -->
 

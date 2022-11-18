@@ -1,7 +1,7 @@
 package model
 
 import (
-	"time"
+	// "time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -36,12 +36,11 @@ type Conversation struct {
 
 type Message struct {
 	SenderID string `json:"SenderID" bson:"SenderID"`
-	SenderName string `json:"Sender" bson:"Sender"`
+	SenderName string `json:"SenderName" bson:"SenderName"`
 	Message string `json:"Message" bson:"Message"`
 	Reactions []int `json:"Reactions" bson:"Reactions"`
-	UserReaction []ReactionStruct `json:"ReactionID" bson:"ReactionID"`
-	Timestamp time.Time `json:"Timestamp" bson:"Timestamp"`
-
+	UserReaction []ReactionStruct `json:"UserReaction" bson:"UserReaction"`
+	Timestamp string `json:"Timestamp" bson:"Timestamp"`
 }
 
 type ReactionStruct struct {

@@ -13,7 +13,8 @@
 	import Attherate from './profileImg/attherate.svelte';
 	import { UserProData } from '$lib/store2';
 	import Person from '$lib/icons/person.svelte';
-
+	import Cash from '$lib/icons/cash.svelte';
+	let ShowSendMoney=false
 	export let  FrndPro: {
 		UUID: string;
 		UserID: string;
@@ -131,9 +132,22 @@
 		class="ml-2 h-7  w-7 cursor-pointer text-slate-400 transition-all duration-200 ease-linear hover:text-white"
 	/>
 	<!-- hash -->
-	<Hash
-		class="my-3 mx-2 h-7 w-7 cursor-pointer text-slate-400  transition-all duration-200 ease-linear hover:text-white"
+	{#if ShowSendMoney }
+
+	<div class="my-2 ml-1 mr-2 h-full w-24 ?  flex flex-grow cursor-pointer flex-row transition-all duration-300 ease-linear">
+
+	</div>
+	{/if}
+
+	<Cash
+			on:click={()=>{ShowSendMoney=!ShowSendMoney}}
+			class="my-3 mx-2 h-7 w-7 cursor-pointer text-slate-400  transition-all duration-200 ease-linear hover:text-white"
 	/>
+
+
+<!--	<Hash-->
+<!--		class="my-3 mx-2 h-7 w-7 cursor-pointer text-slate-400  transition-all duration-200 ease-linear hover:text-white"-->
+<!--	/>-->
 	<!-- notification -->
 	<div class=" flex flex-row ">
 		<Notification
@@ -173,7 +187,7 @@
 			/>
 		{:else}
 			<img
-				src={FrndPro.ProfileImg}
+				src={$ActiveFrndData.ProfileImg}
 				alt="ProfileImg"
 				class=" h-full  w-full cursor-pointer rounded-2xl   object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md "
 			/>

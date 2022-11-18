@@ -52,7 +52,21 @@ import { writable } from 'svelte/store';
 const showPeopleList = writable(0);
 const ChatOrDock = writable(0);
 const UserSettingSelect = writable('General');
+const ActiveConversationID = writable('');
 const UserActive = writable('');
+const ActiveFrndChatShort=writable({
+	UUID: "" as string,
+	UserID: "" as string,
+	UserImg: "" as string,
+	UserName: "" as string,
+	LastMessage: "" as string,
+	LastMessageTime: "" as string,
+	SilentNotification: false as boolean,
+	NumberOfNotification: 0 as number,
+	ActiveStatus: false as boolean,
+	LastActiveTime: "" as string,
+	ConversationID : "" as string
+})
 const UserProData = writable({
 	UUID: '' as string,
 	UserID: '' as string,
@@ -605,4 +619,4 @@ const ActiveFrndData = writable({
 // }
 
 // export {UseFriendList, ServerList,FriendList,count,showPeopleList,ChatOrDock,MessageList}
-export { ChatOrDock, showPeopleList, UserProData, UserSettingSelect,UserActive ,ActiveFrndData };
+export { ChatOrDock, showPeopleList, UserProData, UserSettingSelect,UserActive ,ActiveFrndData ,ActiveFrndChatShort,ActiveConversationID};

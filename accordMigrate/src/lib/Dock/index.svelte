@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { ChatOrDock, UserProData } from '$lib/store2';
+	import { ChatOrDock, UserProData, ActiveFrndData } from '$lib/store2';
 	import Accord from '$lib/Dock/icons/accord.svelte';
 	import AccordLogo from '$lib/Dock/icons/accord.svelte';
 	// import {ServerList} from "$lib/store2"
@@ -20,6 +20,7 @@
 		ChatOrDockHelper = val;
 	});
 	function ChatOrDockFunc() {
+		ActiveFrndData.set($UserProData)
 		if (ChatOrDockHelper != 0) {
 			ChatOrDock.update((n) => (n = 0));
 		} else {

@@ -1,33 +1,141 @@
 <script lang="ts">
-  
-    import {showPeopleList} from "$lib/store2"
+
+    import {ActiveFrndData,ActiveFrndChatShort, showPeopleList, UserProData, UserActive} from "$lib/store2"
     import { fade, blur, fly, slide, scale } from "svelte/transition";
 
     import Message from "./message.svelte"
     export let FriendMsg:any
     // export let MyPro:any
-    let showPeopleListValue: number 
+    let showPeopleListValue: number
+
+    // let ReactionStruct= {
+    //     UserID : "" as  string,
+    //     ReactionID :"" as number,
+    // }
+    let  MessageData= {
+        ConversationID: "" as string ,
+        SenderID : "" as string,
+        SenderName : "" as string,
+        Message :"" as  string,
+        Reactions :[] as number[],
+        UserReaction :  [] as  {
+            UserID : "",
+            ReactionID :"" ,
+        },
+        Timestamp :"" as string
+    }
     showPeopleList.subscribe(val=>{
         showPeopleListValue=val 
     }) 
     let writeFocus:boolean=false
     let messengerValue:string=""
-    function SendMessage(){}
-    //     messengerValue.trimStart()
-    //     messengerValue.trimEnd()
-    //     if (messengerValue != ""){
 
-    //         $MessageList=[messengerValue,...$MessageList]
-    //         console.log($MessageList)
-    //         messengerValue=""
-    //     }
-    // }
-    function keyHandler(e: { key: string; }){}
-    //     if (e.key ==="Enter"){
-    //         SendMessage()
-    //     }
-    // }
+    async  function SendUserMsg (){
+        // await  fetch("")
+        await fetch(`/api/sendmessage/`, {
+            method:"POST",
+            mode: 'no-cors',
+            body: JSON.stringify(MessageData)
 
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((d) => {
+                console.log("Sent message response : ",d)
+                //   console.log("🚀 ~ file: +page.server.ts ~ line 34 ~ constload:PageServerLoad= ~ resdata", resdata)
+                //   console.log("🚀 ~ file: +layout.server.ts ~ line 24 ~ constload:PageServerLoad= ~ resdata", resdata)
+                //   UserProData.set(resdata);
+            });
+    }
+    function SendMessage(){
+        messengerValue.trimStart()
+        messengerValue.trimEnd()
+        if (messengerValue != ""){
+            MessageData.ConversationID=$ActiveFrndChatShort.ConversationID
+            MessageData.SenderID=$UserProData.UserID
+            MessageData.SenderName=$UserProData.UserName
+            MessageData.Message=messengerValue
+            let currentDate = new Date().toJSON().slice(0, 10);
+            console.log(currentDate)
+            MessageData.Timestamp=currentDate
+            // $MessageList=[messengerValue,...$MessageList]
+            // console.log($MessageList)
+            SendUserMsg()
+            messengerValue=""
+        }
+    }
+    function keyHandler(e: { key: string; }){
+        if (e.key ==="Enter"){
+            SendMessage()
+        }
+    }
+
+
+        let req ={
+            ConversationID : $ActiveFrndChatShort.ConversationID
+        }
+    console.log("Sent message  req : ",req)
+    async  function GetConversationMsg (){
+        // await  fetch("")
+        MessageData.ConversationID=$ActiveFrndChatShort.ConversationID
+        await fetch("/api/getconversationmsg/", {
+            method:"POST",
+            mode: 'no-cors',
+            body: JSON.stringify(req)
+
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((d) => {
+                console.log("Sent message response : ",d)
+                //   console.log("🚀 ~ file: +page.server.ts ~ line 34 ~ constload:PageServerLoad= ~ resdata", resdata)
+                //   console.log("🚀 ~ file: +layout.server.ts ~ line 24 ~ constload:PageServerLoad= ~ resdata", resdata)
+                //   UserProData.set(resdata);
+            });
+    }
+
+        // GetConversationMsg()
+    var intervalId = window.setInterval(function(){
+        // call your function here
+    }, 5000);
+
+    //     }).then((d)=>{
+    //         console.log(" post getconversationdata ",d)
+    //         ConversationID=d.ConversationID
+    //     })
+    //
+    // }
+    // GetConversationIDData()
+    // let messageInput = ""
+    // let socket = new WebSocket("ws://127.0.0.1:8889/gin/ws")
+    //
+    //
+    //
+    // socket.onopen = () => {
+    //     socket.send(JSON.stringify({"UUID": "hello websocket" }))
+    // }
+    //
+    // socket.onmessage = (event) => {
+    //
+    //     let data = JSON.parse(event.data)
+    //     console.log("websocket data",data)
+    //     // if (checkForId(data)) return
+    //
+    //     // messages.update( msgs => {
+    //     // 	if(Array.isArray(data)) return [...msgs, ...data]
+    //     // 	return [...msgs, data]
+    //     // })
+    // }
+    //
+    // const sendMessage = () => {
+    //     if(messageInput.length){
+    //         socket.send(JSON.stringify({"UUID":"What a message"}))
+    //     }
+    //     messageInput = ""
+    // }
+    // console.log("ActiveConversationID",$ActiveConversationID)
 </script>
 
 <style>
@@ -65,7 +173,7 @@
                 <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z" clip-rule="evenodd"></path></svg>
             </button>
             {#if writeFocus || messengerValue.length>0  } 
-            <button in:scale out:scale  on:click="{SendMessage}" type="submit" class=" w-10  h-10   "> 
+            <button in:scale out:scale  on:click="{SendMessage}" type="submit" class=" w-10  h-10 ?  ">
                 <svg class=" fill-cyan-600" style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="info"/><g id="icons"><path d="M21.5,11.1l-17.9-9C2.7,1.7,1.7,2.5,2.1,3.4l2.5,6.7L16,12L4.6,13.9l-2.5,6.7c-0.3,0.9,0.6,1.7,1.5,1.2l17.9-9   C22.2,12.5,22.2,11.5,21.5,11.1z" id="send"/></g></svg>
             </button>
             {/if}

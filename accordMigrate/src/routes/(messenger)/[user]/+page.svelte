@@ -611,9 +611,11 @@
 	// const socket = io("ws://127.0.0.1:8888/socketio/");
 	// console.log("🚀 ~ file: +page.svelte ~ line 589 ~ socket", socket)
 
+
+
 </script>
 
-<Chat FriendList={x}  />
+<Chat   />
 
 <div class=" flex h-screen w-full flex-col flex-nowrap overflow-hidden bg-stone-600 ">
 	<!-- nav bar -->

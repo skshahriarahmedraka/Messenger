@@ -49,7 +49,9 @@ func (H *DatabaseCollections) Instantbuy() gin.HandlerFunc {
 		for {
 			//Read Message from client
 			type UserInfo struct {
-				UUID string `json:"UUID" bson:"UUID"`
+				InsType string `json:"InsType" bson:"InsType"`
+				UserUUID string `json:"UserUUID" bson:"UserUUID"`
+				FrndUUID string `json:"frndUUID" bson:"frndUUID"`
 			}
 			var ReqData UserInfo
 
@@ -68,7 +70,7 @@ func (H *DatabaseCollections) Instantbuy() gin.HandlerFunc {
 				Message string `json:"Message" bson:"Message"`
 			}
 			var welcome welcomeMessage
-			welcome.Message = "Welcome to  brother " + ReqData.UUID
+			welcome.Message = "Welcome to  brother " 
 			err = ws.WriteJSON(welcome)
 			if err != nil {
 				fmt.Println("🚀 ~ file: gin.websocket.go ~ line 73 ~ returnfunc ~ err : ", err)

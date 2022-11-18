@@ -5,7 +5,7 @@
 
 	// import {page} from "$app/stores"
 	// $: console.log("$page.params ",$page.params)
-	import { ChatOrDock } from '$lib/store2';
+	import { ChatOrDock ,ActiveFrndChatShort,ActiveConversationID } from '$lib/store2';
 	import Notification from '$lib/icons/notification.svelte';
 	// import Search from '$lib/Navbar/profileImg/search.svelte';
 	// import Cross from '$lib/Navbar/profileImg/Cross.svelte';
@@ -28,6 +28,7 @@
 		NumberOfNotification: number;
 		ActiveStatus: boolean;
 		LastActiveTime: string;
+		ConversationID:string
 	}[] = [] as {
 		UUID: string;
 		UserID: string;
@@ -39,6 +40,7 @@
 		NumberOfNotification: number;
 		ActiveStatus: boolean;
 		LastActiveTime: string;
+		ConversationID:string
 	}[];
 	// export let MyPro: any;
 
@@ -132,7 +134,28 @@
 	}
 	// let ActiveChat: string = '';
 
+	//         return res.json()
 
+	// let ConversationID: string ="" as string
+	// async function GetConversationID(){
+	// 	let req ={
+	// 		ReqUUID : $UserProData.UUID as string ,
+	// 		FrndUUID: $ActiveFrndData.UUID as string
+	// 	}
+	//
+	// 	console.log("req :" ,req)
+	// 	await fetch(`/api/getconversationid/`,{
+	// 		method: "POST",
+	// 		body: JSON.stringify(req)
+	// 	}).then((res)=>{
+	// 		return res.json()
+	// 	}).then((d)=>{
+	// 		console.log(" post ConversationID  ConversationID  v ConversationID ConversationID  ConversationID  ",d)
+	// 		ConversationID=d.ConversationID
+	// 		ActiveConversationID.set(ConversationID)
+	// 	})
+	//
+	// }
 
 	// GetFrndData()
 </script>
@@ -153,6 +176,8 @@
 						//ActiveChat=i.UUID 
 						UserActive.set(i.UserID);
 						GetFrndData(i.UserID)
+						ActiveFrndChatShort.set(i)
+						console.log("ActiveFrndChatShort" ,$ActiveFrndChatShort)
 						goto(`/${i.UserID}`)}
 					}
 					class="  m-1   h-16 w-full hover:text-white    {$UserActive === i.UserID
