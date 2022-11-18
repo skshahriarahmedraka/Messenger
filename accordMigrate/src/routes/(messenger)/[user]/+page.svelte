@@ -11,7 +11,7 @@
 	let PathUrl : string=$page.url.pathname.slice(1)
 	console.log("$page.url.searchParams.get('ref')",PathUrl)
 
-	import {showPeopleList, UserProData, ActiveFrndData, UserActive} from '$lib/store2';
+	import {showPeopleList, UserProData, ActiveFrndData, UserActive ,ActiveConversationID} from '$lib/store2';
 	import {to_number} from "svelte/internal";
 	let showPeopleListValue: number;
 	// let ChatOrDockValue: number;
@@ -20,10 +20,12 @@
 
 	export let data: PageData;
 
-	let { Userdata, Frnddata } = data;
+	let { Userdata, Frnddata ,ConversationID } = data;
 	UserActive.set(Frnddata)
 	UserProData.update((d) => (d = Userdata));
-    let MyPro= {
+	ActiveConversationID.set(ConversationID)
+
+	let MyPro= {
 			Name: "Sk Shahriar Ahmed Raka",
 			Userid: 'skraka',
 			ProfileImage:

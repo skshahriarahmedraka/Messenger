@@ -255,7 +255,7 @@
 						//ResetGetAllConversationData()
 
 						GetConversationID()
-						GetAllConversationData()
+						//GetAllConversationData()
 						goto(`/${i.UserID}`)}
 					}
 					class="  m-1   h-16 w-full hover:text-white    {$UserActive === i.UserID

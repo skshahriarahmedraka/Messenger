@@ -55,6 +55,33 @@ import Fillinglove from './reactions/fillinglove.svelte';
 
 	}
 
+	let socket = new WebSocket("ws://127.0.0.1:8889/gin/user/getconversationmsg")
+
+	let req ={
+		ConversationID : $ActiveConversationID
+	}
+
+	socket.onopen = () => {
+		socket.send(JSON.stringify(req))
+	}
+
+	socket.onmessage = (event) => {
+
+		let data = JSON.parse(event.data)
+		console.log("websocket GetAllConversationData : ",data)
+		ActiveConversationData.set(data)
+		console.log("ActiveConversationData ",$ActiveConversationData)
+
+	}
+	const GetMessage = () => {
+		// if(messageInput.length){
+		req ={
+			ConversationID : $ActiveConversationID
+		}
+		socket.send(JSON.stringify(req))
+		// }
+		// messageInput = ""
+	}
 
 	// let Message = {
 	// 	SenderID: "" as string ,
@@ -119,8 +146,9 @@ import Fillinglove from './reactions/fillinglove.svelte';
 	let GivingReact=false
 	var intervalId = window.setInterval(function(){
 	    // call your function here
-	    GetAllConversationData()
-	}, 5000);
+	    // GetAllConversationData()
+		GetMessage()
+	}, 2000);
 	// GetAllConversationData()
 </script>
 

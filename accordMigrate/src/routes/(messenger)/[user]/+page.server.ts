@@ -111,6 +111,7 @@ export const load: PageServerLoad = async ({ cookies, locals, params }) => {
 		ZipCode: '' as string
 	};
 	let FriendList:any
+	let ConversationID=""
 	if (MyCookie != '') {
 		interface tokeninterface {
 			UserName: string;
@@ -157,8 +158,27 @@ export const load: PageServerLoad = async ({ cookies, locals, params }) => {
 			Frnddata=d
 		})
 
+		const req ={
+			ReqUUID : (decoded as tokeninterface).UUID as string ,
+			FrndUUID: Frnddata.UUID as string
+		}
+
+		console.log("req :" ,req)
+		await fetch(`http://${process.env.GO_HOST}/user/getconversationid/`,{
+			method: "POST",
+			body: JSON.stringify(req)
+		}).then((res)=>{
+			return res.json()
+		}).then((d)=>{
+			console.log(" post ConversationID  ConversationID  v ConversationID ConversationID  ConversationID  ",d)
+			ConversationID=d.ConversationID
+		})
 	}
 
+
+	// async function GetConversationID(){
+	//
+	// }
 
 	
 	// console.log("🚀 ~ file: +page.server.ts ~ line 104 ~ awaitfetch ~ FriendList", FriendList)
@@ -166,6 +186,7 @@ export const load: PageServerLoad = async ({ cookies, locals, params }) => {
 
 	return {
 		Userdata,
-		Frnddata
+		Frnddata,
+		ConversationID,
 	};
 };
