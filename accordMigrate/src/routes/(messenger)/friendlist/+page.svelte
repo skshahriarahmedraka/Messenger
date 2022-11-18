@@ -314,11 +314,13 @@
 						<div class="my-2 flex flex-col items-center justify-center     gap-2 text-base">
 							<!-- on:click={()=>{goto(`${i.UserID}/profile`) }} -->
 							<button
+									on:click={()=>{goto(`/${i.UserID}`)}}
 								class="w-[90%] rounded-md bg-[#3982e4] border-2 border-blue-400 bg-opacity-20 hover:bg-opacity-40 active:bg-opacity-40 px-2 py-1 font-semibold text-sky-200 hover:bg-blue-600 active:bg-blue-700"
 								>View Profile</button
 							>
 							<!-- on:click={()=>{goto(`${i.UserID}`) }} -->
 							<button
+									on:click={()=>{goto(`/${i.UserID}`)}}
 
 								class="w-[90%]  rounded-md border-2 border-slate-500 bg-[#3a3b3c] bg-opacity-20  px-2 py-1  text-slate-200 hover:bg-gray-700 active:bg-gray-600"
 								>Send Message</button

@@ -150,6 +150,14 @@ import Fillinglove from './reactions/fillinglove.svelte';
 		GetMessage()
 	}, 2000);
 	// GetAllConversationData()
+
+	function  GetMsgImg(SenderID:string,UserID :string) {
+		if (SenderID === UserID) {
+			return $UserProData.ProfileImg
+		}else {
+			return $ActiveFrndData.ProfileImg
+		}
+	}
 </script>
 
 <!-- content here -->
@@ -165,8 +173,8 @@ import Fillinglove from './reactions/fillinglove.svelte';
 			: 'flex-row'}    mr-20 mt-4 ml-5 max-w-full   overflow-ellipsis text-base text-white "
 	>
 		<!-- <div class="w-[80%] ?"> -->
-		{#if Message.ProfileImg != null }
-		<img src={Message.ProfileImg} alt="" class=" m-2 h-10 w-10 rounded-2xl " />
+		{#if GetMsgImg(Message.SenderID,$UserProData.UserID) != "" }
+		<img src={GetMsgImg(Message.SenderID,$UserProData.UserID)} alt="" class=" m-2 h-10 w-10 rounded-2xl object-cover " />
 			{:else }
 <!--			<img src={Ek2} alt="" class=" m-2 h-10 w-10 rounded-2xl " />-->
 			<Person

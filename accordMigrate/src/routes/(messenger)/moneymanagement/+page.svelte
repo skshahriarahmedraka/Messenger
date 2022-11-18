@@ -103,10 +103,10 @@
 
 <!-- markup (zero or more items) goes here -->
 <div
-	class=" flex  h-screen w-full  overflow-hidden bg-[#36393f] md:flex-col md:overflow-y-scroll lg:flex-row "
+	class=" flex  h-fit w-full overflow-scroll  bg-[#36393f] md:flex-col md:overflow-y-scroll lg:flex-row "
 >
-	<div class="flex w-[80%] flex-col self-center transition-all  duration-200 items-center  ease-linear">
-		<p class="self-center text-3xl text-white my-10 ">All User Money request</p>
+	<div class="flex w-[80%] h-fit overflow-y-scroll  flex-col self-center transition-all   duration-200 items-center  ease-linear">
+		<p class="self-center text-3xl text-white my-10  ">All User Money request</p>
 		<div class="flex flex-col gap-2">
 			{#if UserReqList != DefaultUserReqList}
 				{#each UserReqList as req}

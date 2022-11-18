@@ -5,7 +5,8 @@
 	//
 	// import CameraPlus from '$lib/svgs/cameraPlus.svelte';
 	import { UserProData } from '$lib/store2';
-	let datedrop: boolean = false;
+	import {goto} from "$app/navigation";
+	let datedrop = false;
 	let GeneralData = {
 		
 		UUID: $UserProData.UUID,
@@ -696,6 +697,7 @@
 	<button
 		on:click={() => {
 			UpdateProfileData();
+			goto("/")
 		}}
 		class=" ml-4 h-[50px] w-[320px] rounded-lg bg-sky-500 font-Poppins text-lg font-semibold text-white hover:bg-sky-600"
 	>
