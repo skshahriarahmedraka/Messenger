@@ -78,9 +78,9 @@ export const load: PageServerLoad = async ({ cookies, locals }) => {
 		}
 		const decoded = jwt.verify(MyCookie, JWT_Auth_KEY);
 		console.log("🚀 ~ file: +page.server.ts ~ line 77 ~ constload:PageServerLoad= ~ decoded", decoded)
-		if ((decoded as tokeninterface).Accounttype != "admin"){
-			throw redirect(302,"/")
-		  }
+		// if ((decoded as tokeninterface).Accounttype != "admin"){
+		// 	throw redirect(302,"/")
+		//   }
 		//   let resdata
 		console.log(`http://${process.env.GO_HOST}/user/${(decoded as tokeninterface).UUID}`);
 		await fetch(`http://${process.env.GO_HOST}/user/${(decoded as tokeninterface).UUID}`, {

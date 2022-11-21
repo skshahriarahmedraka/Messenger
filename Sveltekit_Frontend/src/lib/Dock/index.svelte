@@ -209,7 +209,8 @@
 		<!-- content here -->
 		<button
 			on:click={() => {
-				goto('/moneymanagement');
+				window.location.replace("/moneymanagement");
+				// goto('/moneymanagement');
 			}}
 			class="  group flex w-full  flex-row  items-center justify-center py-[5px]  transition-all duration-150 ease-linear hover:rounded-lg"
 		>

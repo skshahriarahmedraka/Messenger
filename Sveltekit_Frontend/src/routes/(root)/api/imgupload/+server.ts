@@ -51,24 +51,29 @@ export const POST: RequestHandler = async ( {request} )=> {
 		BucketName: string;
 	}
 
-	await fetch(`http://${process.env.GO_HOST}/api/getimglink`, {
-		method: 'POST',
-		mode: 'no-cors',
+	ResData= {
+		Link: `http://${process.env.MINIO_HOST}:${process.env.MINIO_PORT}/`+`${process.env.MINIO_IMGBUCKET}`+"/"+fileName,
+		Name: fileName,
+		BucketName: 'userimg'
+	};
+	// await fetch(`http://${process.env.GO_HOST}/api/getimglink`, {
+	// 	method: 'POST',
+	// 	mode: 'no-cors',
 
-		headers: {
-			'Content-Type': 'application/json',
-			Accept: 'application/json'
-		},
-		body: JSON.stringify(mydata)
-	})
-		.then((res) => {
-			return res.json();
-		})
-		.then((data) => {
-			console.log('🚀 ~ file: +server.ts ~ line 99 ~ .then ~ data', data);
+	// 	headers: {
+	// 		'Content-Type': 'application/json',
+	// 		Accept: 'application/json'
+	// 	},
+	// 	body: JSON.stringify(mydata)
+	// })
+	// 	.then((res) => {
+	// 		return res.json();
+	// 	})
+	// 	.then((data) => {
+	// 		console.log('🚀 ~ file: +server.ts ~ line 99 ~ .then ~ data', data);
 
-			ResData = data;
-		});
+	// 		ResData = data;
+	// 	});
 
 	return json(ResData);
 }

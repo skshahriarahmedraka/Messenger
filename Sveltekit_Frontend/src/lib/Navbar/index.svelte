@@ -199,6 +199,7 @@
 		<button
 				on:click={() => {
 			SendUserMoney()
+			ShowSendMoney=!ShowSendMoney 
 		}}
 				class="  h-8 w-28 rounded-lg bg-sky-500 font-Poppins text-lg font-semibold text-white hover:bg-sky-600"
 		>
