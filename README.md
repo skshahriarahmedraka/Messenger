@@ -1,8 +1,10 @@
-Accord
+Messenger
 
-Clone of  Discord/Telegram
+Send/Receieve friend  request , chat with friends and send/receive money
 
-almost complete project , still many things to upgrade
+
+
+Complete project , still many things to upgrade
 
 - Front-end : Svelte, Sveltekit, Tailwindcss, Typescript
 
@@ -17,9 +19,5 @@ almost complete project , still many things to upgrade
 - Protocol :  HTTP , Websocket
 
 - 
-
-
-
-
 
 ![](./screenshots/home.png)
