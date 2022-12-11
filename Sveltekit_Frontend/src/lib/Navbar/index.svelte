@@ -222,26 +222,26 @@
 		{/if}
 
 
-<!--	<Hash-->
-<!--		class="my-3 mx-2 h-7 w-7 cursor-pointer text-slate-400  transition-all duration-200 ease-linear hover:text-white"-->
-<!--	/>-->
+	<Hash
+		class="my-3 mx-2 h-7 w-7 cursor-pointer text-slate-400  transition-all duration-200 ease-linear hover:text-white"
+	/>
 	<!-- notification -->
-<!--	<div class=" flex flex-row ">-->
-<!--		<Notification-->
-<!--			class="my-4 mr-4 h-7 w-7 cursor-pointer text-slate-400 transition-all duration-200 ease-linear hover:text-white"-->
-<!--		/>-->
-<!--		<div-->
-<!--			class=" border-1 absolute mt-3 ml-2  h-4  rounded-xl border-[#202225] bg-red-500 px-1 text-xs  font-semibold text-white  "-->
-<!--		>-->
-<!--			99+-->
-<!--		</div>-->
-<!--	</div>-->
+	<div class=" flex flex-row ">
+		<Notification
+			class="my-4 mr-4 h-7 w-7 cursor-pointer text-slate-400 transition-all duration-200 ease-linear hover:text-white"
+		/>
+		<div
+			class=" border-1 absolute mt-3 ml-2  h-4  rounded-xl border-[#202225] bg-red-500 px-1 text-xs  font-semibold text-white  "
+		>
+			99+
+		</div>
+	</div>
 	<!-- show people pannel -->
-<!--	<div class=" h-6 w-6" on:click={showPeopleListFunc}>-->
-<!--		<People-->
-<!--			class="h-6 w-6  cursor-pointer text-slate-400 transition-all duration-200 ease-linear hover:text-white"-->
-<!--		/>-->
-<!--	</div>-->
+	<div class=" h-6 w-6" on:click={showPeopleListFunc}>
+		<People
+			class="h-6 w-6  cursor-pointer text-slate-400 transition-all duration-200 ease-linear hover:text-white"
+		/>
+	</div>
 	<div class="flex flex-col ">
 		<div class="mr-2 mt-1  w-60 truncate text-right  font-medium text-gray-300 ">
 			{$ActiveFrndData.UserName}

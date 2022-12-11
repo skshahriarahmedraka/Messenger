@@ -238,66 +238,66 @@
 			<div class=" flex-grow" />
 		{/if}
 		<!-- video -->
-<!--		<div-->
-<!--			class=" rounded-lg hover:bg-gray-700"-->
-<!--			on:click={() => {-->
-<!--				userOptions['video'] = !userOptions['video'];-->
-<!--			}}-->
-<!--		>-->
-<!--			{#if !userOptions['video']}-->
-<!--				<RedOff class=" absolute  mt-1  mb-2 ml-1  h-6 w-6 fill-[#a4393c] " />-->
-<!--			{/if}-->
-<!--			<Video />-->
-<!--		</div>-->
+		<div
+			class=" rounded-lg hover:bg-gray-700"
+			on:click={() => {
+				userOptions['video'] = !userOptions['video'];
+		}}
+		>
+			{#if !userOptions['video']}
+				<RedOff class=" absolute  mt-1  mb-2 ml-1  h-6 w-6 fill-[#a4393c] " />
+			{/if}
+			<Video />
+		</div>
 		<!-- microphone -->
-<!--		<div-->
-<!--			class="rounded-lg hover:bg-gray-700 "-->
-<!--			on:click={() => {-->
-<!--				userOptions['microphone'] = !userOptions['microphone'];-->
-<!--			}}-->
-<!--		>-->
-<!--			{#if !userOptions['microphone']}-->
-<!--				<RedOff class=" absolute  mt-1  mb-2 ml-1  h-6 w-6 fill-[#a4393c] " />-->
-<!--			{/if}-->
-<!--			<Microphone-->
-<!--				class="m-1 h-6 w-6  cursor-pointer fill-slate-400 transition-all duration-100 ease-linear hover:fill-white"-->
-<!--			/>-->
-<!--		</div>-->
+		<div
+			class="rounded-lg hover:bg-gray-700 "
+			on:click={() => {
+				userOptions['microphone'] = !userOptions['microphone'];
+			}}
+		>
+			{#if !userOptions['microphone']}
+				<RedOff class=" absolute  mt-1  mb-2 ml-1  h-6 w-6 fill-[#a4393c] " />
+			{/if}
+			<Microphone
+				class="m-1 h-6 w-6  cursor-pointer fill-slate-400 transition-all duration-100 ease-linear hover:fill-white"
+			/>
+		</div>
 		<!-- sound -->
-<!--		<div-->
-<!--			class="rounded-lg hover:bg-gray-700 "-->
-<!--			on:click={() => {-->
-<!--				userOptions['sound'] = !userOptions['sound'];-->
-<!--			}}-->
-<!--		>-->
-<!--			{#if !userOptions['sound']}-->
-<!--				<RedOff class=" absolute  mt-1  mb-2 ml-1  h-6 w-6 fill-[#a4393c] " />-->
-<!--			{/if}-->
-<!--			<Speaker />-->
-<!--		</div>-->
+		<div
+			class="rounded-lg hover:bg-gray-700 "
+			on:click={() => {
+				userOptions['sound'] = !userOptions['sound'];
+			}}
+		>
+			{#if !userOptions['sound']}
+				<RedOff class=" absolute  mt-1  mb-2 ml-1  h-6 w-6 fill-[#a4393c] " />
+			{/if}
+			<Speaker />
+		</div>
 		<!-- notification sound -->
-<!--		<div-->
-<!--			class="rounded-lg hover:bg-gray-700 "-->
-<!--			on:click={() => {-->
-<!--				userOptions['notificationSound'] = !userOptions['notificationSound'];-->
-<!--			}}-->
-<!--		>-->
-<!--			{#if !userOptions['notificationSound']}-->
-<!--				<RedOff class=" absolute  mt-1  mb-2 ml-1  h-6 w-6 fill-[#a4393c] " />-->
-<!--			{/if}-->
-<!--			<Notification />-->
-<!--		</div>-->
+		<div
+			class="rounded-lg hover:bg-gray-700 "
+			on:click={() => {
+				userOptions['notificationSound'] = !userOptions['notificationSound']
+			}}
+		>
+			{#if !userOptions['notificationSound']}
+				<RedOff class=" absolute  mt-1  mb-2 ml-1  h-6 w-6 fill-[#a4393c] " />
+			{/if}
+			<Notification />
+		</div>
 
-<!--		<div-->
-<!--			on:click={() => {-->
-<!--				SearchStyle = 'sm';-->
-<!--			}}-->
-<!--			class=" mr-2 rounded-lg  hover:bg-gray-700"-->
-<!--		>-->
-<!--			<Search-->
-<!--				class="m-1 h-6 w-6  cursor-pointer fill-slate-400 transition-all duration-100 ease-linear hover:fill-white"-->
-<!--			/>-->
-<!--		</div>-->
+		<div
+		on:click={() => {
+			SearchStyle = 'sm'
+		}}
+			class=" mr-2 rounded-lg  hover:bg-gray-700"
+		>
+			<Search
+				class="m-1 h-6 w-6  cursor-pointer fill-slate-400 transition-all duration-100 ease-linear hover:fill-white"
+			/>
+		</div>
 	{/if}
 </div>
 
