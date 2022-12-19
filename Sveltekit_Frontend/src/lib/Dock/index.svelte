@@ -28,8 +28,6 @@
 		}
 		goto('/', {
 			replaceState: true,
-			noscroll: true,
-			keepfocus: true
 		});
 	}
 	let ActiveServer = '';
@@ -51,8 +49,7 @@
 
 		goto('/s/' + e.ServerURL, {
 			replaceState: true,
-			noscroll: true,
-			keepfocus: true
+		
 		});
 	}
 
@@ -84,40 +81,40 @@
         </div> -->
 	</div>
 	<!-- user list -->
-	<!--{#each ServerList as u}-->
-	<!--	<button-->
-	<!--		on:contextmenu|preventDefault={onRightClick}-->
-	<!--		on:click={() => {-->
-	<!--			ActiveServer = u['ServerURL'];-->
-	<!--			OnClickServer(u);-->
-	<!--		}}-->
-	<!--		class="  group flex w-full  flex-row  items-center justify-center py-[5px]  transition-all duration-150 ease-linear hover:rounded-lg"-->
-	<!--	>-->
-	<!--		<div class=" relative flex items-center justify-center">-->
-	<!--			<div-->
-	<!--				in:scale={{ duration: 200 }}-->
-	<!--				out:scale-->
-	<!--				class="absolute -left-[58px]  bg-white transition-all duration-200 ease-linear    {ActiveServer ===-->
-	<!--				u['ServerURL']-->
-	<!--					? 'rounded-md h-[50px] w-[50px]'-->
-	<!--					: 'rounded-xl h-[10px] w-[50px] group-hover:rounded-md group-hover:h-[30px] group-hover:w-[50px] '}"-->
-	<!--			/>-->
+	{#each ServerList as u}
+		<button
+			on:contextmenu|preventDefault={onRightClick}
+			on:click={() => {
+				ActiveServer = u['ServerURL'];
+				OnClickServer(u);
+			}}
+			class="  group flex w-full  flex-row  items-center justify-center py-[5px]  transition-all duration-150 ease-linear hover:rounded-lg"
+		>
+			<div class=" relative flex items-center justify-center">
+				<div
+					in:scale={{ duration: 200 }}
+					out:scale
+					class="absolute -left-[58px]  bg-white transition-all duration-200 ease-linear    {ActiveServer ===
+					u['ServerURL']
+						? 'rounded-md h-[50px] w-[50px]'
+						: 'rounded-xl h-[10px] w-[50px] group-hover:rounded-md group-hover:h-[30px] group-hover:w-[50px] '}"
+				/>
 
-	<!--			<img-->
-	<!--				src={u['ServerImage']}-->
-	<!--				alt=""-->
-	<!--				class="  h-[48px] w-[48px] cursor-pointer rounded-[1.25rem] object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md  "-->
-	<!--			/>-->
-	<!--			{#if u['Notification']}-->
-	<!--				<span-->
-	<!--					class=" absolute -bottom-2  -right-2 rounded-full border-2 border-[#202225] bg-red-500  px-1 text-xs font-semibold text-white "-->
-	<!--				>-->
-	<!--					{u['NumberOfNotification']}-->
-	<!--				</span>-->
-	<!--			{/if}-->
-	<!--		</div>-->
-	<!--	</button>-->
-	<!--{/each}-->
+				<img
+					src={u['ServerImage']}
+					alt=""
+					class="  h-[48px] w-[48px] cursor-pointer rounded-[1.25rem] object-cover transition-all  duration-100 ease-linear  hover:rounded-xl active:rounded-md  "
+				/>
+				{#if u['Notification']}
+					<span
+						class=" absolute -bottom-2  -right-2 rounded-full border-2 border-[#202225] bg-red-500  px-1 text-xs font-semibold text-white "
+					>
+						{u['NumberOfNotification']}
+					</span>
+				{/if}
+			</div>
+		</button>
+	{/each}
 
 	<!-- create button -->
 	<button
