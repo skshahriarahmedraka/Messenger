@@ -39,7 +39,6 @@ type AccordUser struct {
 	ZipCode string `json:"ZipCode" bson:"ZipCode"`
 
 	AccountCreatedTime primitive.DateTime `json:"AccountCreatedTime" bson:"AccountCreatedTime"`
-	// WishList           []string `json:"WishList" bson:"WishList"`
 
 }
 type FriendStruct struct {

@@ -9,6 +9,11 @@
   src: url("./fonts/Poppins-Regular.ttf");
 }
 
+@font-face {
+  font-family: "Open-Sans";
+  src: url("./fonts/OpenSans-Regular.ttf");
+}
+
 @layer utilities {
     /* Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {

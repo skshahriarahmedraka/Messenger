@@ -23,6 +23,7 @@ func Router(r *mux.Router) {
 
 	// r.Use(middleware.AuthMiddleware)
 	r.HandleFunc("/", H.ServerSettings).Methods("GET")
+	r.HandleFunc("/api/home", H.Home).Methods("GET")// test route
 
 	r.HandleFunc("/user/{UUID}", H.UserProData).Methods("GET")//complete
 	r.HandleFunc("/user/frndsuggestion", H.FrndSuggestion).Methods("POST")// complete
