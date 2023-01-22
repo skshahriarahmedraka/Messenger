@@ -2,9 +2,9 @@ package cmd
 
 
 import (
-	"fmt"
-	"log"
-	"os"
+	// "fmt"
+	// "log"
+	// "os"
 
 	// "app/config"
 	// "app/controller"
@@ -23,7 +23,7 @@ func Main() {
 	//  fmt.Println("environment var :  ", os.Getenv("NAME")=="SK SHAHRIAR AHMED RAKA")
 	// fmt.Println("environment var :", os.Getenv("POSTGRES_TIMEZONE"))
 	// fmt.Println("environment var :", os.Getenv("POSTGRES_TIMEZONE")=="Asia/Dhaka")
-	fmt.Println("🚀✨ Api is started")
+	// fmt.Println("🚀✨ Api is started")
 	// r := gin.Default()
 
 	r := gin.New()
@@ -33,8 +33,8 @@ func Main() {
 
 	router.RouteWithoutAuth(r)
 
-	log.Println("Server is started in PORT 8889 ...👨‍💻 ")
-	if e := r.Run(os.Getenv("HOST") + ":" + os.Getenv("GIN_PORT")); e != nil {
-		log.Fatalln("❌ ERROR when Server is start   👨‍💻 : ", e)
-	}
+	// log.Println("Server is started in PORT 8889 ...👨‍💻 ")
+	// if e := r.Run(os.Getenv("HOST") + ":" + os.Getenv("GIN_PORT")); e != nil {
+	// 	log.Fatalln("❌ ERROR when Server is start   👨‍💻 : ", e)
+	// }
 }

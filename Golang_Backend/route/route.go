@@ -36,7 +36,7 @@ func Router(r *mux.Router) {
 	r.HandleFunc("/user/chatfrndlist", H.ChatFrndList).Methods("POST")// complete : get your friend list
 	r.HandleFunc("/user/frienddata/{UUID}", H.UserFrndData).Methods("GET")// complete : get your friend list
 	r.HandleFunc("/user/getconversationid/", H.GetConversationID).Methods("POST")// incomplete : get your friend list
-
+	
 	r.HandleFunc("/user/sendmessage/", H.UserSendMessage).Methods("POST")// complete : have to check
 	r.HandleFunc("/user/getconversationmsg/", H.UserConversationMsg).Methods("POST")// not complete : have to check
 	
@@ -61,10 +61,18 @@ func Router(r *mux.Router) {
 	r.HandleFunc("/user/moneytokenreq", H.UserTokenReq).Methods("POST")// complete
 	r.HandleFunc("/user/moneytokenreqlist", H.UserTokenReqList).Methods("POST")//complete
 	r.HandleFunc("/user/rechargewallet", H.UserRechargeWallet).Methods("POST")// complete
-
-
+	
+	
 	r.HandleFunc("/admin/moneymanagement", H.MoneyManagement).Methods("GET")//Complete
 	r.HandleFunc("/admin/moneyreqaccept", H.AdminMoneyReqAccept).Methods("POST")//complete
+	
+	//////////////
+	r.HandleFunc("/api/imgupload", H.ImgLink).Methods("POST")
+	r.HandleFunc("/api/frienddata/{UUID}", H.UserFrndData).Methods("GET")// complete : get your friend list
+	r.HandleFunc("/api/getconversationid/", H.GetConversationID).Methods("POST")// incomplete : get your friend list
+	r.HandleFunc("/api/getconversationmsg/", H.UserConversationMsg).Methods("POST")// not complete : have to check
+	
+	// r.HandleFunc("/api/imgupload", H.AdminUserList).Methods("GET")//complete
 
 	go handler.Main(&H)
 

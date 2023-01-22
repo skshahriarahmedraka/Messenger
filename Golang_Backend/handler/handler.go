@@ -26,7 +26,6 @@ func (H *DatabaseCollections)UserIDtoUUID(UserID string) string {
 	err := H.MongoUser.Collection(os.Getenv("MONGO_USERCOL")).FindOne(ctx, bson.M{"UserID": UserID}).Decode(&UserDataDB)
     logerror.ERROR("🚀 ~ file: handler.go ~ line 25 ~ func ~ err : ", err)
 	if err != nil {
-		
 		return UserDataDB.UUID
 	} else {
 		return ""
